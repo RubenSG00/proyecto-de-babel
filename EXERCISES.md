@@ -196,7 +196,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | A3 | `data.sql`: notices and acknowledgements | Initial data | ★ | H | mock Test 3 | `TestA3` | ☑ |
 | A4 | `data.sql`: targets of the notices | Initial data (join table) | ★ | H | mock Test 4 | `TestA4` | ☑ |
 | A5 | `TrainingSessionService` | Services, transactions (`readOnly`, `rollbackFor`) | ★★ | H | mock Test 5; T5 p.39 | `TestA5` | ☑ |
-| A6 | `findMemberPoints` query | JPQL aggregates | ★★★ | H | mock Test 6 | `TestA6` | ☐ |
+| A6 | `findMemberPoints` query | JPQL aggregates | ★★★ | H | mock Test 6 | `TestA6` | ☑ |
 | A7 | Leaderboard endpoint | REST controller, 404/403 | ★★ | H | mock Test 7 | `TestA7` | ☐ |
 | A8 | Tests for `TrainingStreakFinder` | Writing JUnit tests | ★★ | M | mock Test 8 | `TestA8` | ☐ |
 | A9 | `Program` React component | React: fetch and render | ★★ | H | mock Test 9; T6 p.55 | `Program.test.js` | ☐ |
