@@ -34,7 +34,8 @@ public interface MusicianRepository extends CrudRepository<Musician, Integer> {
     @Query("SELECT m FROM Musician m WHERE m.bands IS NOT EMPTY")
     List<Musician> musiciansWithBand();
 
-    // DISTINCT: a musician in two bands of the city would otherwise appear twice
+    // DISTINCT: a musician in two bands of the city would be two rows of the join (Hibernate 6
+    // already removes duplicate entities from the result, but not duplicate scalar values)
     @Query("SELECT DISTINCT m FROM Musician m, IN (m.bands) b WHERE b.city = :city")
     List<Musician> musiciansPlayingInCity(@Param("city") String city);
 
@@ -44,5 +45,8 @@ public interface MusicianRepository extends CrudRepository<Musician, Integer> {
 
     @Query("SELECT COUNT(m) FROM Musician m JOIN m.bands b WHERE b.id = :bandId")
     Long countMusiciansOfBand(@Param("bandId") Integer bandId);
+
+    @Query("SELECT DISTINCT m.instrument FROM Musician m JOIN m.bands b WHERE b.city = :city ORDER BY m.instrument")
+    List<String> instrumentsPlayedInCity(@Param("city") String city);
 
 }

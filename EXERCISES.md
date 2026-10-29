@@ -1680,13 +1680,16 @@ Replace the placeholder query of these other methods of `MusicianRepository`:
 - `musiciansEarningMoreThan(String name)`: the musicians whose salary is greater than the salary of the musician called `name` (a self-join of `Musician` with itself, as in T5 p.22).
 - `countMusiciansOfBand(Integer bandId)`: the number of musicians of a band (returns `Long`).
 
+And **add** to `MusicianRepository` a new method `List<String> instrumentsPlayedInCity(String city)`, annotated with a JPQL query, that returns the instruments played by the musicians of the bands of `city`, sorted alphabetically and without repetitions.
+
 **File to modify:** `practice/x/queries/MusicianRepository.java`.
 
 <details>
 <summary>Hints, key points, typical mistakes, solution</summary>
 
 - `WHERE m.bands IS EMPTY` / `IS NOT EMPTY` · `SELECT DISTINCT m FROM Musician m, IN (m.bands) b WHERE b.city = :city` (the course syntax; `JOIN m.bands b` is equivalent) · `SELECT DISTINCT m1 FROM Musician m1, Musician m2 WHERE m1.salary > m2.salary AND m2.name = :name` · `SELECT COUNT(m) FROM Musician m JOIN m.bands b WHERE b.id = :bandId`.
-- Without `DISTINCT`, Carla Ruiz (two bands in Seville) appears twice.
+- `SELECT DISTINCT m.instrument FROM Musician m JOIN m.bands b WHERE b.city = :city ORDER BY m.instrument`: without `DISTINCT`, Seville gives `drums, guitar, guitar, guitar, piano` (Carla Ruiz plays the guitar in two bands of Seville, and Ana Torres plays it too).
+- Hibernate 6 (this project's version) removes duplicate **entities** from the result by itself, so `musiciansPlayingInCity` returns Carla Ruiz once even without `DISTINCT`; duplicate **scalar** values (such as the instruments) are not removed. Write `DISTINCT` in both: it is what the query means, and it is what the course writes (T5 p.21).
 - Solution: [MusicianRepository.java](src/main/java/es/us/dp1/chess/tournament/practice/x/queries/MusicianRepository.java) · grader [TestX06.java](src/test/java/es/us/dp1/chess/tournament/practice/x/queries/TestX06.java) · `git show ":/practice: X06 "`
 </details>
 
