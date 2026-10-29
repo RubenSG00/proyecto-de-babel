@@ -203,3 +203,14 @@ INSERT INTO announcement_response (id, message, status, responded_at, announceme
     (1, 'Got it, will submit by Friday', 'ACCEPTED', '2026-07-01 11:00:00', 1, 4),
     (2, 'Sounds good to me', 'ACCEPTED', '2026-08-02 10:00:00', 3, 5),
     (3, 'I can''t make it in August', 'DECLINED', '2026-08-02 12:00:00', 3, 6);
+
+-- Block 0, Test 4: recipients. Default join table of the unidirectional @ManyToMany
+-- "recipients": <owner table>_<attribute>(<owner table>_id, <attribute>_id).
+INSERT INTO challenge_announcement_recipients (challenge_announcement_id, recipients_id) VALUES
+    (1, 4),
+    (1, 5),
+    (2, 4),
+    (2, 5),
+    (3, 5),
+    (3, 6),
+    (3, 7);
