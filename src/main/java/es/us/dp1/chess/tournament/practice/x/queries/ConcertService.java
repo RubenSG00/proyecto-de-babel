@@ -19,26 +19,22 @@ public class ConcertService {
 
     @Transactional(readOnly = true)
     public List<Concert> findUpcomingInCity(String city, LocalDate from) {
-        // TODO: Implement to solve Test X04
-        return null;
+        return repo.findByCityAndDateAfterOrderByDateAsc(city, from);
     }
 
     @Transactional(readOnly = true)
     public List<Concert> findAffordableNotSoldOut(Integer maxPrice) {
-        // TODO: Implement to solve Test X04
-        return null;
+        return repo.findByPriceLessThanAndSoldOutFalse(maxPrice);
     }
 
     @Transactional(readOnly = true)
     public List<Concert> findByGenreOrCity(MusicGenre genre, String city) {
-        // TODO: Implement to solve Test X04
-        return null;
+        return repo.findByGenreOrCity(genre, city);
     }
 
     @Transactional(readOnly = true)
     public List<Concert> findStartingWith(String prefix) {
-        // TODO: Implement to solve Test X04
-        return null;
+        return repo.findByTitleStartingWithOrderByTitleDesc(prefix);
     }
 
 }

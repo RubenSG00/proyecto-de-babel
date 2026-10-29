@@ -27,4 +27,14 @@ public interface ConcertRepository extends CrudRepository<Concert, Integer> {
     // Optional: zero or one result
     Optional<Concert> findByTitle(String title);
 
+    // Test X04: After and LessThan are strict (LessThanEqual is not)
+
+    List<Concert> findByCityAndDateAfterOrderByDateAsc(String city, LocalDate from);
+
+    List<Concert> findByPriceLessThanAndSoldOutFalse(Integer maxPrice);
+
+    List<Concert> findByGenreOrCity(MusicGenre genre, String city);
+
+    List<Concert> findByTitleStartingWithOrderByTitleDesc(String prefix);
+
 }

@@ -224,7 +224,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X01 | Validation catalogue on an entity | Bean Validation | ★★ | H | T5 p.75–83 | `TestX01` | ☑ |
 | X02 | `@NotNull`/`@NotEmpty`/`@NotBlank`, `@Min`/`@DecimalMin` on a DTO | Bean Validation | ★ | H | T5 p.79–81; T6 p.30 | `TestX02` | ☑ |
 | X03 | Derived queries with given names | Derived queries | ★ | H | T5 p.23–25 | `TestX03` | ☑ |
-| X04 | Derived queries you name yourself | Derived queries | ★★ | H | T5 p.17, p.23–25 | `TestX04` | ☐ |
+| X04 | Derived queries you name yourself | Derived queries | ★★ | H | T5 p.17, p.23–25 | `TestX04` | ☑ |
 | X05 | JPQL: positional and named parameters, `LIKE`, `BETWEEN`, `IS NULL` | JPQL | ★★ | H | T5 p.16–22 | `TestX05` | ☐ |
 | X06 | JPQL over collections: `IS EMPTY`, `DISTINCT`, `IN`, self-join, `COUNT` | JPQL | ★★ | H | T5 p.21–22 | `TestX06` | ☐ |
 | X07 | Class-level `@Transactional`, `readOnly`, `rollbackFor` | Transactions | ★★ | H | T5 p.33, p.37–40 | `TestX07` | ☐ |
