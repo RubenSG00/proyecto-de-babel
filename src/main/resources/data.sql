@@ -300,3 +300,26 @@ INSERT INTO workshop (id, name, capacity, enrolled) VALUES
     (1, 'Opening theory', 2, 1),
     (2, 'Endgame clinic', 1, 1),
     (3, 'Blitz tactics', 3, 0);
+
+-- ==========================================================
+-- Block B (library reading clubs): given data.
+-- Loans 1-6 and clubs 1-2. Users: 4..13 (player1..player10).
+-- ==========================================================
+INSERT INTO book_loan (id, book_title, loan_date, due_date, return_date, borrower_id, recommender_id) VALUES
+    (1, 'The Name of the Wind', '2026-09-01', '2026-09-15', '2026-09-20', 4, 5),
+    (2, 'Dune', '2026-09-10', '2026-10-05', NULL, 4, NULL),
+    (3, 'Middlemarch', '2026-09-05', '2026-09-25', NULL, 5, NULL),
+    (4, 'Beloved', '2026-09-01', '2026-09-20', '2026-09-20', 6, 4),
+    (5, 'Ulysses', '2026-09-01', '2026-09-10', NULL, 9, NULL),
+    (6, 'Emma', '2026-09-10', '2026-09-28', NULL, 13, NULL);
+
+INSERT INTO reading_club (id, name, founded_on, max_members) VALUES
+    (1, 'Classics Circle', '2025-01-15', 10),
+    (2, 'Sci-fi Nights', '2025-06-01', 6);
+
+INSERT INTO reading_club_members (reading_club_id, user_id) VALUES
+    (1, 4), (1, 5), (1, 6), (1, 7), (1, 13),
+    (2, 8), (2, 9);
+
+INSERT INTO reading_club_loans (reading_club_id, book_loan_id) VALUES
+    (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6);
