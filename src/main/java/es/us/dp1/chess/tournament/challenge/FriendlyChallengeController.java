@@ -31,6 +31,11 @@ public class FriendlyChallengeController {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
-    // TODO: Implement to solve Test 7 (GET {id}/ranking)
+    // No try/catch: ExceptionHandlerController maps ResourceNotFoundException to 404
+    // and AccessDeniedException to 403
+    @GetMapping("{id}/ranking")
+    public ResponseEntity<List<RankingEntry>> getRanking(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(service.getRanking(id), HttpStatus.OK);
+    }
 
 }
