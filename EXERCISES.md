@@ -1,8 +1,8 @@
 # DP1 – Practical exam training set
 
-> Practice material built from the mock exam in this repository ([README.en.md](README.en.md), *DP1 2025-2026 Practical Exam, Second Sitting*) and the course lessons **T2** (presentation layers), **T4** (business logic and resource layers), **T5** (data model design) and **T6** (Spring and React best practices).
+> Practice material built from the mock exam in this repository ([README.en.md](README.en.md), *DP1 2025-2026 Practical Exam, Second Sitting*), the course lessons **T2** (presentation layers), **T4** (business logic and resource layers), **T5** (data model design) and **T6** (Spring and React best practices), and the lab guide **Lab 2** (*Introduction to React and basic security concepts*, 2026-2027).
 >
-> Stack (same as the exam): Spring Boot **3.5.5**, Java **21**, `jakarta.*`, Hibernate 6.6, H2 + `data.sql`, Lombok, JUnit 5 + Mockito + Spring Boot Test; React 18 (react-scripts 5) + Jest + React Testing Library + MSW 1.x.
+> Stack (same as the mock): Spring Boot **3.5.5**, Java **21**, `jakarta.*`, Hibernate 6.6, H2 + `data.sql`, Lombok, JUnit 5 + Mockito + Spring Boot Test; React 18 (react-scripts 5) + Jest + React Testing Library + MSW 1.x.
 
 **Contents**
 
@@ -103,9 +103,9 @@ git switch exam-practice
 git branch -D try-A                  # only if you do not want to keep the branch
 ```
 
-**Block 0 (the mock)**: `git switch -c try-0 main`. Its graders (`Test1`…`Test8`, `Test7Alt`, the two React tests) are already in `main`; nothing has to be restored. For **Block X**, branch from `":/practice: X-start"` and restore only the grader of the exercise, e.g. `git restore --source=exam-practice -- src/test/java/es/us/dp1/chess/tournament/practice/x/queries/TestX05.java`.
+**Block 0 (the mock)**: `git switch -c try-0 main`. Its graders (`Test1`…`Test8`, `Test7Alt`, the two React tests) are already in `main`; nothing has to be restored. For **Block X**, branch from `":/practice: X-start"` and restore only the grader of the exercise, e.g. `git restore --source=exam-practice -- src/test/java/es/us/dp1/chess/tournament/practice/x/queries/TestX05.java`, or for a React exercise `git restore --source=exam-practice -- frontend/src/practice/x/lab2/partners/Partners.test.js` and then, inside `frontend`, `npx react-scripts test --watchAll=false src/practice/x/lab2/partners`.
 
-In exercise 8 of every block *you* write the tests: its grader is a dispatcher (`TestA8`, `TestB8`, `TestC8`) that runs your test class against four implementations, and restoring it does **not** bring the solution, which lives in a different file. In X34–X35 there is nothing to restore: the broken components you test against are already in the starting state.
+In exercise 8 of every block *you* write the tests: its grader is a dispatcher (`TestA8`, `TestB8`, `TestC8`) that runs your test class against four implementations, and restoring it does **not** bring the solution, which lives in a different file. In X46–X47 there is nothing to restore: the broken components you test against are already in the starting state.
 
 ---
 
@@ -115,15 +115,16 @@ In exercise 8 of every block *you* write the tests: its grader is a dispatcher (
 
 1. **Language and format.** The statements follow the English mock statement ([README.en.md](README.en.md)): "Test N – …" titles, the same wording for attributes, relations, initial data, services, queries, controllers and React components.
 2. **Page references** use the PDF page number shown by the PDF viewer (*p.*), not the slide number printed on each slide; they differ because hidden slides were removed (for example T4 p.14 is slide 15).
-3. **Shape of tomorrow's exam.** It is assumed to look like the mock: 10 exercises × 1 point, backend exercises 1–8 + React 9–10, a single domain in which exercises 3–4 depend on 1–2 and the rest are independent; only the domain and the details change. Likelihood is rated from that assumption plus the lessons. Exercise type 8 (writing JUnit tests) is rated *medium* and not *high*: the mock has it, but T2 p.56 says testing is covered in lessons T9 (3 Nov) and T10 (10 Nov), after the exam date.
-4. **Only topics with a source.** Every exercise traces back to a mock exercise or to a specific PDF page. Topics that appear in neither are **not** trained: Spring Security configuration (`SecurityFilterChain`, `requestMatchers`, JWT), `@Modifying`/native queries/pagination, fetch types, `@Inheritance` strategies, `@DateTimeFormat`, PUT/DELETE endpoints, Mockito/`@DataJpaTest`/`@WebMvcTest`/parameterized tests *as something you write* (they only appear in the mock's graders; parameterized tests are explicitly forbidden in mock Test 8). HTTP status codes are limited to those in the sources: 200, 201, 400, 403 and 404 (plus 401, which the scaffold returns on its own for unauthenticated requests).
+3. **Shape of tomorrow's exam.** It is assumed to look like the mock: 10 exercises × 1 point, backend exercises 1–8 + React 9–10, a single domain in which exercises 3–4 depend on 1–2 and the rest are independent; only the domain and the details change. Likelihood is rated from that assumption plus the lessons. Exercise type 8 (writing JUnit tests) is rated *medium* and not *high*: the mock has it, but T2 p.56 says testing is covered in lessons T9 (3 Nov) and T10 (10 Nov), after the exam date. Lab 2 shows that this year's project template (`group-project-seed`, 2026-27) uses Vite, `.jsx` files, an axios client, one service function per API operation and the hooks `useFetchState(initial, serviceFn, deps, { skip, onError })` and `useErrorModal`. Tomorrow's exam may be built on that template instead of this repository's: the React exercises of Blocks 0, A, B and C use the mock's style (plain `fetch`), and X09, X10 and X30–X35 practise the template's style. The tests look the same in both, because Vitest has the same API as Jest (T2 p.58).
+4. **Only topics with a source.** Every exercise traces back to a mock exercise or to a specific PDF page. Topics that appear in none of them are **not** trained: how JWT works internally (Lab 2 p.7 leaves it to the lectures), `@Modifying`/native queries/pagination, fetch types, `@Inheritance` strategies, `@DateTimeFormat`, and Mockito/`@DataJpaTest`/`@WebMvcTest`/parameterized tests *as something you write* (they only appear in the mock's graders; parameterized tests are explicitly forbidden in mock Test 8). PUT and DELETE endpoints and the security rules of API paths are trained only because Lab 2 documents them (p.15, p.16, p.27). HTTP status codes are limited to those in the sources: 200, 201, 204, 400, 403 and 404 (plus 401, which the scaffold returns on its own for unauthenticated requests).
 5. **Course over generic practice** where they differ: `@Autowired` constructor injection (T5 p.17, p.27); `@Transactional` on service methods, `readOnly = true` for reads (T5 p.17, p.39); semantic rules as checked exceptions + `rollbackFor` (T5 p.38, p.85); mandatory to-one associations as `@ManyToOne(optional = false)` (T4 p.50, p.87) **plus** `@NotNull` (required by the mock's graders); `@Size` rather than `@Length` (T5 p.80); `@Min/@Max` only for integer types and `@DecimalMin/@DecimalMax` for `BigDecimal`/`Double` (T5 p.81); exception handlers in the `@RestControllerAdvice` class returning `ErrorMessage` (T6 p.14–16); `new ResponseEntity<>(body, HttpStatus.X)` (T6 p.11, p.16); `BeanUtils.copyProperties(input, newEntity, "id", …)` when creating from a request body (T5 p.77, T6 p.37); `@JsonIgnore` on the collection side to break JSON loops (T6 p.27); presentation components + custom hooks in React (T6 p.62–73). One conflict is resolved in favour of the mock: T5 p.86 and T6 p.37 check authorities **in the controller**, but the mock's `Test7Alt` and T4 p.17 ("security checks" are application logic in the service layer) require access checks **in the service**, so that is what the solutions do.
 6. **Everything lives in one project.** Each practice block has its own package: `es.us.dp1.chess.tournament.practice.a`, `.b`, `.c` and `.x.<topic>`, and its own React folder `frontend/src/practice/<block>`. Entity, table and join-table names are unique across the project. The blocks reuse the scaffold (`User`, `UserService`, the exceptions in `exceptions/`, `ExceptionHandlerController`) and the users already loaded by `data.sql` (`admin1` with id 1; `player1`…`player10` with ids 4…13). Each block appends its own clearly delimited section to `data.sql`, with its own tables, ids below 100 (generated ids start at 100, T4 p.44 / T5 p.46) and inserts in foreign-key order.
 7. **Skeleton commits.** To make blind attempts possible, every block starts with a commit containing its exam starting state, against which all of its graders compile. One deliberate difference from the mock: the starting version of the test class you write in exercise 8 has no `@Test` method (the mock's has a failing `fail()` test), so that the whole build stays green at every commit.
 8. **React graders** register their fake API responses with `server.use(...)` inside the test file, so the mock's `frontend/src/mocks/handlers.js` is not modified.
 9. **No new dependencies.** Only what `pom.xml` and `frontend/package.json` already contain is used.
 10. **Mock Test 7 and Test7Alt.** Both are in the repository (the teacher's notes say only one would be published). The Block 0 solution satisfies both; `Test7Alt` is the stricter one (layered architecture).
-11. **Verified behaviours of this project that the statements rely on** (checked on this stack before writing): `SELECT u, SUM(CASE …) … GROUP BY u ORDER BY 2 DESC, u.username` works in JPQL with H2 and returns `Long`; `@Size`/`@NotEmpty` on a collection are checked when the entity is flushed, whether the list is replaced or modified in place; a custom exception annotated with `@ResponseStatus(...)` still produces **500** in this project, because the `@ExceptionHandler(Exception.class)` of `ExceptionHandlerController` takes precedence, so custom exceptions need their own handler method; Lombok's `@EqualsAndHashCode(of = {"id"})` ignores an `id` inherited from `BaseEntity` (two `ChessMatch` with different ids are *equal*).
+11. **Verified behaviours of this project that the statements rely on** (checked on this stack before writing): `SELECT u, SUM(CASE …) … GROUP BY u ORDER BY 2 DESC, u.username` works in JPQL with H2 and returns `Long`; `@Size`/`@NotEmpty` on a collection are checked when the entity is flushed, whether the list is replaced or modified in place; a custom exception annotated with `@ResponseStatus(...)` still produces **500** in this project, because the `@ExceptionHandler(Exception.class)` of `ExceptionHandlerController` takes precedence, so custom exceptions need their own handler method; Lombok's `@EqualsAndHashCode(of = {"id"})` ignores an `id` inherited from `BaseEntity` (two `ChessMatch` with different ids are *equal*); axios (already imported by this repository's `src/services/api.js` and installed as a dependency of `swagger-ui-react`) works under Jest, and MSW intercepts its requests.
+12. **The Lab 2 template inside this repository.** The utilities that Lab 2 receives from its template, but this repository does not have, are reproduced in `frontend/src/practice/x/lab2/`: `services/api.js`, `hooks/useFetchState.js`, `hooks/useErrorModal.jsx`, `components/ErrorModal.jsx` and `util/deleteFromList.jsx`. Each one follows the signature and behaviour that Lab 2 describes (p.8–9, p.15–16, p.21–23, p.26–27). They are given code, not exercises. Lab 2's own exercises (developers and achievements) are not repeated: X09–X10 and X30–X35 practise the same steps on other resources (sponsors, partners, tournaments, referees, chess clubs).
 
 ### 2.2 Topic map (study guide)
 
@@ -135,12 +136,12 @@ Likelihood: **H** high, **M** medium, **L** low. "Mock" says whether the mock ex
 | 2 | Enumerated attributes stored as text (`@Enumerated(EnumType.STRING)`) | mock Test 1 (T4 p.25 and T5 p.52 only show the UML «enum») | Yes | H | 0.1, A1, B1, C1 |
 | 3 | Bean Validation basics: `@NotNull`, `@Size` on strings and collections | T5 p.77–82; mock Tests 1–2 | Yes | H | 0.1, 0.2, A1–C2 |
 | 4 | Bean Validation catalogue: `@NotBlank` vs `@NotEmpty` vs `@NotNull`, `@Min/@Max`, `@DecimalMin/@DecimalMax`, `@Digits`, `@Pattern`, `@Email`, `@Past`, `@Size` vs `@Length` | T5 p.75–83 | Partly | H | X01, X02 (+ A1, B1, C1) |
-| 5 | Custom validation: own constraint annotation, Spring `Validator` class | T5 p.76, p.83 (named, no code) | No | L | X30, X31 |
+| 5 | Custom validation: own constraint annotation, Spring `Validator` class | T5 p.76, p.83 (named, no code) | No | L | X40, X41 |
 | 6 | `@ManyToOne` / `@ManyToMany`, cardinality → `optional`/`@NotNull`/`@Size` | T4 p.49–50, p.87–89; T5 p.9, p.59–62; mock Test 2 | Yes | H | 0.2, A2, B2, C2 |
-| 7 | Bidirectional associations (`mappedBy`), `@OneToOne`, composition (`cascade = ALL`, `orphanRemoval`), aggregation cascades | T4 p.51–53, p.88, p.90–91; T5 p.60–67 | No | M | X15, X16, X17 (+ C2) |
-| 8 | Other mappings: `@Table`, `@Column`, `@Temporal`, `unique`, `@UniqueConstraint` | T4 p.55–59; T5 p.19 | No | M | X18, X19 (+ C1) |
-| 9 | Value objects: `@Embeddable`, `@Embedded`, `@AttributeOverrides` | T4 p.42–43, p.48, p.85–86 | No | L | X26, X27 |
-| 10 | Inheritance with `@MappedSuperclass` (`BaseEntity`, `NamedEntity`, `Person`), mapping generalizations | T4 p.54; T5 p.50–56, p.72, p.77 | Partly | L | X28, X29 |
+| 7 | Bidirectional associations (`mappedBy`), `@OneToOne`, composition (`cascade = ALL`, `orphanRemoval`), aggregation cascades | T4 p.51–53, p.88, p.90–91; T5 p.60–67 | No | M | X19, X20, X21 (+ C2) |
+| 8 | Other mappings: `@Table`, `@Column`, `@Temporal`, `unique`, `@UniqueConstraint` | T4 p.55–59; T5 p.19 | No | M | X22, X23 (+ C1) |
+| 9 | Value objects: `@Embeddable`, `@Embedded`, `@AttributeOverrides` | T4 p.42–43, p.48, p.85–86 | No | L | X36, X37 |
+| 10 | Inheritance with `@MappedSuperclass` (`BaseEntity`, `NamedEntity`, `Person`), mapping generalizations | T4 p.54; T5 p.50–56, p.72, p.77 | Partly | L | X38, X39 |
 | 11 | Initial data in `data.sql`: column/join-table names, FK order, `''` escaping | mock Tests 3–4 (T4 p.50–52 and p.89–90 show the generated tables) | Yes | H | 0.3, 0.4, A3–C4 |
 | 12 | Repositories: `Repository`/`CrudRepository`, `Optional` from `findById`, one repository per service | T5 p.12–17, p.25; mock Test 1 | Yes | H | 0.1, A1–C1 |
 | 13 | Derived query methods (`findBy…`, keywords table) | T5 p.23–25 | No | H | X03, X04 |
@@ -149,20 +150,26 @@ Likelihood: **H** high, **M** medium, **L** low. "Mock" says whether the mock ex
 | 16 | Services with method-level `@Transactional`, business rules as checked exceptions + `rollbackFor` | T4 p.16–19; T5 p.26–47, p.84–87; mock Test 5 | Yes | H | 0.5, A5, B5, C5 |
 | 17 | Transactions in depth: `readOnly`, class-level `@Transactional`, default rollback only for unchecked exceptions, atomic multi-entity operations | T5 p.33–47 | Partly | H | X07, X08 (+ A5, B5) |
 | 18 | GET endpoint + service with 404/403, `findCurrentUser()`, layered architecture | mock Test 7 + `ALTERNATIVE-TEST7.md`; T4 p.7, p.16–17; T5 p.17; T6 p.7 | Yes | H | 0.7, A7, B7, C7 |
-| 19 | POST endpoint: `@RequestBody @Valid` → 201/400, mass assignment, `BeanUtils.copyProperties` | T5 p.77, p.86; T6 p.11, p.19, p.33–37, p.84 | No | M | X09, X10 |
-| 20 | Error handling: `@RestControllerAdvice` + `@ExceptionHandler` + `ErrorMessage`, checked business exceptions through controllers | T6 p.12–17; T5 p.84–86 | Partly | M | X11, X12 (+ C7) |
-| 21 | Authorization with authorities (`hasAuthority`) and ownership, checked in the service layer | T4 p.17; T5 p.86; T6 p.34–37 | Partly | M | X13, X14 (+ B7, C7) |
-| 22 | JSON data binding: infinite loops and `@JsonIgnore`, DTOs | T6 p.19–32 | No | M | X20, X21 |
-| 23 | Writing JUnit 5 tests for a given algorithm (no mocks, no Spring, no parameterized tests) | mock Test 8 | Yes | M | 0.8, A8, B8, C8 |
-| 24 | React: components, props, `useState`/`useEffect`, `fetch`, rendering lists with `key` | T2 p.23–24, p.36–43, p.52–53; T6 p.55–56; mock Tests 9–10 | Yes | H | 0.9, 0.10, A9–C10 |
-| 25 | React: events, lifting state up, immutable updates of arrays/objects | T2 p.38–46 | No | M | X22, X23 |
-| 26 | React: presentation components, custom hooks, network client | T6 p.60–78 | No | M | X24, X25 |
-| 27 | React router and Context (prop drilling) | T2 p.47, p.49–50; T6 p.80–82 | No | L | X32, X33 |
-| 28 | Writing frontend tests with React Testing Library | T2 p.56–59 | No | L | X34, X35 |
-| 29 | Logging with SLF4J/`@Slf4j`, levels, configuration | T6 p.38–48 | No | L | X36, X37 |
-| 30 | EntityManager and the persistence-context lifecycle | T4 p.61–76; T5 p.10 | No | L | X38, X39 |
-| 31 | Domain logic in entities vs application logic in services; `equals`/`hashCode` on the id | T4 p.17–19, p.45–47 | No | L | X40, X41 |
-| — | *Not trained (no source)*: security configuration/JWT, `@Modifying`, native queries, pagination, fetch types, `@Inheritance`, `@DateTimeFormat`, PUT/DELETE, writing Mockito/Spring tests | — | — | — | — |
+| 19 | POST endpoint: `@RequestBody @Valid` → 201/400, mass assignment, `BeanUtils.copyProperties` | T5 p.77, p.86; T6 p.11, p.19, p.33–37, p.84 | No | M | X11, X12 |
+| 20 | PUT and DELETE endpoints: `@PutMapping("{id}")` + `@PathVariable` + `@RequestBody @Valid` → 200/400/404, `@DeleteMapping` → 204/404 | Lab 2 p.15, p.21–23, p.26–27; T6 p.37 | No | M | X13, X14 |
+| 21 | Error handling: `@RestControllerAdvice` + `@ExceptionHandler` + `ErrorMessage`, checked business exceptions through controllers | T6 p.12–17; T5 p.84–86 | Partly | M | X15, X16 (+ C7) |
+| 22 | Authorization with authorities (`hasAuthority`) and ownership, checked in the service layer | T4 p.17; T5 p.86; T6 p.34–37 | Partly | M | X17, X18 (+ B7, C7) |
+| 23 | Securing API paths in `SecurityConfiguration`: `requestMatchers(…).hasAuthority(…)` and `permitAll()`, order of the rules, 401 vs 403 | Lab 2 p.4, p.7–8, p.16 | No | L | X42, X43 |
+| 24 | JSON data binding: infinite loops and `@JsonIgnore`, DTOs | T6 p.19–32 | No | M | X24, X25 |
+| 25 | Writing JUnit 5 tests for a given algorithm (no mocks, no Spring, no parameterized tests) | mock Test 8 | Yes | M | 0.8, A8, B8, C8 |
+| 26 | React: components, props, `useState`/`useEffect`, `fetch`, rendering lists with `key` | T2 p.23–24, p.36–43, p.52–53; T6 p.55–56; mock Tests 9–10 | Yes | H | 0.9, 0.10, A9–C10 |
+| 27 | React with the 2026-27 template: container/table/row components, one service function per API operation over the axios client, `useFetchState`, `useErrorModal` | Lab 2 p.4–5, p.8–11, p.15–16 | No | H | X09, X10 |
+| 28 | React: events, lifting state up, immutable updates of arrays/objects | T2 p.38–46 | No | M | X26, X27 |
+| 29 | React: presentation components, custom hooks, network client | T6 p.60–78 | No | M | X28, X29 |
+| 30 | React forms: reusable field components, presentational form, one container to create and edit (`useParams`, `useNavigate`, POST vs PUT) | Lab 2 p.18–24 | No | M | X30, X31 |
+| 31 | React list actions: Edit and Delete buttons in the row, `deleteFromList`, alerts | Lab 2 p.25–28 | No | M | X32, X33 |
+| 32 | Frontend security: routes by role wrapped in `PrivateRoute`, menu options by role (roles read from the JWT) | Lab 2 p.6–7, p.14, p.17, p.23–24; T2 p.61 | No | M | X34, X35 |
+| 33 | React router and Context (prop drilling) | T2 p.47, p.49–50; T6 p.80–82; Lab 2 p.21–24 | No | L | X44, X45 (+ X31, X34) |
+| 34 | Writing frontend tests with React Testing Library | T2 p.56–59 | No | L | X46, X47 |
+| 35 | Logging with SLF4J/`@Slf4j`, levels, configuration | T6 p.38–48 | No | L | X48, X49 |
+| 36 | EntityManager and the persistence-context lifecycle | T4 p.61–76; T5 p.10 | No | L | X50, X51 |
+| 37 | Domain logic in entities vs application logic in services; `equals`/`hashCode` on the id | T4 p.17–19, p.45–47 | No | L | X52, X53 |
+| — | *Not trained (no source)*: how JWT works internally, `@Modifying`, native queries, pagination, fetch types, `@Inheritance`, `@DateTimeFormat`, writing Mockito/Spring tests | — | — | — | — |
 
 Two things worth knowing although no exercise trains them: `ReflexiveTest` (the graders' helper, identical in every sitting) contains `checkThatFieldIsAnnotatedWithDateTimeFormat`, so a previous sitting asked for `@DateTimeFormat(pattern = "...")` on a date attribute; and the diagrams in `src/main/resources/diagrams` show earlier exam domains (strategies with `@Min/@Max`, tournaments and rounds with `LocalDate`), which supports the *high* rating of rows 1–4.
 
@@ -222,41 +229,53 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X06 | JPQL over collections: `IS EMPTY`, `DISTINCT`, `IN`, self-join, `COUNT` | JPQL | ★★ | H | T5 p.21–22 | `TestX06` | ☐ |
 | X07 | Class-level `@Transactional`, `readOnly`, `rollbackFor` | Transactions | ★★ | H | T5 p.33, p.37–40 | `TestX07` | ☐ |
 | X08 | Making a multi-entity operation atomic | Transactions | ★★ | H | T5 p.41–47 | `TestX08` | ☐ |
-| X09 | POST endpoint with `@Valid` (201/400) | REST, validation | ★★ | M | T5 p.77; T6 p.11, p.16 | `TestX09` | ☐ |
-| X10 | Protecting a POST against mass assignment | REST, data binding | ★★ | M | T6 p.33–37, p.84 | `TestX10` | ☐ |
-| X11 | Mapping a custom exception to 400 | Error handling | ★ | M | T6 p.12–17 | `TestX11` | ☐ |
-| X12 | Checked business exception through the controller | Error handling, transactions | ★★ | M | T5 p.84–87; T6 p.16 | `TestX12` | ☐ |
-| X13 | Visibility by authority in the service layer | Authorization | ★★ | M | T4 p.17; T5 p.86; T6 p.34–37 | `TestX13` | ☐ |
-| X14 | Authority and ownership rules for an action | Authorization | ★★ | M | T4 p.17; T5 p.86; T6 p.37 | `TestX14` | ☐ |
-| X15 | Composition: `cascade = ALL` + `orphanRemoval` | Relationships | ★★ | M | T4 p.90; T5 p.60, p.65–67 | `TestX15` | ☐ |
-| X16 | Bidirectional one-to-many with `mappedBy` | Relationships | ★★ | M | T4 p.51–53; T5 p.61–64 | `TestX16` | ☐ |
-| X17 | Aggregation cascades and a mandatory one-to-one | Relationships | ★★ | M | T4 p.88, p.91; T5 p.66 | `TestX17` | ☐ |
-| X18 | `@Table`, `@Column` and `@Temporal` | Other mappings | ★ | M | T4 p.55–57; T5 p.19 | `TestX18` | ☐ |
-| X19 | Unique attributes and unique pairs | Other mappings | ★ | M | T4 p.58–59 | `TestX19` | ☐ |
-| X20 | Breaking a JSON loop with `@JsonIgnore` | JSON data binding | ★★ | M | T6 p.19–27 | `TestX20` | ☐ |
-| X21 | Returning a DTO instead of the entity | JSON data binding, DTOs | ★★ | M | T6 p.24, p.29–32; T5 p.17 | `TestX21` | ☐ |
-| X22 | Lifting state up | React state | ★★ | M | T2 p.38, p.43–46 | `VoteBoard.test.js` | ☐ |
-| X23 | Immutable updates of a list in state | React state | ★★ | M | T2 p.41 | `TaskList.test.js` | ☐ |
-| X24 | Custom hook + presentation component | React patterns | ★★ | M | T6 p.62–73 | `Members.test.js` | ☐ |
-| X25 | Extracting a network client | React patterns | ★★ | M | T6 p.74–77; T2 p.52 | `RankingSummary.test.js` | ☐ |
-| X26 | A value object with `@Embeddable` | Value objects | ★ | L | T4 p.42–43, p.48; T5 p.78 | `TestX26` | ☐ |
-| X27 | The same value object twice: `@AttributeOverrides` | Value objects | ★★ | L | T4 p.85–86 | `TestX27` | ☐ |
-| X28 | Reusing `Person` and `NamedEntity` | Inheritance | ★ | L | T4 p.54; T5 p.72, p.77 | `TestX28` | ☐ |
-| X29 | A generalization as a new `@MappedSuperclass` | Inheritance | ★★ | L | T5 p.50–56; T4 p.54 | `TestX29` | ☐ |
-| X30 | A custom constraint annotation | Custom validation | ★★★ | L | T5 p.76, p.83 | `TestX30` | ☐ |
-| X31 | A Spring `Validator` class | Custom validation | ★★ | L | T5 p.76 | `TestX31` | ☐ |
-| X32 | Routes, links and URL parameters | React router | ★★ | L | T2 p.49–50 | `TravelApp.test.js` | ☐ |
-| X33 | Sharing data with a Context | React Context | ★ | L | T6 p.80–82; T2 p.47 | `Dashboard.test.js` | ☐ |
-| X34 | Writing component tests: render, query, assert | Frontend testing | ★★ | L | T2 p.57–59 | your `ScoreBoard.test.js` + broken versions | ☐ |
-| X35 | Writing component tests: interaction and fetched data | Frontend testing | ★★★ | L | T2 p.57–59 | your `LikeButton.test.js`, `QuoteOfTheDay.test.js` + broken versions | ☐ |
-| X36 | Logging with `@Slf4j` instead of `System.out` | Logging | ★ | L | T6 p.40–46 | `TestX36` | ☐ |
-| X37 | Configuring log levels | Logging | ★ | L | T6 p.41–45 | `TestX37` | ☐ |
-| X38 | EntityManager: persist, find, dirty checking, remove | Persistence context | ★★ | L | T4 p.61–73 | `TestX38` | ☐ |
-| X39 | EntityManager: detach, merge, undoing a remove | Persistence context | ★★ | L | T4 p.63–75 | `TestX39` | ☐ |
-| X40 | Domain logic in the entity, application logic in the service | Business logic layer | ★★ | L | T4 p.17–19 | `TestX40` | ☐ |
-| X41 | `equals`/`hashCode` based on the id | Entities | ★ | L | T4 p.45–47 | `TestX41` | ☐ |
+| X09 | Container, table and row components | React (2026-27 template) | ★ | H | Lab 2 p.4–5, p.9–11 | `Sponsors.test.js` | ☐ |
+| X10 | Loading the data with a service and `useFetchState` | React (2026-27 template) | ★★ | H | Lab 2 p.8–9, p.15–16 | `Partners.test.js` | ☐ |
+| X11 | POST endpoint with `@Valid` (201/400) | REST, validation | ★★ | M | T5 p.77; T6 p.11, p.16 | `TestX11` | ☐ |
+| X12 | Protecting a POST against mass assignment | REST, data binding | ★★ | M | T6 p.33–37, p.84 | `TestX12` | ☐ |
+| X13 | Updating a resource with PUT | REST | ★★ | M | Lab 2 p.15, p.21–23; T6 p.37 | `TestX13` | ☐ |
+| X14 | Deleting a resource with DELETE (204) | REST | ★ | M | Lab 2 p.15, p.26–27 | `TestX14` | ☐ |
+| X15 | Mapping a custom exception to 400 | Error handling | ★ | M | T6 p.12–17 | `TestX15` | ☐ |
+| X16 | Checked business exception through the controller | Error handling, transactions | ★★ | M | T5 p.84–87; T6 p.16 | `TestX16` | ☐ |
+| X17 | Visibility by authority in the service layer | Authorization | ★★ | M | T4 p.17; T5 p.86; T6 p.34–37 | `TestX17` | ☐ |
+| X18 | Authority and ownership rules for an action | Authorization | ★★ | M | T4 p.17; T5 p.86; T6 p.37 | `TestX18` | ☐ |
+| X19 | Composition: `cascade = ALL` + `orphanRemoval` | Relationships | ★★ | M | T4 p.90; T5 p.60, p.65–67 | `TestX19` | ☐ |
+| X20 | Bidirectional one-to-many with `mappedBy` | Relationships | ★★ | M | T4 p.51–53; T5 p.61–64 | `TestX20` | ☐ |
+| X21 | Aggregation cascades and a mandatory one-to-one | Relationships | ★★ | M | T4 p.88, p.91; T5 p.66 | `TestX21` | ☐ |
+| X22 | `@Table`, `@Column` and `@Temporal` | Other mappings | ★ | M | T4 p.55–57; T5 p.19 | `TestX22` | ☐ |
+| X23 | Unique attributes and unique pairs | Other mappings | ★ | M | T4 p.58–59 | `TestX23` | ☐ |
+| X24 | Breaking a JSON loop with `@JsonIgnore` | JSON data binding | ★★ | M | T6 p.19–27 | `TestX24` | ☐ |
+| X25 | Returning a DTO instead of the entity | JSON data binding, DTOs | ★★ | M | T6 p.24, p.29–32; T5 p.17 | `TestX25` | ☐ |
+| X26 | Lifting state up | React state | ★★ | M | T2 p.38, p.43–46 | `VoteBoard.test.js` | ☐ |
+| X27 | Immutable updates of a list in state | React state | ★★ | M | T2 p.41 | `TaskList.test.js` | ☐ |
+| X28 | Custom hook + presentation component | React patterns | ★★ | M | T6 p.62–73 | `Members.test.js` | ☐ |
+| X29 | Extracting a network client | React patterns | ★★ | M | T6 p.74–77; T2 p.52 | `RankingSummary.test.js` | ☐ |
+| X30 | Reusable form fields and a presentational form | React forms | ★★ | M | Lab 2 p.18–21 | `TournamentForm.test.js` | ☐ |
+| X31 | One container to create and edit (`useParams`, `useNavigate`, POST/PUT) | React forms, router | ★★★ | M | Lab 2 p.21–24 | `RefereeEdit.test.js` | ☐ |
+| X32 | Edit and Delete actions in a presentational row | React list actions | ★ | M | Lab 2 p.25–26 | `TournamentTable.test.js` | ☐ |
+| X33 | Deleting from the container with `deleteFromList` | React list actions | ★★ | M | Lab 2 p.26–28 | `ChessClubList.test.js` | ☐ |
+| X34 | Routes by role, protected with `PrivateRoute` | Frontend security | ★★ | M | Lab 2 p.6–7, p.14, p.23–24; T2 p.61 | `PracticeRoutes.test.js` | ☐ |
+| X35 | A menu that depends on the role | Frontend security | ★ | M | Lab 2 p.6–7, p.17 | `PracticeNavbar.test.js` | ☐ |
+| X36 | A value object with `@Embeddable` | Value objects | ★ | L | T4 p.42–43, p.48; T5 p.78 | `TestX36` | ☐ |
+| X37 | The same value object twice: `@AttributeOverrides` | Value objects | ★★ | L | T4 p.85–86 | `TestX37` | ☐ |
+| X38 | Reusing `Person` and `NamedEntity` | Inheritance | ★ | L | T4 p.54; T5 p.72, p.77 | `TestX38` | ☐ |
+| X39 | A generalization as a new `@MappedSuperclass` | Inheritance | ★★ | L | T5 p.50–56; T4 p.54 | `TestX39` | ☐ |
+| X40 | A custom constraint annotation | Custom validation | ★★★ | L | T5 p.76, p.83 | `TestX40` | ☐ |
+| X41 | A Spring `Validator` class | Custom validation | ★★ | L | T5 p.76 | `TestX41` | ☐ |
+| X42 | Restricting an API path to an authority | API security | ★ | L | Lab 2 p.16 | `TestX42` | ☐ |
+| X43 | A public endpoint: the developers of `pom.xml` | API security | ★ | L | Lab 2 p.4, p.7–8, p.16 | `TestX43` | ☐ |
+| X44 | Routes, links and URL parameters | React router | ★★ | L | T2 p.49–50 | `TravelApp.test.js` | ☐ |
+| X45 | Sharing data with a Context | React Context | ★ | L | T6 p.80–82; T2 p.47 | `Dashboard.test.js` | ☐ |
+| X46 | Writing component tests: render, query, assert | Frontend testing | ★★ | L | T2 p.57–59 | your `ScoreBoard.test.js` + broken versions | ☐ |
+| X47 | Writing component tests: interaction and fetched data | Frontend testing | ★★★ | L | T2 p.57–59 | your `LikeButton.test.js`, `QuoteOfTheDay.test.js` + broken versions | ☐ |
+| X48 | Logging with `@Slf4j` instead of `System.out` | Logging | ★ | L | T6 p.40–46 | `TestX48` | ☐ |
+| X49 | Configuring log levels | Logging | ★ | L | T6 p.41–45 | `TestX49` | ☐ |
+| X50 | EntityManager: persist, find, dirty checking, remove | Persistence context | ★★ | L | T4 p.61–73 | `TestX50` | ☐ |
+| X51 | EntityManager: detach, merge, undoing a remove | Persistence context | ★★ | L | T4 p.63–75 | `TestX51` | ☐ |
+| X52 | Domain logic in the entity, application logic in the service | Business logic layer | ★★ | L | T4 p.17–19 | `TestX52` | ☐ |
+| X53 | `equals`/`hashCode` based on the id | Entities | ★ | L | T4 p.45–47 | `TestX53` | ☐ |
 
-**Totals:** Block 0: 10 · Block A: 10 · Block B: 10 · Block C: 10 · Block X: 41 → **81 exercises**.
+**Totals:** Block 0: 10 · Block A: 10 · Block B: 10 · Block C: 10 · Block X: 53 → **93 exercises**.
 
 ---
 
@@ -433,6 +452,7 @@ The statement is [README.en.md](README.en.md) (Spanish: [README.md](README.md));
   ```
 - Render the headings unconditionally; render the leader only when `ranking.length > 0`.
 - Put the whole sentence as direct text of a single element: `<div>Leader: {ranking[0].user.username} ({ranking[0].points} points)</div>`. `getByText` matches the *own* text of an element, so `<div>Leader: <b>john_doe</b> …</div>` does not match.
+- If tomorrow's exam is built on the 2026-27 template (assumption 3), the same component gets the ranking through a service function and the template's hook instead of `fetch` + `useEffect` (Lab 2 p.8–9, p.15): `const [ranking] = useFetchState([], () => challengesApi.getRanking(challengeId), [challengeId]);`. X10 practises that version.
 - Solution: [challenge.js](frontend/src/challenges/challenge.js) · `git show ":/practice: 0.9 "`
 </details>
 
@@ -1303,7 +1323,7 @@ Remove the `@Transient` annotations from the entities created in the previous ex
 <summary>Hints, key points, typical mistakes, solution</summary>
 
 - Owning side: `ReportAction.report` with `@ManyToOne(optional = false) @NotNull` (FK `report_id`). Inverse side: `SafetyReport.actions` with `@OneToMany(mappedBy = "report")`. Without `mappedBy` JPA creates two unidirectional associations and an extra join table `safety_report_actions` (T4 p.52), which the grader looks for.
-- If these entities were returned by a controller, the two sides would make Jackson loop forever (T6 p.22): you would add `@JsonIgnore` on one side (X20). It is not required here.
+- If these entities were returned by a controller, the two sides would make Jackson loop forever (T6 p.22): you would add `@JsonIgnore` on one side (X24). It is not required here.
 - Solution: same files as C1 · grader [TestC2.java](src/test/java/es/us/dp1/chess/tournament/practice/c/TestC2.java) · `git show ":/practice: C2 "`
 </details>
 
@@ -1717,11 +1737,79 @@ The same package contains `Workshop` (`name`, `capacity`, `enrolled`), `Receipt`
 - Solution: [EnrollmentService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/transactions/EnrollmentService.java) · grader [TestX08.java](src/test/java/es/us/dp1/chess/tournament/practice/x/transactions/TestX08.java) · `git show ":/practice: X08 "`
 </details>
 
-### X.5 POST endpoints and mass assignment (likelihood: medium)
+### X.5 React with the 2026-27 project template: containers, services and `useFetchState` (likelihood: high)
 
-#### Test X09 – A POST endpoint that validates its body
+Lab 2 builds its React screens on the 2026-27 project template (`group-project-seed`, branch `Lab02`), whose frontend differs from this repository's: `.jsx` components, an axios API client (`services/api.js`, base URL `/api/v1`, adds the JWT to every request), one service function per API operation, and the hooks `useFetchState(initial, serviceFunction, dependencies, { skip, onError })` and `useErrorModal()`. The folder `frontend/src/practice/x/lab2` contains copies of those given pieces with the behaviour described in Lab 2 p.8–9, p.15, p.21–23 and p.26–27 (`services/api.js`, `hooks/useFetchState.js`, `hooks/useErrorModal.jsx`, `components/ErrorModal.jsx`, `util/deleteFromList.jsx`), so that the exercises X09, X10 and X30–X35 use exactly the Lab 2 APIs. This repository's own `src/util/useFetchState.js` and `src/util/deleteFromList.js` are the older versions, which receive a URL instead of a service function.
 
-**~15 min · Source: T5 p.77; T6 p.11, p.16, p.19 · Grader: `TestX09`**
+#### Test X09 – Splitting a table into container, table and row components
+
+**~15 min · Source: Lab 2 p.4–5, p.9–11 · Grader: `frontend/src/practice/x/lab2/sponsors/Sponsors.test.js`**
+
+The tournament wants to show its sponsors in a table, as Lab 2 does with the developers of the project. In `frontend/src/practice/x/lab2/sponsors`, complete these three components, each one with a single responsibility:
+
+- `SponsorRow.jsx`: `SponsorRow({ sponsor })` returns one table row (`<tr>`) with four cells: the `name`; the `email`; a link to the `url` whose text is the url itself; and an image whose `alt` is the name and whose `src` is `sponsor.properties.logoUrl`. When the sponsor has no `properties`, or `properties` has no `logoUrl`, the image must show the default logo `https://cdn-icons-png.flaticon.com/512/48/48639.png`.
+- `SponsorTable.jsx`: `SponsorTable({ sponsors })` renders a level-1 heading `Sponsors` and a reactstrap `Table` with the accessible name `sponsors` (attribute `aria-label`), whose header row has the cells `Name`, `e-mail`, `URL` and `Logo`, and whose body has one `SponsorRow` per sponsor.
+- `index.jsx`: the container `SponsorContainer()` (default export) defines the following test data and passes it to `SponsorTable`, without rendering anything else:
+
+```js
+[
+  { id: 1, name: "Chess Base", email: "info@chessbase.com", url: "https://chessbase.com",
+    properties: { logoUrl: "https://example.com/chessbase.png" } },
+  { id: 2, name: "Lichess", email: "contact@lichess.org", url: "https://lichess.org" },
+]
+```
+
+**Files to modify:** `frontend/src/practice/x/lab2/sponsors/SponsorRow.jsx`, `SponsorTable.jsx`, `index.jsx`.
+
+<details>
+<summary>Hints, key points, typical mistakes, solution</summary>
+
+- Same structure as `DeveloperRow`/`DeveloperList`/`index.jsx` in Lab 2 p.4–5 (and p.9–10 for the default image): `const logoUrl = sponsor.properties?.logoUrl;` and `src={logoUrl ? logoUrl : imgNotFound}`. Without the optional chaining (`?.`), `sponsor.properties.logoUrl` throws `TypeError` for a sponsor without `properties` and the whole table disappears.
+- The container decides *which* data is shown; the table and the row only decide *how* (Lab 2 p.5, p.11). That is why replacing the test data by API data later only touches the container (Lab 2 p.9).
+- `key={s.id}` on each `SponsorRow` (T6 p.55). The grader finds the table by its accessible name: `getByRole('table', { name: 'sponsors' })`.
+- Solution: [SponsorRow.jsx](frontend/src/practice/x/lab2/sponsors/SponsorRow.jsx), [SponsorTable.jsx](frontend/src/practice/x/lab2/sponsors/SponsorTable.jsx), [index.jsx](frontend/src/practice/x/lab2/sponsors/index.jsx) · grader [Sponsors.test.js](frontend/src/practice/x/lab2/sponsors/Sponsors.test.js) · `git show ":/practice: X09 "`
+</details>
+
+#### Test X10 – Loading the data through a service and `useFetchState`
+
+**~15 min · Source: Lab 2 p.8–9, p.15–16 · Grader: `frontend/src/practice/x/lab2/partners/Partners.test.js`**
+
+The partners of the tournament are served by `GET /api/v1/partners` (all of them) and `GET /api/v1/partners/{id}` (one of them). The presentational component `PartnerTable({ partners })` of the folder `frontend/src/practice/x/lab2/partners` is already implemented.
+
+- Complete the service `frontend/src/practice/x/lab2/services/partners.js`, so that it exports the async functions `getAllPartners()` and `getPartnerById(id)`, which perform those requests with the provided API client (`./api`) and return the data of the response.
+- Complete the container `partners/index.jsx` (`PartnerContainer`, default export) so that it obtains the partners with `useFetchState` (from `../hooks/useFetchState`) and the service function `getAllPartners`, and passes them to `PartnerTable`.
+
+The container must not build URLs nor manage tokens: that is the job of the service and of the API client.
+
+**Files to modify:** `frontend/src/practice/x/lab2/services/partners.js`, `frontend/src/practice/x/lab2/partners/index.jsx`.
+
+<details>
+<summary>Hints, key points, typical mistakes, solution</summary>
+
+- Service, as in Lab 2 p.8 and p.15:
+
+  ```js
+  import api from "./api";
+
+  export const getAllPartners = async () => {
+      const res = await api.get("/partners");
+      return res.data;
+  };
+  export const getPartnerById = async (id) => {
+      const res = await api.get(`/partners/${id}`);
+      return res.data;
+  };
+  ```
+- Container: `const [partners] = useFetchState([], partnersApi.getAllPartners);` with `import * as partnersApi from "../services/partners";`. Pass the function itself, without parentheses (Lab 2 p.9): `getAllPartners()` would pass a promise.
+- The `/api/v1` prefix and the `Authorization: Bearer …` header are added by `api.js` (Lab 2 p.8, p.16); the grader checks that the request carries the JWT stored in `localStorage`.
+- Solution: [partners.js](frontend/src/practice/x/lab2/services/partners.js), [index.jsx](frontend/src/practice/x/lab2/partners/index.jsx) · grader [Partners.test.js](frontend/src/practice/x/lab2/partners/Partners.test.js) · `git show ":/practice: X10 "`
+</details>
+
+### X.6 POST endpoints and mass assignment (likelihood: medium)
+
+#### Test X11 – A POST endpoint that validates its body
+
+**~15 min · Source: T5 p.77; T6 p.11, p.16, p.19 · Grader: `TestX11`**
 
 The package `es.us.dp1.chess.tournament.practice.x.web` contains the entity `Suggestion` (`title`: not blank, 5–80 characters; `text`: not blank, at most 500; `createdAt`; `author`: a `User`), its repository and the service `SuggestionService` (`findAll`, `save`). `SuggestionController` (`/api/v1/suggestions`) only has the GET method. Add a method that responds to POST requests at
 
@@ -1741,12 +1829,12 @@ receiving a suggestion as JSON in the request body:
 
 - Same shape as `OwnerController.create` in T5 p.77: `@PostMapping @ResponseStatus(HttpStatus.CREATED) public ResponseEntity<Suggestion> create(@RequestBody @Valid Suggestion suggestion)`, `BeanUtils.copyProperties(suggestion, newSuggestion, "id", "author", "createdAt")`, `return new ResponseEntity<>(saved, HttpStatus.CREATED);`.
 - Without `@Valid`, the constraints are only checked when JPA saves the entity, and the error is a 500.
-- Solution: [SuggestionController.java](src/main/java/es/us/dp1/chess/tournament/practice/x/web/SuggestionController.java) · grader [TestX09.java](src/test/java/es/us/dp1/chess/tournament/practice/x/web/TestX09.java) · `git show ":/practice: X09 "`
+- Solution: [SuggestionController.java](src/main/java/es/us/dp1/chess/tournament/practice/x/web/SuggestionController.java) · grader [TestX11.java](src/test/java/es/us/dp1/chess/tournament/practice/x/web/TestX11.java) · `git show ":/practice: X11 "`
 </details>
 
-#### Test X10 – Protecting a creation against mass assignment
+#### Test X12 – Protecting a creation against mass assignment
 
-**~15 min · Source: T6 p.33–37, p.84 · Grader: `TestX10`**
+**~15 min · Source: T6 p.33–37, p.84 · Grader: `TestX12`**
 
 The same package contains the entity `Recipe` (`name`, `minutes`, `featured` (`Boolean`), `owner`), with two recipes in `data.sql` (1 *Salmorejo*, owned by user 4; 2 *Gazpacho*, owned by user 5 and featured), and `RecipeController`, whose POST `/api/v1/recipes` method validates the body and calls `RecipeService.create(recipe)`, returning 201 with the result. Implement `create` so that the client can only decide the `name` and the `minutes` of the new recipe: whatever the body contains in `id`, `owner` or `featured`, the method must create a **new** recipe whose owner is the logged-in user and which is not featured, save it and return it.
 
@@ -1757,16 +1845,56 @@ The same package contains the entity `Recipe` (`name`, `minutes`, `featured` (`B
 
 - `Recipe newRecipe = new Recipe(); BeanUtils.copyProperties(input, newRecipe, "id", "owner", "featured");` then set the owner and `featured = false` (T6 p.37: "You can never trust what you receive!").
 - Saving the received object as it is would let a client send `"id": 2` and **overwrite** somebody else's recipe, or feature their own. The grader tries exactly that.
-- Solution: [RecipeService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/web/RecipeService.java) · grader [TestX10.java](src/test/java/es/us/dp1/chess/tournament/practice/x/web/TestX10.java) · `git show ":/practice: X10 "`
+- Solution: [RecipeService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/web/RecipeService.java) · grader [TestX12.java](src/test/java/es/us/dp1/chess/tournament/practice/x/web/TestX12.java) · `git show ":/practice: X12 "`
 </details>
 
-### X.6 Error handling (likelihood: medium)
+### X.7 PUT and DELETE endpoints (likelihood: medium)
+
+Lab 2 consumes a complete REST API for achievements: GET, POST, PUT and DELETE on `/api/v1/achievements`, where a successful deletion answers 204 (No Content) (Lab 2 p.15, p.27). The package `es.us.dp1.chess.tournament.practice.x.crud` contains an analogous entity `Tournament` (`name`: 3–50 characters; `description`: not blank; `logoUrl`; `prizePool`: a `BigDecimal` that cannot be negative; `format`: enum `TournamentFormat` with `SWISS`, `ROUND_ROBIN` and `KNOCKOUT`, stored as text), with three tournaments in `data.sql`, its repository, `TournamentService` (`findAll`, `findById` throwing `ResourceNotFoundException`, `save`) and `TournamentController` (`/api/v1/tournaments`), whose GET (list), GET `{id}` and POST methods are already implemented.
+
+#### Test X13 – Updating a resource with PUT
+
+**~15 min · Source: Lab 2 p.15, p.21–23; T6 p.37 · Grader: `TestX13`**
+
+Add the method `update(Integer id, Tournament tournament)` to `TournamentService`, and a method that responds to PUT requests at `/api/v1/tournaments/{id}` to `TournamentController`:
+
+- The body must be validated: **400 (BAD_REQUEST)** if it is not valid.
+- **404 (NOT_FOUND)** if there is no tournament with that id.
+- Otherwise, copy into the stored tournament every property of the received one **except** its `id`, save it and return it with **200 (OK)**. The id of the URL always wins over any `id` sent in the body.
+
+**Files to modify:** `practice/x/crud/TournamentService.java`, `practice/x/crud/TournamentController.java`.
+
+<details>
+<summary>Hints, key points, typical mistakes, solution</summary>
+
+- The project's `UserRestController.update` and `UserService.updateUser` are the model: `@PutMapping("{id}") public ResponseEntity<Tournament> update(@PathVariable("id") Integer id, @RequestBody @Valid Tournament tournament)`; in the service, `Tournament toUpdate = findById(id); BeanUtils.copyProperties(tournament, toUpdate, "id"); return repo.save(toUpdate);` inside a `@Transactional` method.
+- Saving the received object directly would create a *new* row when the body has no id, or update a *different* tournament when the body's id differs from the URL's (mass assignment, T6 p.35).
+- Solution: [TournamentService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/crud/TournamentService.java), [TournamentController.java](src/main/java/es/us/dp1/chess/tournament/practice/x/crud/TournamentController.java) · grader [TestX13.java](src/test/java/es/us/dp1/chess/tournament/practice/x/crud/TestX13.java) · `git show ":/practice: X13 "`
+</details>
+
+#### Test X14 – Deleting a resource with DELETE
+
+**~10 min · Source: Lab 2 p.15, p.26–27 · Grader: `TestX14`**
+
+Add the method `delete(Integer id)` to `TournamentService`, and a method that responds to DELETE requests at `/api/v1/tournaments/{id}` to `TournamentController`: if there is no tournament with that id, answer **404 (NOT_FOUND)**; otherwise delete it and answer **204 (NO_CONTENT)** with an empty body.
+
+**Files to modify:** `practice/x/crud/TournamentService.java`, `practice/x/crud/TournamentController.java`.
+
+<details>
+<summary>Hints, key points, typical mistakes, solution</summary>
+
+- `@DeleteMapping("{id}") public ResponseEntity<Void> delete(@PathVariable("id") Integer id) { service.delete(id); return new ResponseEntity<>(HttpStatus.NO_CONTENT); }`. "No Content" means no body: do not return a `MessageResponse` (the project's user deletion answers 200 with a message instead, the difference Lab 2 p.27 points out).
+- Look the tournament up first (`findById` throws `ResourceNotFoundException` → 404). In Spring Data 3, `deleteById` of a missing id does nothing and throws nothing, so calling it directly would answer 204 for a tournament that never existed.
+- Solution: [TournamentService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/crud/TournamentService.java), [TournamentController.java](src/main/java/es/us/dp1/chess/tournament/practice/x/crud/TournamentController.java) · grader [TestX14.java](src/test/java/es/us/dp1/chess/tournament/practice/x/crud/TestX14.java) · `git show ":/practice: X14 "`
+</details>
+
+### X.8 Error handling (likelihood: medium)
 
 The package `es.us.dp1.chess.tournament.practice.x.errors` contains the entity `Venue` (`name`, `capacity`), with venues 1 (*Teatro Central*, capacity 50) and 2 (*Sala X*, capacity 120) in `data.sql`, its repository, `VenueService` and `VenueController` (`/api/v1/venues`).
 
-#### Test X11 – Translating a custom exception into a status code
+#### Test X15 – Translating a custom exception into a status code
 
-**~10 min · Source: T6 p.12–17 · Grader: `TestX11`**
+**~10 min · Source: T6 p.12–17 · Grader: `TestX15`**
 
 `GET /api/v1/venues/X/availability?people=N` is already implemented: `VenueService.checkAvailability` throws `ResourceNotFoundException` if the venue does not exist and the provided `VenueCapacityExceededException` (a `RuntimeException`) with the message `Venue X only admits C people` when `N` is greater than the capacity. Right now that exception produces a **500**. Modify the application so that it produces a **400 (BAD_REQUEST)** whose body is an `ErrorMessage` with the status code, the exception's message and the description of the request, without catching the exception in the controller.
 
@@ -1778,12 +1906,12 @@ The package `es.us.dp1.chess.tournament.practice.x.errors` contains the entity `
 - Add a method like the ones already there (T6 p.16): `@ExceptionHandler(value = VenueCapacityExceededException.class) @ResponseStatus(HttpStatus.BAD_REQUEST) public ResponseEntity<ErrorMessage> venueCapacityExceeded(VenueCapacityExceededException ex, WebRequest request) { ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST.value(), new Date(), ex.getMessage(), request.getDescription(false)); return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST); }`.
 - `@ResponseStatus(HttpStatus.BAD_REQUEST)` on the exception class does not work in this project (see assumption 11): the `@ExceptionHandler(Exception.class)` method wins.
 - `request.getDescription(false)` is `uri=/api/v1/venues/1/availability`.
-- Solution: [ExceptionHandlerController.java](src/main/java/es/us/dp1/chess/tournament/exceptions/ExceptionHandlerController.java) · grader [TestX11.java](src/test/java/es/us/dp1/chess/tournament/practice/x/errors/TestX11.java) · `git show ":/practice: X11 "`
+- Solution: [ExceptionHandlerController.java](src/main/java/es/us/dp1/chess/tournament/exceptions/ExceptionHandlerController.java) · grader [TestX15.java](src/test/java/es/us/dp1/chess/tournament/practice/x/errors/TestX15.java) · `git show ":/practice: X15 "`
 </details>
 
-#### Test X12 – A checked business exception that travels through the controller
+#### Test X16 – A checked business exception that travels through the controller
 
-**~20 min · Source: T5 p.84–87; T6 p.11, p.16 · Grader: `TestX12`**
+**~20 min · Source: T5 p.84–87; T6 p.11, p.16 · Grader: `TestX16`**
 
 Implement the creation of venues, rejecting duplicated names:
 
@@ -1798,16 +1926,16 @@ Implement the creation of venues, rejecting duplicated names:
 
 - Steps 1–3 of T5 p.85–86 (`DuplicatedPetNameException`), then the handler of T6 p.16.
 - `rollbackFor = DuplicatedVenueNameException.class`, since the exception is checked.
-- Solution: [VenueService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/errors/VenueService.java), [VenueController.java](src/main/java/es/us/dp1/chess/tournament/practice/x/errors/VenueController.java), [ExceptionHandlerController.java](src/main/java/es/us/dp1/chess/tournament/exceptions/ExceptionHandlerController.java) · grader [TestX12.java](src/test/java/es/us/dp1/chess/tournament/practice/x/errors/TestX12.java) · `git show ":/practice: X12 "`
+- Solution: [VenueService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/errors/VenueService.java), [VenueController.java](src/main/java/es/us/dp1/chess/tournament/practice/x/errors/VenueController.java), [ExceptionHandlerController.java](src/main/java/es/us/dp1/chess/tournament/exceptions/ExceptionHandlerController.java) · grader [TestX16.java](src/test/java/es/us/dp1/chess/tournament/practice/x/errors/TestX16.java) · `git show ":/practice: X16 "`
 </details>
 
-### X.7 Authorization with authorities (likelihood: medium)
+### X.9 Authorization with authorities (likelihood: medium)
 
 The package `es.us.dp1.chess.tournament.practice.x.security` contains the entity `Expense` (`description`, `amount`, `status` (`PENDING`, `APPROVED`, `REJECTED`), `owner` and `approvedBy`, both `User`), with five expenses in `data.sql` (1 and 2 owned by user 4, 3 by user 5, 4 by user 6, and 5, pending, by `admin1`), its repository and `ExpenseController`, which only delegates on `ExpenseService`.
 
-#### Test X13 – Visibility depending on the authority of the user
+#### Test X17 – Visibility depending on the authority of the user
 
-**~15 min · Source: T4 p.17; T5 p.86; T6 p.34–37 · Grader: `TestX13`**
+**~15 min · Source: T4 p.17; T5 p.86; T6 p.34–37 · Grader: `TestX17`**
 
 Implement in `ExpenseService`:
 
@@ -1823,12 +1951,12 @@ Use `UserService.findCurrentUser()` and `User.hasAuthority(...)`. The controller
 
 - "Security checks" are application logic and belong to the service layer (T4 p.17), even though T5 p.86 shows the check in a controller.
 - `findByOwner(User owner)` already exists in the repository. Compare owners by id.
-- Solution: [ExpenseService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/security/ExpenseService.java) · grader [TestX13.java](src/test/java/es/us/dp1/chess/tournament/practice/x/security/TestX13.java) · `git show ":/practice: X13 "`
+- Solution: [ExpenseService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/security/ExpenseService.java) · grader [TestX17.java](src/test/java/es/us/dp1/chess/tournament/practice/x/security/TestX17.java) · `git show ":/practice: X17 "`
 </details>
 
-#### Test X14 – Authority and ownership rules for an action
+#### Test X18 – Authority and ownership rules for an action
 
-**~15 min · Source: T4 p.17; T5 p.86; T6 p.37 · Grader: `TestX14`**
+**~15 min · Source: T4 p.17; T5 p.86; T6 p.37 · Grader: `TestX18`**
 
 Implement `ExpenseService.approve(Integer id)`, used by `POST /api/v1/expenses/{id}/approve`:
 
@@ -1843,16 +1971,16 @@ Implement `ExpenseService.approve(Integer id)`, used by `POST /api/v1/expenses/{
 <summary>Hints, key points, typical mistakes, solution</summary>
 
 - Use `AccessDeniedException` from the `exceptions` package for both 403 cases, and declare the method `@Transactional`.
-- Solution: [ExpenseService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/security/ExpenseService.java) · grader [TestX14.java](src/test/java/es/us/dp1/chess/tournament/practice/x/security/TestX14.java) · `git show ":/practice: X14 "`
+- Solution: [ExpenseService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/security/ExpenseService.java) · grader [TestX18.java](src/test/java/es/us/dp1/chess/tournament/practice/x/security/TestX18.java) · `git show ":/practice: X18 "`
 </details>
 
-### X.8 Associations beyond many-to-one and many-to-many (likelihood: medium)
+### X.10 Associations beyond many-to-one and many-to-many (likelihood: medium)
 
 Package `es.us.dp1.chess.tournament.practice.x.relationships`. In the starting state the attributes to map are `@Transient`.
 
-#### Test X15 – A composition: cascading everything and removing orphans
+#### Test X19 – A composition: cascading everything and removing orphans
 
-**~15 min · Source: T4 p.90; T5 p.60, p.65–67 · Grader: `TestX15`**
+**~15 min · Source: T4 p.90; T5 p.60, p.65–67 · Grader: `TestX19`**
 
 A `PurchaseInvoice` (`customer`) is composed of one or more `InvoiceLine`s (`product`, `units`, `unitPrice`): the lines cannot exist without their invoice. Map the `lines` attribute of `PurchaseInvoice` as a unidirectional composition, so that:
 
@@ -1870,12 +1998,12 @@ Also implement `getTotal()`, which returns the sum of `units × unitPrice` of al
 - `@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) @NotEmpty List<InvoiceLine> lines;` (T4 p.90). Without `orphanRemoval`, removing a line from the list only deletes the row of the join table (T5 p.67).
 - A unidirectional `@OneToMany` without `mappedBy` is stored in a join table (`purchase_invoice_lines`, T4 p.90).
 - `getTotal()` is derived data (like `/numberOfPets` in T4 p.25): compute it, do not store it.
-- Solution: [PurchaseInvoice.java](src/main/java/es/us/dp1/chess/tournament/practice/x/relationships/PurchaseInvoice.java) · grader [TestX15.java](src/test/java/es/us/dp1/chess/tournament/practice/x/relationships/TestX15.java) · `git show ":/practice: X15 "`
+- Solution: [PurchaseInvoice.java](src/main/java/es/us/dp1/chess/tournament/practice/x/relationships/PurchaseInvoice.java) · grader [TestX19.java](src/test/java/es/us/dp1/chess/tournament/practice/x/relationships/TestX19.java) · `git show ":/practice: X19 "`
 </details>
 
-#### Test X16 – A bidirectional one-to-many association with `mappedBy`
+#### Test X20 – A bidirectional one-to-many association with `mappedBy`
 
-**~15 min · Source: T4 p.51–53; T5 p.61–64 · Grader: `TestX16`**
+**~15 min · Source: T4 p.51–53; T5 p.61–64 · Grader: `TestX20`**
 
 A `Course` (`title`) has zero or more `Lesson`s (`topic`, `position`), and every lesson belongs to exactly one course; both directions must be navigable. Map:
 
@@ -1891,12 +2019,12 @@ Implement `Course.addLesson(Lesson lesson)`, which adds the lesson to the course
 
 - `@ManyToOne(optional = false) @NotNull Course course;` and `@OneToMany(mappedBy = "course") List<Lesson> lessons = new ArrayList<>();` (T4 p.51). `mappedBy` names the attribute of the *other* class.
 - Only the owning side (`Lesson.course`) is stored: adding a lesson to `course.getLessons()` without setting `lesson.setCourse(course)` saves nothing. This is the coherence problem of T4 p.53 that `addLesson` solves.
-- Solution: [Course.java](src/main/java/es/us/dp1/chess/tournament/practice/x/relationships/Course.java), [Lesson.java](src/main/java/es/us/dp1/chess/tournament/practice/x/relationships/Lesson.java) · grader [TestX16.java](src/test/java/es/us/dp1/chess/tournament/practice/x/relationships/TestX16.java) · `git show ":/practice: X16 "`
+- Solution: [Course.java](src/main/java/es/us/dp1/chess/tournament/practice/x/relationships/Course.java), [Lesson.java](src/main/java/es/us/dp1/chess/tournament/practice/x/relationships/Lesson.java) · grader [TestX20.java](src/test/java/es/us/dp1/chess/tournament/practice/x/relationships/TestX20.java) · `git show ":/practice: X20 "`
 </details>
 
-#### Test X17 – An aggregation and a mandatory one-to-one
+#### Test X21 – An aggregation and a mandatory one-to-one
 
-**~15 min · Source: T4 p.88, p.91; T5 p.66 · Grader: `TestX17`**
+**~15 min · Source: T4 p.88, p.91; T5 p.66 · Grader: `TestX21`**
 
 - A `Team` (`name`) aggregates zero or more `Athlete`s (`athletes` attribute, unidirectional); an athlete can belong to several teams. Saving a team must also save its new athletes, but deleting a team must **not** delete its athletes.
 - Every `Athlete` (`name`) has exactly one `SportsLicense` (`number`, `expiresOn`) (`license` attribute, unidirectional, mandatory). The license is saved and deleted together with its athlete.
@@ -1908,16 +2036,16 @@ Implement `Course.addLesson(Lesson lesson)`, which adds the lesson to the course
 
 - Aggregation: `@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })` (T4 p.91), i.e. everything except `REMOVE`; `ALL` would delete the athletes.
 - One-to-one: `@OneToOne(optional = false, cascade = CascadeType.ALL) @NotNull SportsLicense license;` (T4 p.88).
-- Solution: [Team.java](src/main/java/es/us/dp1/chess/tournament/practice/x/relationships/Team.java), [Athlete.java](src/main/java/es/us/dp1/chess/tournament/practice/x/relationships/Athlete.java) · grader [TestX17.java](src/test/java/es/us/dp1/chess/tournament/practice/x/relationships/TestX17.java) · `git show ":/practice: X17 "`
+- Solution: [Team.java](src/main/java/es/us/dp1/chess/tournament/practice/x/relationships/Team.java), [Athlete.java](src/main/java/es/us/dp1/chess/tournament/practice/x/relationships/Athlete.java) · grader [TestX21.java](src/test/java/es/us/dp1/chess/tournament/practice/x/relationships/TestX21.java) · `git show ":/practice: X21 "`
 </details>
 
-### X.9 Other mappings (likelihood: medium)
+### X.11 Other mappings (likelihood: medium)
 
 Package `es.us.dp1.chess.tournament.practice.x.mapping`.
 
-#### Test X18 – Table and column names, and temporal attributes
+#### Test X22 – Table and column names, and temporal attributes
 
-**~10 min · Source: T4 p.55–57; T5 p.19 · Grader: `TestX18`**
+**~10 min · Source: T4 p.55–57; T5 p.19 · Grader: `TestX22`**
 
 The `ClinicVisit` entity (`date` (`LocalDateTime`), `description` (`String`), `petBirthDate` (`java.util.Date`)) must be stored with the names of an existing database: table `clinic_visits`, column `visit_date` for `date`, column `notes` for `description`. In addition, `petBirthDate` must be stored as a date, without time (column `pet_birth_date`).
 
@@ -1929,12 +2057,12 @@ The `ClinicVisit` entity (`date` (`LocalDateTime`), `description` (`String`), `p
 - `@Table(name = "clinic_visits")`, `@Column(name = "visit_date")`, `@Column(name = "notes")`, `@Temporal(TemporalType.DATE)` (T4 p.56–57).
 - `@Temporal` is only for `java.util.Date`/`Calendar`; `LocalDate`/`LocalDateTime` are mapped without it.
 - With `@Table`, JPQL still uses the entity name (`SELECT v FROM ClinicVisit v`); only SQL uses `clinic_visits` (T5 p.19).
-- Solution: [ClinicVisit.java](src/main/java/es/us/dp1/chess/tournament/practice/x/mapping/ClinicVisit.java) · grader [TestX18.java](src/test/java/es/us/dp1/chess/tournament/practice/x/mapping/TestX18.java) · `git show ":/practice: X18 "`
+- Solution: [ClinicVisit.java](src/main/java/es/us/dp1/chess/tournament/practice/x/mapping/ClinicVisit.java) · grader [TestX22.java](src/test/java/es/us/dp1/chess/tournament/practice/x/mapping/TestX22.java) · `git show ":/practice: X22 "`
 </details>
 
-#### Test X19 – Unique attributes and unique combinations of attributes
+#### Test X23 – Unique attributes and unique combinations of attributes
 
-**~10 min · Source: T4 p.58–59 · Grader: `TestX19`**
+**~10 min · Source: T4 p.58–59 · Grader: `TestX23`**
 
 - In `LoyaltyCard` (`cardNumber`, `holder`), no two cards can have the same `cardNumber`.
 - In `TaxInvoice` (`fiscalYear`, `serialNumber`, `amount`), no two invoices can have the same pair (`fiscalYear`, `serialNumber`), although the same year or the same serial number can be repeated separately. Moreover, `fiscalYear` must be between 2000 and 3000 and `serialNumber` cannot be negative.
@@ -1947,16 +2075,16 @@ The `ClinicVisit` entity (`date` (`LocalDateTime`), `description` (`String`), `p
 - `@Column(unique = true)` (T4 p.58) and `@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "fiscal_year", "serial_number" }))` (T4 p.59). The column names are the *database* names (snake case).
 - `unique = true` on each attribute separately is a different (stronger) rule than a unique pair.
 - Uniqueness is checked by the database, so the error appears when the second row is flushed, not when the entity is validated.
-- Solution: [LoyaltyCard.java](src/main/java/es/us/dp1/chess/tournament/practice/x/mapping/LoyaltyCard.java), [TaxInvoice.java](src/main/java/es/us/dp1/chess/tournament/practice/x/mapping/TaxInvoice.java) · grader [TestX19.java](src/test/java/es/us/dp1/chess/tournament/practice/x/mapping/TestX19.java) · `git show ":/practice: X19 "`
+- Solution: [LoyaltyCard.java](src/main/java/es/us/dp1/chess/tournament/practice/x/mapping/LoyaltyCard.java), [TaxInvoice.java](src/main/java/es/us/dp1/chess/tournament/practice/x/mapping/TaxInvoice.java) · grader [TestX23.java](src/test/java/es/us/dp1/chess/tournament/practice/x/mapping/TestX23.java) · `git show ":/practice: X23 "`
 </details>
 
-### X.10 JSON data binding (likelihood: medium)
+### X.12 JSON data binding (likelihood: medium)
 
 Package `es.us.dp1.chess.tournament.practice.x.json`.
 
-#### Test X20 – Breaking an infinite JSON loop
+#### Test X24 – Breaking an infinite JSON loop
 
-**~15 min · Source: T6 p.19–27 · Grader: `TestX20`**
+**~15 min · Source: T6 p.19–27 · Grader: `TestX24`**
 
 The entities `Writer` (`name`, `novels`) and `Novel` (`title`, `writer`) are related bidirectionally, and `data.sql` loads two writers and three novels. `GET /api/v1/writers/{id}` and `GET /api/v1/novels/{id}` are implemented, but their JSON never ends (writer → novels → writer → …). Modify the application so that:
 
@@ -1971,12 +2099,12 @@ The entities `Writer` (`name`, `novels`) and `Novel` (`title`, `writer`) are rel
 
 - `@JsonIgnore` on `Writer.novels`, the collection side, exactly as `Player.games` in T6 p.27. Ignoring `Novel.writer` instead would break the first requirement.
 - The novels of the new endpoint can be obtained by navigating `writer.getNovels()` inside the transactional service method.
-- Solution: [Writer.java](src/main/java/es/us/dp1/chess/tournament/practice/x/json/Writer.java), [WriterService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/json/WriterService.java), [WriterController.java](src/main/java/es/us/dp1/chess/tournament/practice/x/json/WriterController.java) · grader [TestX20.java](src/test/java/es/us/dp1/chess/tournament/practice/x/json/TestX20.java) · `git show ":/practice: X20 "`
+- Solution: [Writer.java](src/main/java/es/us/dp1/chess/tournament/practice/x/json/Writer.java), [WriterService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/json/WriterService.java), [WriterController.java](src/main/java/es/us/dp1/chess/tournament/practice/x/json/WriterController.java) · grader [TestX24.java](src/test/java/es/us/dp1/chess/tournament/practice/x/json/TestX24.java) · `git show ":/practice: X24 "`
 </details>
 
-#### Test X21 – Returning a DTO instead of the entity
+#### Test X25 – Returning a DTO instead of the entity
 
-**~15 min · Source: T6 p.24, p.29–32; T5 p.17 · Grader: `TestX21`**
+**~15 min · Source: T6 p.24, p.29–32; T5 p.17 · Grader: `TestX25`**
 
 Returning a `User` as JSON exposes its password hash. Create the endpoint `GET /api/v1/players/{id}/card`, which returns a `PlayerCard` with only `username`, `rating` and `authority` (the name of the authority, e.g. `"PLAYER"`), or 404 if the user does not exist:
 
@@ -1991,14 +2119,14 @@ Returning a `User` as JSON exposes its password hash. Create the endpoint `GET /
 
 - DTOs give information hiding and decouple the API from the domain model (T6 p.29); the cost is the extra class and the copy.
 - `userService.findUser(id)` already throws `ResourceNotFoundException`. "Use the service of another module, not its repository" is the rule of T5 p.17.
-- Solution: [PlayerCard.java](src/main/java/es/us/dp1/chess/tournament/practice/x/json/PlayerCard.java), [PlayerCardService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/json/PlayerCardService.java), [PlayerCardController.java](src/main/java/es/us/dp1/chess/tournament/practice/x/json/PlayerCardController.java) · grader [TestX21.java](src/test/java/es/us/dp1/chess/tournament/practice/x/json/TestX21.java) · `git show ":/practice: X21 "`
+- Solution: [PlayerCard.java](src/main/java/es/us/dp1/chess/tournament/practice/x/json/PlayerCard.java), [PlayerCardService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/json/PlayerCardService.java), [PlayerCardController.java](src/main/java/es/us/dp1/chess/tournament/practice/x/json/PlayerCardController.java) · grader [TestX25.java](src/test/java/es/us/dp1/chess/tournament/practice/x/json/TestX25.java) · `git show ":/practice: X25 "`
 </details>
 
-### X.11 React state (likelihood: medium)
+### X.13 React state (likelihood: medium)
 
 Folder `frontend/src/practice/x/state`.
 
-#### Test X22 – Lifting state up
+#### Test X26 – Lifting state up
 
 **~15 min · Source: T2 p.38, p.43–46 · Grader: `frontend/src/practice/x/state/VoteBoard.test.js`**
 
@@ -2014,10 +2142,10 @@ Complete `voteBoard.js`, which exports the components `VoteBoard` (default expor
 
 - Exactly the `MyApp`/`MyButton` pattern of T2 p.46: state in the closest common parent, data down through props, events up through a callback prop.
 - `setVotes({ ...votes, yoga: votes.yoga + 1 })`: replace the object, never mutate it (T2 p.41).
-- Solution: [voteBoard.js](frontend/src/practice/x/state/voteBoard.js) · grader [VoteBoard.test.js](frontend/src/practice/x/state/VoteBoard.test.js) · `git show ":/practice: X22 "`
+- Solution: [voteBoard.js](frontend/src/practice/x/state/voteBoard.js) · grader [VoteBoard.test.js](frontend/src/practice/x/state/VoteBoard.test.js) · `git show ":/practice: X26 "`
 </details>
 
-#### Test X23 – Immutable updates of a list in the state
+#### Test X27 – Immutable updates of a list in the state
 
 **~15 min · Source: T2 p.41 · Grader: `frontend/src/practice/x/state/TaskList.test.js`**
 
@@ -2039,14 +2167,14 @@ The component must never modify the `initialTasks` array it receives.
   ```jsx
   <button aria-label={`Remove ${task}`} onClick={() => remove(task)}>✕</button>
   ```
-- Solution: [taskList.js](frontend/src/practice/x/state/taskList.js) · grader [TaskList.test.js](frontend/src/practice/x/state/TaskList.test.js) · `git show ":/practice: X23 "`
+- Solution: [taskList.js](frontend/src/practice/x/state/taskList.js) · grader [TaskList.test.js](frontend/src/practice/x/state/TaskList.test.js) · `git show ":/practice: X27 "`
 </details>
 
-### X.12 React patterns (likelihood: medium)
+### X.14 React patterns (likelihood: medium)
 
 Folder `frontend/src/practice/x/hooks`.
 
-#### Test X24 – A custom hook and a presentation component
+#### Test X28 – A custom hook and a presentation component
 
 **~15 min · Source: T6 p.62–73 · Grader: `frontend/src/practice/x/hooks/Members.test.js`**
 
@@ -2063,10 +2191,10 @@ The members of a gym program are obtained with `GET /api/v1/gym/programs/X/membe
 
 - The hook contains the `useState`/`useEffect`/`fetch` and returns `{ members }` (T6 p.71); the page only composes (`const { members } = useMembers(programId);`, T6 p.70); the list only renders (T6 p.65).
 - A hook's name must start with `use`, and it can only be called at the top level of a component or of another hook.
-- Solution: [useMembers.js](frontend/src/practice/x/hooks/useMembers.js), [memberList.js](frontend/src/practice/x/hooks/memberList.js), [membersPage.js](frontend/src/practice/x/hooks/membersPage.js) · grader [Members.test.js](frontend/src/practice/x/hooks/Members.test.js) · `git show ":/practice: X24 "`
+- Solution: [useMembers.js](frontend/src/practice/x/hooks/useMembers.js), [memberList.js](frontend/src/practice/x/hooks/memberList.js), [membersPage.js](frontend/src/practice/x/hooks/membersPage.js) · grader [Members.test.js](frontend/src/practice/x/hooks/Members.test.js) · `git show ":/practice: X28 "`
 </details>
 
-#### Test X25 – Extracting a network client
+#### Test X29 – Extracting a network client
 
 **~15 min · Source: T6 p.74–77; T2 p.52 · Grader: `frontend/src/practice/x/hooks/RankingSummary.test.js`**
 
@@ -2080,16 +2208,178 @@ The members of a gym program are obtained with `GET /api/v1/gym/programs/X/membe
 <summary>Hints, key points, typical mistakes, solution</summary>
 
 - Network code (client) / state and domain mapping (hook) / rendering (component): T6 p.77. The grader replaces `rankingClient.js` with a fake (`jest.mock`) to check that the hook really uses it.
-- Solution: [rankingClient.js](frontend/src/practice/x/hooks/rankingClient.js), [useRanking.js](frontend/src/practice/x/hooks/useRanking.js), [rankingSummary.js](frontend/src/practice/x/hooks/rankingSummary.js) · grader [RankingSummary.test.js](frontend/src/practice/x/hooks/RankingSummary.test.js) · `git show ":/practice: X25 "`
+- Solution: [rankingClient.js](frontend/src/practice/x/hooks/rankingClient.js), [useRanking.js](frontend/src/practice/x/hooks/useRanking.js), [rankingSummary.js](frontend/src/practice/x/hooks/rankingSummary.js) · grader [RankingSummary.test.js](frontend/src/practice/x/hooks/RankingSummary.test.js) · `git show ":/practice: X29 "`
 </details>
 
-### X.13 Value objects (likelihood: low)
+### X.15 React forms to create and edit, 2026-27 template (likelihood: medium)
+
+Folder `frontend/src/practice/x/lab2` (see the introduction of X.5 for the given API client and hooks).
+
+#### Test X30 – Reusable form fields and a presentational form
+
+**~20 min · Source: Lab 2 p.18–21 · Grader: `frontend/src/practice/x/lab2/tournaments/TournamentForm.test.js`**
+
+Apply the DRY principle as Lab 2 does:
+
+- `components/formFields/FormTextField.jsx`: `FormTextField({ name, label, value, onChange, type = "text", required = true })` renders a reactstrap `Label`, associated with the input (`for` and `id` equal to `name`), and an `Input` with the given `type`, `required`, `name`, `id`, `onChange` and `value` (the empty string when `value` is null or undefined).
+- `components/formFields/FormSelectField.jsx`: `FormSelectField({ name, label, value, onChange, options, required = true })`, the same but with an `Input` of type `select` whose first option is `None` (with value `""`), followed by one option per element `{ value, label }` of `options`.
+- `tournaments/TournamentForm.jsx`: `TournamentForm({ tournament, onChange, onSubmit })` renders a level-2 heading `Edit Tournament` when `tournament.id` has a value and `Add Tournament` otherwise, and a reactstrap `Form`, submitted with `onSubmit`, built only with those two field components: `name` (label `Name`), `description` (`Description`), `logoUrl` (`Logo URL`), `format` (`Format`: a select with the options `SWISS`, `ROUND_ROBIN` and `KNOCKOUT`, declared in a constant outside the component) and `prizePool` (`Prize pool`, of type `number`); then a submit button `Save` and a link `Cancel` to `/tournaments`. The form does not know how the data is loaded or saved.
+
+**Files to modify:** `frontend/src/practice/x/lab2/components/formFields/FormTextField.jsx`, `FormSelectField.jsx`, `frontend/src/practice/x/lab2/tournaments/TournamentForm.jsx`.
+
+<details>
+<summary>Hints, key points, typical mistakes, solution</summary>
+
+- The code of Lab 2 p.19–20 almost verbatim. `value={value ?? ""}`: a controlled input must never receive `undefined`, otherwise React switches it to uncontrolled and warns.
+- The options constant outside the component is not recreated on every render and keeps the allowed values in one place (Lab 2 p.21).
+- `getByLabelText('Name')` (which the grader uses) only works because the `Label` has `for={name}` and the `Input` has `id={name}`.
+- Solution: [FormTextField.jsx](frontend/src/practice/x/lab2/components/formFields/FormTextField.jsx), [FormSelectField.jsx](frontend/src/practice/x/lab2/components/formFields/FormSelectField.jsx), [TournamentForm.jsx](frontend/src/practice/x/lab2/tournaments/TournamentForm.jsx) · grader [TournamentForm.test.js](frontend/src/practice/x/lab2/tournaments/TournamentForm.test.js) · `git show ":/practice: X30 "`
+</details>
+
+#### Test X31 – One container to create and to edit: `useParams`, `useNavigate`, POST or PUT
+
+**~25 min · Source: Lab 2 p.21–24 · Grader: `frontend/src/practice/x/lab2/referees/RefereeEdit.test.js`**
+
+The folder `frontend/src/practice/x/lab2/referees` contains the presentational form `RefereeForm({ referee, onChange, onSubmit })` (fields `name`, `email` and `level`, the latter with the options `REGIONAL`, `NATIONAL` and `INTERNATIONAL`), and the service `services/referees.js` provides `getRefereeById(id)`, `createReferee(referee)` and `updateReferee(id, referee)` (on `/api/v1/referees`). Complete the container `RefereeEdit.jsx`, which is rendered by the route `/referees/:id`, where `:id` is either the id of a referee or the word `new`:
+
+- When `id` is `new`, the form starts with an empty referee (`id: null`, empty `name` and `email`, `level: "REGIONAL"`) and **no request** is made. Otherwise the referee is loaded with `getRefereeById`, using `useFetchState` with the dependency list `[id]` and the options `skip` and `onError`.
+- Every change of a field updates the corresponding attribute of the referee in the state, with one single handler for all the fields that uses the `name` of the input.
+- On submit, without reloading the page, it calls `updateReferee` if the referee has an id and `createReferee` otherwise, and then navigates to `/referees`.
+- Any error, when loading or when saving, is shown in the modal of `useErrorModal` with the `message` sent by the backend, or with the text `Error saving referee` if the backend sends no message.
+
+**File to modify:** `frontend/src/practice/x/lab2/referees/RefereeEdit.jsx`.
+
+<details>
+<summary>Hints, key points, typical mistakes, solution</summary>
+
+- The `AchievementEdit` of Lab 2 p.21–22:
+
+  ```jsx
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { errorModal, showError } = useErrorModal();
+  const [referee, setReferee] = useFetchState(emptyReferee, () => refereesApi.getRefereeById(id), [id],
+      { skip: id === "new", onError: showError });
+
+  function handleChange(event) {
+      const { name, value } = event.target;
+      setReferee({ ...referee, [name]: value });
+  }
+  ```
+- `getRefereeById` needs an argument, so it is wrapped in an arrow function; the dependency list repeats the request when `id` changes; `skip` avoids requesting `/referees/new` (Lab 2 p.22).
+- `handleSubmit` must start with `event.preventDefault()` (otherwise the browser submits the form and reloads the page) and catch the axios error: `showError(err.response?.data?.message ?? "Error saving referee")` (Lab 2 p.22–23).
+- Solution: [RefereeEdit.jsx](frontend/src/practice/x/lab2/referees/RefereeEdit.jsx) · grader [RefereeEdit.test.js](frontend/src/practice/x/lab2/referees/RefereeEdit.test.js) · `git show ":/practice: X31 "`
+</details>
+
+### X.16 React list actions: edit and delete, 2026-27 template (likelihood: medium)
+
+#### Test X32 – Edit and Delete actions in a presentational row
+
+**~10 min · Source: Lab 2 p.25–26 · Grader: `frontend/src/practice/x/lab2/tournaments/TournamentTable.test.js`**
+
+`TournamentRow({ tournament, onDelete })` and `TournamentTable({ tournaments, onDelete })` (folder `frontend/src/practice/x/lab2/tournaments`) display the tournaments, but their *Actions* column still shows `---`. Replace it with:
+
+- an `Edit` button that is a link to `/tournaments/<id of the tournament>`;
+- a `Delete` button that calls `onDelete` with the id of the tournament of its row.
+
+`TournamentTable` must pass its `onDelete` on to every row. Neither component may make any request: deleting is the job of the container.
+
+**Files to modify:** `frontend/src/practice/x/lab2/tournaments/TournamentRow.jsx`, `TournamentTable.jsx`.
+
+<details>
+<summary>Hints, key points, typical mistakes, solution</summary>
+
+- Lab 2 p.25–26: an outline reactstrap `Button` wrapping a `Link` for Edit, and `<Button outline color="danger" onClick={() => onDelete(tournament.id)}>Delete</Button>`.
+- `onClick={onDelete(tournament.id)}` (without the arrow) calls `onDelete` while rendering, once per row, without any click.
+- The row only *reports* which tournament must be deleted; the logic stays in the container (X33).
+- Solution: [TournamentRow.jsx](frontend/src/practice/x/lab2/tournaments/TournamentRow.jsx), [TournamentTable.jsx](frontend/src/practice/x/lab2/tournaments/TournamentTable.jsx) · grader [TournamentTable.test.js](frontend/src/practice/x/lab2/tournaments/TournamentTable.test.js) · `git show ":/practice: X32 "`
+</details>
+
+#### Test X33 – Deleting from the container with `deleteFromList`
+
+**~20 min · Source: Lab 2 p.26–28 · Grader: `frontend/src/practice/x/lab2/chessClubs/ChessClubList.test.js`**
+
+The folder `frontend/src/practice/x/lab2/chessClubs` contains the presentational `ChessClubTable({ clubs, onDelete })`, whose rows have a `Delete` button that calls `onDelete(id)`, and the service `services/chessClubs.js` provides `getAllClubs()` and `deleteClub(id)` (on `/api/v1/chess-clubs`). Complete the container `ChessClubList.jsx` so that:
+
+- it shows a level-1 heading `Chess clubs` and the table with the clubs loaded with `getAllClubs`; an error while loading is shown in the error modal;
+- when a row asks to delete a club, it uses the provided utility `deleteFromList` (`../util/deleteFromList`) with the service function `deleteClub`. After the user confirms the deletion: if the server answers with a 2xx status, the club disappears from the table, and if that answer has a body with a `message`, the message is shown as an alert above the table; if the request fails, the server's message is shown in the error modal and the club stays in the table.
+
+**File to modify:** `frontend/src/practice/x/lab2/chessClubs/ChessClubList.jsx`.
+
+<details>
+<summary>Hints, key points, typical mistakes, solution</summary>
+
+- The `AchievementList` of Lab 2 p.27–28:
+
+  ```jsx
+  const { errorModal, showError } = useErrorModal();
+  const [clubs, setClubs] = useFetchState([], clubsApi.getAllClubs, [], { onError: showError });
+  const [alerts, setAlerts] = useState([]);
+
+  function handleDelete(id) {
+      deleteFromList(clubsApi.deleteClub, id, [clubs, setClubs], [alerts, setAlerts], { onError: showError });
+  }
+  ```
+  and in the JSX `{alerts.map((a) => a.alert)}`, `{errorModal}` and `<ChessClubTable clubs={clubs} onDelete={handleDelete} />`.
+- A 204 answer has no body, so no alert appears (Lab 2 p.27). The given `deleteFromList` asks for confirmation with `window.confirm`, like this repository's version.
+- Solution: [ChessClubList.jsx](frontend/src/practice/x/lab2/chessClubs/ChessClubList.jsx) · grader [ChessClubList.test.js](frontend/src/practice/x/lab2/chessClubs/ChessClubList.test.js) · `git show ":/practice: X33 "`
+</details>
+
+### X.17 Frontend security: routes and menus by role (likelihood: medium)
+
+Lab 2 is titled "Introduction to React and basic security concepts": its routes and menu options depend on the roles stored in the JWT, and protected routes are wrapped in `PrivateRoute`, which also asks the backend whether the token is still valid (Lab 2 p.6–7). In this repository the same pieces exist: `App.js` decodes the token with `jwt_decode(tokenService.getLocalAccessToken()).authorities`, and `privateRoute/index.js` validates it with `GET /api/v1/auth/validate`.
+
+#### Test X34 – Routes by role, protected with `PrivateRoute`
+
+**~20 min · Source: Lab 2 p.6–7, p.14, p.23–24; T2 p.61 · Grader: `frontend/src/practice/x/lab2/security/PracticeRoutes.test.js`**
+
+Complete `PracticeRoutes()` (`frontend/src/practice/x/lab2/security/PracticeRoutes.jsx`), which, like `App.js`, obtains the roles of the logged-in user from the JWT stored by the application (`tokenService.getLocalAccessToken()`, decoded with `jwt_decode`, claim `authorities`) and returns the following routes (it is rendered inside a router):
+
+- `/lab/public` → the provided `PublicPage`, for everybody, logged in or not;
+- `/lab/sponsors` → the provided `SponsorsAdminPage`, only for users with the `ADMIN` role, wrapped in the project's `PrivateRoute`;
+- `/lab/tournaments` → the provided `TournamentsPlayerPage`, only for users with the `PLAYER` role, wrapped in `PrivateRoute`;
+- any other path, including a role-protected path visited without that role → a level-1 heading `Not available`.
+
+**File to modify:** `frontend/src/practice/x/lab2/security/PracticeRoutes.jsx`.
+
+<details>
+<summary>Hints, key points, typical mistakes, solution</summary>
+
+- Same idea as `App.js` and Lab 2 p.7, p.14: build the role-specific `<Route>`s inside `if (role === "ADMIN") { … }` / `if (role === "PLAYER") { … }` and render them inside `<Routes>`, with `<Route path="*" element={<h1>Not available</h1>} />` as the last route.
+- Hiding the menu link is not protection: with the link hidden, the route can still be reached by typing its URL (Lab 2 p.7). A route that is not registered for a role cannot be reached at all.
+- The role check only reads the token locally; `PrivateRoute` adds the check with the backend that the token has not expired (Lab 2 p.7).
+- Solution: [PracticeRoutes.jsx](frontend/src/practice/x/lab2/security/PracticeRoutes.jsx) · grader [PracticeRoutes.test.js](frontend/src/practice/x/lab2/security/PracticeRoutes.test.js) · `git show ":/practice: X34 "`
+</details>
+
+#### Test X35 – A menu that depends on the role
+
+**~15 min · Source: Lab 2 p.6–7, p.17 · Grader: `frontend/src/practice/x/lab2/security/PracticeNavbar.test.js`**
+
+Complete `PracticeNavbar()` (`PracticeNavbar.jsx`, same folder), which obtains the roles in the same way and renders a reactstrap `Navbar` containing links (`NavLink` with `tag={Link}`):
+
+- always `Home` (to `/`);
+- when nobody is logged in: `Login` (`/login`) and `Register` (`/register`);
+- for the `ADMIN` role: `Users` (`/users`) and `Developers` (`/developers`);
+- for the `PLAYER` role: `Achievements` (`/achievements`);
+- for any logged-in user: `Logout` (`/logout`).
+
+**File to modify:** `frontend/src/practice/x/lab2/security/PracticeNavbar.jsx`.
+
+<details>
+<summary>Hints, key points, typical mistakes, solution</summary>
+
+- Lab 2 p.6 and p.17: `<NavItem><NavLink className="nav-link-white" tag={Link} to="/developers">Developers</NavLink></NavItem>` inside `if (role === "ADMIN") { … }`, and `playerLinks = (<> … </>)` inside `if (role === "PLAYER") { … }`.
+- The menu is a convenience for the user; the protection is in the routes (X34) and, above all, in the backend (X42).
+- Solution: [PracticeNavbar.jsx](frontend/src/practice/x/lab2/security/PracticeNavbar.jsx) · grader [PracticeNavbar.test.js](frontend/src/practice/x/lab2/security/PracticeNavbar.test.js) · `git show ":/practice: X35 "`
+</details>
+
+### X.18 Value objects (likelihood: low)
 
 Package `es.us.dp1.chess.tournament.practice.x.embedded`. In the starting state the attributes whose type is the value object are `@Transient` (JPA cannot store them until the type is embeddable): remove that annotation as part of the exercise.
 
-#### Test X26 – Mapping a value object with `@Embeddable`
+#### Test X36 – Mapping a value object with `@Embeddable`
 
-**~10 min · Source: T4 p.42–43, p.48; T5 p.78 (`@Valid`) · Grader: `TestX26`**
+**~10 min · Source: T4 p.42–43, p.48; T5 p.78 (`@Valid`) · Grader: `TestX36`**
 
 A postal address is a value object: it has no identity and is part of the table of its owner. Turn `PostalAddress` (`street`, `city`, `zipCode`) into an embeddable type and use it in the `address` attribute of the `PetClinic` entity (`name`, `address`), so that its three attributes are stored as columns of the `pet_clinic` table and no table is created for addresses. The address of a clinic is mandatory, its `street` and `city` cannot be blank and its `zipCode` must consist of exactly 5 digits; these constraints must be checked when a clinic is validated.
 
@@ -2099,12 +2389,12 @@ A postal address is a value object: it has no identity and is part of the table 
 <summary>Hints, key points, typical mistakes, solution</summary>
 
 - `@Embeddable` on the class (it needs a no-arguments constructor) and `@Embedded @Valid @NotNull` on the attribute (T4 p.48). Without `@Valid`, the constraints of the embedded object are not checked when the clinic is validated (validation does not cascade by default).
-- Solution: [PostalAddress.java](src/main/java/es/us/dp1/chess/tournament/practice/x/embedded/PostalAddress.java), [PetClinic.java](src/main/java/es/us/dp1/chess/tournament/practice/x/embedded/PetClinic.java) · grader [TestX26.java](src/test/java/es/us/dp1/chess/tournament/practice/x/embedded/TestX26.java) · `git show ":/practice: X26 "`
+- Solution: [PostalAddress.java](src/main/java/es/us/dp1/chess/tournament/practice/x/embedded/PostalAddress.java), [PetClinic.java](src/main/java/es/us/dp1/chess/tournament/practice/x/embedded/PetClinic.java) · grader [TestX36.java](src/test/java/es/us/dp1/chess/tournament/practice/x/embedded/TestX36.java) · `git show ":/practice: X36 "`
 </details>
 
-#### Test X27 – The same value object twice: `@AttributeOverrides`
+#### Test X37 – The same value object twice: `@AttributeOverrides`
 
-**~10 min · Source: T4 p.85–86 · Grader: `TestX27`**
+**~10 min · Source: T4 p.85–86 · Grader: `TestX37`**
 
 A `Supplier` (`name`) has two contacts of type `Contact` (`name`, `phone`): `salesContact` and `supportContact`. Make `Contact` embeddable and embed both attributes, so that they are stored in the columns `sales_name`, `sales_phone`, `support_name` and `support_phone` of the `supplier` table.
 
@@ -2114,16 +2404,16 @@ A `Supplier` (`name`) has two contacts of type `Contact` (`name`, `phone`): `sal
 <summary>Hints, key points, typical mistakes, solution</summary>
 
 - Two embedded attributes of the same type would generate the columns `name` and `phone` twice (T4 p.85): `@AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "sales_name")), @AttributeOverride(name = "phone", column = @Column(name = "sales_phone")) })`, and the same for support (T4 p.86).
-- Solution: [Contact.java](src/main/java/es/us/dp1/chess/tournament/practice/x/embedded/Contact.java), [Supplier.java](src/main/java/es/us/dp1/chess/tournament/practice/x/embedded/Supplier.java) · grader [TestX27.java](src/test/java/es/us/dp1/chess/tournament/practice/x/embedded/TestX27.java) · `git show ":/practice: X27 "`
+- Solution: [Contact.java](src/main/java/es/us/dp1/chess/tournament/practice/x/embedded/Contact.java), [Supplier.java](src/main/java/es/us/dp1/chess/tournament/practice/x/embedded/Supplier.java) · grader [TestX37.java](src/test/java/es/us/dp1/chess/tournament/practice/x/embedded/TestX37.java) · `git show ":/practice: X37 "`
 </details>
 
-### X.14 Inheritance (likelihood: low)
+### X.19 Inheritance (likelihood: low)
 
 Package `es.us.dp1.chess.tournament.practice.x.inheritance`.
 
-#### Test X28 – Reusing the technology classes `Person` and `NamedEntity`
+#### Test X38 – Reusing the technology classes `Person` and `NamedEntity`
 
-**~10 min · Source: T4 p.54; T5 p.72, p.77 · Grader: `TestX28`**
+**~10 min · Source: T4 p.54; T5 p.72, p.77 · Grader: `TestX38`**
 
 `Instructor` (`id`, `firstName`, `lastName`, `specialty`) and `Studio` (`id`, `name`, `rooms`) declare by themselves attributes that the project already provides in its mapped superclasses. Make `Instructor` extend `Person` and `Studio` extend `NamedEntity` (package `model`), removing the attributes they inherit, so that they get their id, their columns (`first_name`, `last_name`, `name`) and their constraints from the superclasses. Moreover, `specialty` cannot be blank and `rooms` must be at least 1.
 
@@ -2134,12 +2424,12 @@ Package `es.us.dp1.chess.tournament.practice.x.inheritance`.
 
 - `@MappedSuperclass` classes have no table: their attributes are columns of the table of each entity that extends them (T4 p.54).
 - After extending, delete the duplicated fields; keeping an `id` field in the subclass hides the inherited one and Hibernate complains about two identifiers.
-- Solution: [Instructor.java](src/main/java/es/us/dp1/chess/tournament/practice/x/inheritance/Instructor.java), [Studio.java](src/main/java/es/us/dp1/chess/tournament/practice/x/inheritance/Studio.java) · grader [TestX28.java](src/test/java/es/us/dp1/chess/tournament/practice/x/inheritance/TestX28.java) · `git show ":/practice: X28 "`
+- Solution: [Instructor.java](src/main/java/es/us/dp1/chess/tournament/practice/x/inheritance/Instructor.java), [Studio.java](src/main/java/es/us/dp1/chess/tournament/practice/x/inheritance/Studio.java) · grader [TestX38.java](src/test/java/es/us/dp1/chess/tournament/practice/x/inheritance/TestX38.java) · `git show ":/practice: X38 "`
 </details>
 
-#### Test X29 – Mapping a generalization with your own `@MappedSuperclass`
+#### Test X39 – Mapping a generalization with your own `@MappedSuperclass`
 
-**~15 min · Source: T5 p.50–56; T4 p.54 · Grader: `TestX29`**
+**~15 min · Source: T5 p.50–56; T4 p.54 · Grader: `TestX39`**
 
 `Car` (`plate`, `brand`, `doors`) and `Motorbike` (`plate`, `brand`, `engineCc`) are specializations of a vehicle. Move the common attributes to the abstract class `Vehicle`, turned into a mapped superclass that extends `BaseEntity`, and make both entities extend it. There must be no table for vehicles: each entity keeps its own table with all its columns. The `plate` of a vehicle is mandatory and has four digits followed by three capital letters (e.g. `1234BCD`), the `brand` cannot be blank, a car has between 2 and 5 doors and a motorbike at least 50 cc.
 
@@ -2149,16 +2439,16 @@ Package `es.us.dp1.chess.tournament.practice.x.inheritance`.
 <summary>Hints, key points, typical mistakes, solution</summary>
 
 - `@MappedSuperclass public abstract class Vehicle extends BaseEntity { @NotNull @Pattern(regexp = "[0-9]{4}[A-Z]{3}") String plate; @NotBlank String brand; }`. Annotating it with `@Entity` instead would create a table for it.
-- Solution: [Vehicle.java](src/main/java/es/us/dp1/chess/tournament/practice/x/inheritance/Vehicle.java), [Car.java](src/main/java/es/us/dp1/chess/tournament/practice/x/inheritance/Car.java), [Motorbike.java](src/main/java/es/us/dp1/chess/tournament/practice/x/inheritance/Motorbike.java) · grader [TestX29.java](src/test/java/es/us/dp1/chess/tournament/practice/x/inheritance/TestX29.java) · `git show ":/practice: X29 "`
+- Solution: [Vehicle.java](src/main/java/es/us/dp1/chess/tournament/practice/x/inheritance/Vehicle.java), [Car.java](src/main/java/es/us/dp1/chess/tournament/practice/x/inheritance/Car.java), [Motorbike.java](src/main/java/es/us/dp1/chess/tournament/practice/x/inheritance/Motorbike.java) · grader [TestX39.java](src/test/java/es/us/dp1/chess/tournament/practice/x/inheritance/TestX39.java) · `git show ":/practice: X39 "`
 </details>
 
-### X.15 Custom validation (likelihood: low)
+### X.20 Custom validation (likelihood: low)
 
 Package `es.us.dp1.chess.tournament.practice.x.customvalidation`. T5 p.76 lists "custom annotations" and a "custom Validator class" as the second and third validation tools of Spring, without code.
 
-#### Test X30 – A constraint annotation of your own
+#### Test X40 – A constraint annotation of your own
 
-**~20 min · Source: T5 p.76, p.83 · Grader: `TestX30`**
+**~20 min · Source: T5 p.76, p.83 · Grader: `TestX40`**
 
 Complete the annotation `@MultipleOf` (attribute `int value()`) so that it becomes a Bean Validation constraint applicable to `Integer` attributes, validated by the class `MultipleOfValidator`, whose default message is `must be a multiple of {value}`: a value is valid if it is null or a multiple of `value`. Then use it so that the `minutes` attribute of the entity `WorkoutPlan` (`name`, `minutes`) is mandatory and a multiple of 5.
 
@@ -2170,12 +2460,12 @@ Complete the annotation `@MultipleOf` (attribute `int value()`) so that it becom
 - The annotation needs `@Constraint(validatedBy = MultipleOfValidator.class)`, `@Target(ElementType.FIELD)`, `@Retention(RetentionPolicy.RUNTIME)` and the three standard attributes `String message() default "must be a multiple of {value}"; Class<?>[] groups() default {}; Class<? extends Payload>[] payload() default {};`.
 - `public class MultipleOfValidator implements ConstraintValidator<MultipleOf, Integer>`: read `value()` in `initialize`, return `true` for `null` in `isValid` (let `@NotNull` decide about nulls).
 - Without `RUNTIME` retention the annotation disappears from the compiled class and is silently ignored.
-- Solution: [MultipleOf.java](src/main/java/es/us/dp1/chess/tournament/practice/x/customvalidation/MultipleOf.java), [MultipleOfValidator.java](src/main/java/es/us/dp1/chess/tournament/practice/x/customvalidation/MultipleOfValidator.java), [WorkoutPlan.java](src/main/java/es/us/dp1/chess/tournament/practice/x/customvalidation/WorkoutPlan.java) · grader [TestX30.java](src/test/java/es/us/dp1/chess/tournament/practice/x/customvalidation/TestX30.java) · `git show ":/practice: X30 "`
+- Solution: [MultipleOf.java](src/main/java/es/us/dp1/chess/tournament/practice/x/customvalidation/MultipleOf.java), [MultipleOfValidator.java](src/main/java/es/us/dp1/chess/tournament/practice/x/customvalidation/MultipleOfValidator.java), [WorkoutPlan.java](src/main/java/es/us/dp1/chess/tournament/practice/x/customvalidation/WorkoutPlan.java) · grader [TestX40.java](src/test/java/es/us/dp1/chess/tournament/practice/x/customvalidation/TestX40.java) · `git show ":/practice: X40 "`
 </details>
 
-#### Test X31 – A Spring `Validator` class for a rule over several attributes
+#### Test X41 – A Spring `Validator` class for a rule over several attributes
 
-**~15 min · Source: T5 p.75–76 · Grader: `TestX31`**
+**~15 min · Source: T5 p.75–76 · Grader: `TestX41`**
 
 A `RoomBooking` (`room`, `checkIn`, `checkOut` (both `LocalDateTime`), `guests`) needs semantic validation involving several attributes. Implement `RoomBookingValidator`, which implements `org.springframework.validation.Validator`:
 
@@ -2189,12 +2479,48 @@ A `RoomBooking` (`room`, `checkIn`, `checkOut` (both `LocalDateTime`), `guests`)
 
 - `errors.rejectValue("checkOut", "booking.checkOut.beforeCheckIn");`; `supports`: `RoomBooking.class.isAssignableFrom(clazz)`.
 - A Spring `Validator` can check rules that involve several attributes, which annotations on a single attribute cannot (T5 p.75, p.83).
-- Solution: [RoomBookingValidator.java](src/main/java/es/us/dp1/chess/tournament/practice/x/customvalidation/RoomBookingValidator.java) · grader [TestX31.java](src/test/java/es/us/dp1/chess/tournament/practice/x/customvalidation/TestX31.java) · `git show ":/practice: X31 "`
+- Solution: [RoomBookingValidator.java](src/main/java/es/us/dp1/chess/tournament/practice/x/customvalidation/RoomBookingValidator.java) · grader [TestX41.java](src/test/java/es/us/dp1/chess/tournament/practice/x/customvalidation/TestX41.java) · `git show ":/practice: X41 "`
 </details>
 
-### X.16 React router and Context (likelihood: low)
+### X.21 Securing the API (likelihood: low)
 
-#### Test X32 – Routes, links and URL parameters
+#### Test X42 – Restricting an API path to an authority
+
+**~10 min · Source: Lab 2 p.16 ("`/api/v1/achievements` requires authentication, as configured in `SecurityConfiguration.java`"); the project's `SecurityConfiguration` · Grader: `TestX42`**
+
+Modify `SecurityConfiguration` (package `configuration`) so that every request to `/api/v1/tournaments` or to any path below it requires the `PLAYER` authority: a user with that authority gets the normal answer, an authenticated user without it (for example `admin1`, with `ADMIN`) gets **403 (FORBIDDEN)**, and an anonymous request still gets **401 (UNAUTHORIZED)**. Do not change the rules of the other paths. (The resource is the one of X.7.)
+
+**File to modify:** `configuration/SecurityConfiguration.java`.
+
+<details>
+<summary>Hints, key points, typical mistakes, solution</summary>
+
+- `.requestMatchers("/api/v1/tournaments/**").hasAuthority(PLAYER)` next to the existing `/api/v1/users/**` and `/api/v1/matches/**` rules, **before** `.anyRequest().authenticated()`: the rules are evaluated in order and the first one that matches wins.
+- The 401 comes from `AuthEntryPointJwt` (no authentication), the 403 from Spring Security itself (authenticated, but without the authority); neither goes through `ExceptionHandlerController`.
+- Securing the backend is what really protects the data: the frontend checks of X34–X35 can be bypassed by calling the API directly.
+- Solution: [SecurityConfiguration.java](src/main/java/es/us/dp1/chess/tournament/configuration/SecurityConfiguration.java) · grader [TestX42.java](src/test/java/es/us/dp1/chess/tournament/practice/x/crud/TestX42.java) · `git show ":/practice: X42 "`
+</details>
+
+#### Test X43 – A public endpoint: the developers declared in `pom.xml`
+
+**~10 min · Source: Lab 2 p.4, p.7–8, p.16 · Grader: `TestX43`**
+
+Lab 2 displays the developers declared in `pom.xml`, obtained from the public endpoint `GET /api/v1/developers` (configured in Lab 1). In this repository, the class `developers/DevelopersController` already reads them (`getDevelopers()`, with Maven's `MavenXpp3Reader`), but it is not a controller. Turn it into a REST controller so that `GET /api/v1/developers` returns, with status **200 (OK)** and **without authentication**, the list of developers of `pom.xml`, each one with its `name`, `email`, `url`, `roles` and `properties`.
+
+**File to modify:** `developers/DevelopersController.java`.
+
+<details>
+<summary>Hints, key points, typical mistakes, solution</summary>
+
+- `@RestController @RequestMapping("/api/v1/developers")` on the class and `@GetMapping public ResponseEntity<List<Developer>> findAll() { return new ResponseEntity<>(getDevelopers(), HttpStatus.OK); }`.
+- `SecurityConfiguration` already lists `"/api/v1/developers"` in `permitAll()`, which is why no token is needed (Lab 2 p.16: "unlike `/api/v1/developers`, which was public").
+- `pom.xml` is read from the working directory (the project root when the application is started with `mvnw`), and the developers are cached after the first request, so a change in `pom.xml` needs a restart (Lab 2 p.11).
+- Solution: [DevelopersController.java](src/main/java/es/us/dp1/chess/tournament/developers/DevelopersController.java) · grader [TestX43.java](src/test/java/es/us/dp1/chess/tournament/practice/x/crud/TestX43.java) · `git show ":/practice: X43 "`
+</details>
+
+### X.22 React router and Context (likelihood: low)
+
+#### Test X44 – Routes, links and URL parameters
 
 **~15 min · Source: T2 p.49–50 · Grader: `frontend/src/practice/x/router/TravelApp.test.js`**
 
@@ -2212,10 +2538,10 @@ Complete `TravelApp()` in `frontend/src/practice/x/router/travelApp.js` so that 
 
 - `<Routes><Route path="/" element={<Home />} /> … <Route path="*" element={<NotFound />} /></Routes>` and `<Link to="/destinations">Destinations</Link>` (T2 p.50); read `:id` with `const { id } = useParams();`.
 - Do not wrap `TravelApp` in a `BrowserRouter` yourself: the grader renders it inside a `MemoryRouter` (a router cannot contain another one).
-- Solution: [travelApp.js](frontend/src/practice/x/router/travelApp.js) · grader [TravelApp.test.js](frontend/src/practice/x/router/TravelApp.test.js) · `git show ":/practice: X32 "`
+- Solution: [travelApp.js](frontend/src/practice/x/router/travelApp.js) · grader [TravelApp.test.js](frontend/src/practice/x/router/TravelApp.test.js) · `git show ":/practice: X44 "`
 </details>
 
-#### Test X33 – Sharing data without prop drilling
+#### Test X45 – Sharing data without prop drilling
 
 **~10 min · Source: T6 p.80–82; T2 p.47 · Grader: `frontend/src/practice/x/context/Dashboard.test.js`**
 
@@ -2231,14 +2557,14 @@ In `frontend/src/practice/x/context`:
 <summary>Hints, key points, typical mistakes, solution</summary>
 
 - `const UserContext = createContext({ username: 'guest' }); export default UserContext;` (T6 p.82 writes `export default MyContext = createContext({})`, which is not valid JavaScript), `<UserContext.Provider value={{ username }}>` and `const { username } = useContext(UserContext);`.
-- Solution: [userContext.js](frontend/src/practice/x/context/userContext.js), [greeting.js](frontend/src/practice/x/context/greeting.js), [dashboard.js](frontend/src/practice/x/context/dashboard.js) · grader [Dashboard.test.js](frontend/src/practice/x/context/Dashboard.test.js) · `git show ":/practice: X33 "`
+- Solution: [userContext.js](frontend/src/practice/x/context/userContext.js), [greeting.js](frontend/src/practice/x/context/greeting.js), [dashboard.js](frontend/src/practice/x/context/dashboard.js) · grader [Dashboard.test.js](frontend/src/practice/x/context/Dashboard.test.js) · `git show ":/practice: X45 "`
 </details>
 
-### X.17 Writing frontend tests (likelihood: low)
+### X.23 Writing frontend tests (likelihood: low)
 
 Folder `frontend/src/practice/x/rtl`. Here *you* write the tests. Each component comes with broken copies (`*.broken1.js`, `*.broken2.js`, …); your test file is correct when it passes with the real component and **fails** when you change its `import` to each broken copy (like the dispatcher of exercise 8, but by hand). Remember to restore the `import` afterwards.
 
-#### Test X34 – Testing what a component renders
+#### Test X46 – Testing what a component renders
 
 **~15 min · Source: T2 p.57–59 · Grader: your `ScoreBoard.test.js` against `scoreBoard.broken1.js` … `scoreBoard.broken3.js`**
 
@@ -2251,10 +2577,10 @@ Folder `frontend/src/practice/x/rtl`. Here *you* write the tests. Each component
 
 - Query by role first (`getByRole('heading', { level: 2, name: 'Top players' })`, `getAllByRole('listitem')`), by text second; use `queryByRole('list')` + `.not.toBeInTheDocument()` / `toBeNull()` to assert absence (T2 p.59).
 - Assert on the rendered output, not on props or state.
-- Solution: [ScoreBoard.test.js](frontend/src/practice/x/rtl/ScoreBoard.test.js) · `git show ":/practice: X34 "`
+- Solution: [ScoreBoard.test.js](frontend/src/practice/x/rtl/ScoreBoard.test.js) · `git show ":/practice: X46 "`
 </details>
 
-#### Test X35 – Testing interaction and data fetched from the API
+#### Test X47 – Testing interaction and data fetched from the API
 
 **~20 min · Source: T2 p.57–59 · Grader: your `LikeButton.test.js` and `QuoteOfTheDay.test.js` against the broken copies**
 
@@ -2270,16 +2596,16 @@ Create `LikeButton.test.js` (use `@testing-library/user-event`) and `QuoteOfTheD
 
 - `const user = userEvent.setup(); await user.click(screen.getByRole('button', { name: /like/i }));`.
 - The data arrives asynchronously: `getBy…` right after `render` fails; `await screen.findByText(...)` waits.
-- Solution: [LikeButton.test.js](frontend/src/practice/x/rtl/LikeButton.test.js), [QuoteOfTheDay.test.js](frontend/src/practice/x/rtl/QuoteOfTheDay.test.js) · `git show ":/practice: X35 "`
+- Solution: [LikeButton.test.js](frontend/src/practice/x/rtl/LikeButton.test.js), [QuoteOfTheDay.test.js](frontend/src/practice/x/rtl/QuoteOfTheDay.test.js) · `git show ":/practice: X47 "`
 </details>
 
-### X.18 Logging (likelihood: low)
+### X.24 Logging (likelihood: low)
 
 Package `es.us.dp1.chess.tournament.practice.x.logging`.
 
-#### Test X36 – Logging with `@Slf4j` instead of `System.out`
+#### Test X48 – Logging with `@Slf4j` instead of `System.out`
 
-**~10 min · Source: T6 p.40–46 · Grader: `TestX36`**
+**~10 min · Source: T6 p.40–46 · Grader: `TestX48`**
 
 `RegistrationAuditService.register(String username)` writes its messages with `System.out.println`. Replace them with an SLF4J logger obtained with Lombok:
 
@@ -2294,12 +2620,12 @@ Package `es.us.dp1.chess.tournament.practice.x.logging`.
 
 - `@Slf4j` on the class gives a `private static final Logger log` (T6 p.43); `log.warn(...)`, `log.error("Registration failed for {}", username, e)` (the exception as last argument prints the stack trace, T6 p.40/p.46).
 - Never log passwords or tokens (T6 p.48).
-- Solution: [RegistrationAuditService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/logging/RegistrationAuditService.java) · grader [TestX36.java](src/test/java/es/us/dp1/chess/tournament/practice/x/logging/TestX36.java) · `git show ":/practice: X36 "`
+- Solution: [RegistrationAuditService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/logging/RegistrationAuditService.java) · grader [TestX48.java](src/test/java/es/us/dp1/chess/tournament/practice/x/logging/TestX48.java) · `git show ":/practice: X48 "`
 </details>
 
-#### Test X37 – Configuring the log level of a package
+#### Test X49 – Configuring the log level of a package
 
-**~10 min · Source: T6 p.41–45 · Grader: `TestX37`**
+**~10 min · Source: T6 p.41–45 · Grader: `TestX49`**
 
 `DiscountCalculator.discountFor(int amount)` returns 10% of the amount (rounded down) for amounts of 100 or more and 0 otherwise. Make it log, at **DEBUG** level, `Computing discount for <amount>` and, at **TRACE** level, `Discount rule applied: <rule>` (where `<rule>` is `10%` or `none`). Then configure `application.properties` so that the package `es.us.dp1.chess.tournament.practice.x.logging` logs from DEBUG upwards (so the DEBUG message is shown and the TRACE one is not), without changing the level of the rest of the application.
 
@@ -2309,16 +2635,16 @@ Package `es.us.dp1.chess.tournament.practice.x.logging`.
 <summary>Hints, key points, typical mistakes, solution</summary>
 
 - `logging.level.es.us.dp1.chess.tournament.practice.x.logging=DEBUG` (T6 p.44). A level shows itself and every more severe level: DEBUG shows DEBUG, INFO, WARN and ERROR, but not TRACE (T6 p.41).
-- Solution: [DiscountCalculator.java](src/main/java/es/us/dp1/chess/tournament/practice/x/logging/DiscountCalculator.java), [application.properties](src/main/resources/application.properties) · grader [TestX37.java](src/test/java/es/us/dp1/chess/tournament/practice/x/logging/TestX37.java) · `git show ":/practice: X37 "`
+- Solution: [DiscountCalculator.java](src/main/java/es/us/dp1/chess/tournament/practice/x/logging/DiscountCalculator.java), [application.properties](src/main/resources/application.properties) · grader [TestX49.java](src/test/java/es/us/dp1/chess/tournament/practice/x/logging/TestX49.java) · `git show ":/practice: X49 "`
 </details>
 
-### X.19 EntityManager and the persistence context (likelihood: low)
+### X.25 EntityManager and the persistence context (likelihood: low)
 
 Package `es.us.dp1.chess.tournament.practice.x.entitymanager`: entity `Employee` (`name`, `salary`) and the class `EmployeeDao`, which receives an `EntityManager`. The course recommends repositories (T4 p.76), but the lifecycle of T4 p.63–75 explains how repositories and transactions behave.
 
-#### Test X38 – Persisting, finding, updating and removing with the EntityManager
+#### Test X50 – Persisting, finding, updating and removing with the EntityManager
 
-**~15 min · Source: T4 p.61–73 · Grader: `TestX38`**
+**~15 min · Source: T4 p.61–73 · Grader: `TestX50`**
 
 Implement in `EmployeeDao`, as in the examples of T4 p.65–71, and with every method transactional:
 
@@ -2334,12 +2660,12 @@ Implement in `EmployeeDao`, as in the examples of T4 p.65–71, and with every m
 
 - An entity returned by `find` is *managed*: changing it with a setter is enough, the change is written when the persistence context is flushed (T4 p.69, p.73). Calling `persist`/`merge` in `raiseSalary` is unnecessary.
 - `persist` assigns the generated id immediately, but the `INSERT` waits for the flush (T4 p.65).
-- Solution: [EmployeeDao.java](src/main/java/es/us/dp1/chess/tournament/practice/x/entitymanager/EmployeeDao.java) · grader [TestX38.java](src/test/java/es/us/dp1/chess/tournament/practice/x/entitymanager/TestX38.java) · `git show ":/practice: X38 "`
+- Solution: [EmployeeDao.java](src/main/java/es/us/dp1/chess/tournament/practice/x/entitymanager/EmployeeDao.java) · grader [TestX50.java](src/test/java/es/us/dp1/chess/tournament/practice/x/entitymanager/TestX50.java) · `git show ":/practice: X50 "`
 </details>
 
-#### Test X39 – Detaching, merging and undoing a removal
+#### Test X51 – Detaching, merging and undoing a removal
 
-**~15 min · Source: T4 p.63, p.71, p.74–75 · Grader: `TestX39`**
+**~15 min · Source: T4 p.63, p.71, p.74–75 · Grader: `TestX51`**
 
 Implement in `EmployeeDao`:
 
@@ -2353,16 +2679,16 @@ Implement in `EmployeeDao`:
 <summary>Hints, key points, typical mistakes, solution</summary>
 
 - `em.detach(e)` (managed → detached), `em.merge(detached)` returns a *different*, managed object (detached → managed), `em.remove(e); em.persist(e);` (removed → managed, "We can undo a remove() with a persist()", T4 p.71).
-- Solution: [EmployeeDao.java](src/main/java/es/us/dp1/chess/tournament/practice/x/entitymanager/EmployeeDao.java) · grader [TestX39.java](src/test/java/es/us/dp1/chess/tournament/practice/x/entitymanager/TestX39.java) · `git show ":/practice: X39 "`
+- Solution: [EmployeeDao.java](src/main/java/es/us/dp1/chess/tournament/practice/x/entitymanager/EmployeeDao.java) · grader [TestX51.java](src/test/java/es/us/dp1/chess/tournament/practice/x/entitymanager/TestX51.java) · `git show ":/practice: X51 "`
 </details>
 
-### X.20 Domain logic and identity (likelihood: low)
+### X.26 Domain logic and identity (likelihood: low)
 
 Package `es.us.dp1.chess.tournament.practice.x.domain`.
 
-#### Test X40 – Domain logic in the entity, application logic in the service
+#### Test X52 – Domain logic in the entity, application logic in the service
 
-**~20 min · Source: T4 p.17–19 · Grader: `TestX40`**
+**~20 min · Source: T4 p.17–19 · Grader: `TestX52`**
 
 Following the `Contract`/`ContractService` example of T4 p.18–19:
 
@@ -2376,12 +2702,12 @@ Following the `Contract`/`ContractService` example of T4 p.18–19:
 
 - Domain logic (rules about the membership's own data) goes to the entity; application logic (transactions, finding and saving, coordinating) goes to the service (T4 p.17).
 - Months: `ChronoUnit.MONTHS.between(today, endDate)` counts *full* months; fee `monthlyFee.multiply(BigDecimal.valueOf(months)).multiply(new BigDecimal("0.5"))`. Compare `BigDecimal`s with `compareTo`, not `equals` (`2.50` is not `equals` to `2.5`).
-- Solution: [GymMembership.java](src/main/java/es/us/dp1/chess/tournament/practice/x/domain/GymMembership.java), [GymMembershipService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/domain/GymMembershipService.java) · grader [TestX40.java](src/test/java/es/us/dp1/chess/tournament/practice/x/domain/TestX40.java) · `git show ":/practice: X40 "`
+- Solution: [GymMembership.java](src/main/java/es/us/dp1/chess/tournament/practice/x/domain/GymMembership.java), [GymMembershipService.java](src/main/java/es/us/dp1/chess/tournament/practice/x/domain/GymMembershipService.java) · grader [TestX52.java](src/test/java/es/us/dp1/chess/tournament/practice/x/domain/TestX52.java) · `git show ":/practice: X52 "`
 </details>
 
-#### Test X41 – `equals` and `hashCode` based only on the id
+#### Test X53 – `equals` and `hashCode` based only on the id
 
-**~10 min · Source: T4 p.45–47 · Grader: `TestX41`**
+**~10 min · Source: T4 p.45–47 · Grader: `TestX53`**
 
 `Locker` (`code`, `building`) extends `BaseEntity` and is annotated with `@EqualsAndHashCode(of = {"id"})`, the Lombok tip of T4 p.47. However, two lockers with different ids are considered equal, because Lombok only uses fields declared in the class itself and `id` is inherited. Replace the annotation with your own implementation, like the hand-written one of T4 p.47, so that two lockers are equal when they are the same object, or when they are of the same class and have the same id (two lockers without id are therefore equal, as in the slide's code), and `hashCode` is consistent with `equals`.
 
@@ -2392,5 +2718,5 @@ Following the `Contract`/`ContractService` example of T4 p.18–19:
 
 - `equals`: `this == obj` → true; `obj == null || getClass() != obj.getClass()` → false; then compare `getId()` with `Objects.equals`. `hashCode`: `Objects.hashCode(getId())`.
 - The scaffold's `ChessMatch` and `Piece` have exactly this Lombok problem (assumption 11).
-- Solution: [Locker.java](src/main/java/es/us/dp1/chess/tournament/practice/x/domain/Locker.java) · grader [TestX41.java](src/test/java/es/us/dp1/chess/tournament/practice/x/domain/TestX41.java) · `git show ":/practice: X41 "`
+- Solution: [Locker.java](src/main/java/es/us/dp1/chess/tournament/practice/x/domain/Locker.java) · grader [TestX53.java](src/test/java/es/us/dp1/chess/tournament/practice/x/domain/TestX53.java) · `git show ":/practice: X53 "`
 </details>
