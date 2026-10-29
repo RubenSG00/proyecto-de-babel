@@ -323,3 +323,15 @@ INSERT INTO reading_club_members (reading_club_id, user_id) VALUES
 
 INSERT INTO reading_club_loans (reading_club_id, book_loan_id) VALUES
     (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6);
+
+-- Block B - B3: reviews and reactions (after the clubs and users they reference)
+INSERT INTO book_review (id, content, stars, visibility, published_on, club_id, author_id) VALUES
+    (1, 'A gripping story about memory and loss', 5, 'PUBLIC', '2026-09-10', 1, 4),
+    (2, 'Too slow in the middle chapters, sadly', 2, 'MEMBERS_ONLY', '2026-09-12', 1, 5),
+    (3, 'Personal notes, will finish them later', 3, 'PRIVATE', NULL, 2, 8);
+
+INSERT INTO review_reaction (id, kind, reacted_at, note, review_id, reactor_id) VALUES
+    (1, 'LIKE', '2026-09-10 20:00:00', NULL, 1, 5),
+    (2, 'LOVE', '2026-09-11 08:30:00', 'It''s my favourite book!', 1, 6),
+    (3, 'DISLIKE', '2026-09-12 22:15:00', NULL, 2, 4),
+    (4, 'LIKE', '2026-09-13 10:00:00', 'Agreed', 2, 7);
