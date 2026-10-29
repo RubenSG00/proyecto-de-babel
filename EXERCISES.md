@@ -237,7 +237,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X14 | Deleting a resource with DELETE (204) | REST | ★ | M | Lab 2 p.15, p.26–27 | `TestX14` | ☑ |
 | X15 | Mapping a custom exception to 400 | Error handling | ★ | M | T6 p.12–17 | `TestX15` | ☑ |
 | X16 | Checked business exception through the controller | Error handling, transactions | ★★ | M | T5 p.84–87; T6 p.16 | `TestX16` | ☑ |
-| X17 | Visibility by authority in the service layer | Authorization | ★★ | M | T4 p.17; T5 p.86; T6 p.34–37 | `TestX17` | ☐ |
+| X17 | Visibility by authority in the service layer | Authorization | ★★ | M | T4 p.17; T5 p.86; T6 p.34–37 | `TestX17` | ☑ |
 | X18 | Authority and ownership rules for an action | Authorization | ★★ | M | T4 p.17; T5 p.86; T6 p.37 | `TestX18` | ☐ |
 | X19 | Composition: `cascade = ALL` + `orphanRemoval` | Relationships | ★★ | M | T4 p.90; T5 p.60, p.65–67 | `TestX19` | ☐ |
 | X20 | Bidirectional one-to-many with `mappedBy` | Relationships | ★★ | M | T4 p.51–53; T5 p.61–64 | `TestX20` | ☐ |
