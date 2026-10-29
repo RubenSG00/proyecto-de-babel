@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -31,6 +32,12 @@ public class CrewBaseController {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
-    // TODO: Implement to solve Test C7 (GET {id}/pilot-ranking?minScore=N)
+    // Only HTTP concerns here: the optional request parameter and the status code. No try/catch:
+    // ExceptionHandlerController turns the service exceptions into 400/403/404.
+    @GetMapping("{id}/pilot-ranking")
+    public ResponseEntity<List<PilotScore>> getPilotRanking(@PathVariable("id") Integer id,
+            @RequestParam(required = false, defaultValue = "0") Integer minScore) {
+        return new ResponseEntity<>(service.getPilotRanking(id, minScore), HttpStatus.OK);
+    }
 
 }

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
+import es.us.dp1.chess.tournament.practice.c.InvalidScoreThresholdException;
+
 @RestControllerAdvice
 public class ExceptionHandlerController {
 
@@ -61,6 +63,18 @@ public class ExceptionHandlerController {
 		List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
 		fieldErrors.stream().forEach(error -> fieldError.put(error.getField(), error.getDefaultMessage()));
 		ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST.value(), new Date(), fieldError.toString(),
+				request.getDescription(false));
+
+		return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+	}
+
+	// Block C - C7. @ResponseStatus on the exception class is not enough in this project: the
+	// handler for Exception.class above would catch it first and answer 500.
+	@ExceptionHandler(InvalidScoreThresholdException.class)
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	public ResponseEntity<ErrorMessage> invalidScoreThresholdException(InvalidScoreThresholdException ex,
+			WebRequest request) {
+		ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST.value(), new Date(), ex.getMessage(),
 				request.getDescription(false));
 
 		return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);

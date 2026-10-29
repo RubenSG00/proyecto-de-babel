@@ -217,7 +217,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | C4 | `data.sql`: witnesses, and navigating the bidirectional relation | Initial data (join table) | ★★ | H | mock Test 4 | `TestC4` | ☑ |
 | C5 | `FlightService` (four methods, three business exceptions) | Services, transactions | ★★★ | H | mock Test 5; T5 p.38, p.43–47 | `TestC5` | ☑ |
 | C6 | `findPilotScores` query (`HAVING`, two `CASE`s, tie-break) | JPQL aggregates | ★★★ | H | mock Test 6; T5 p.20 | `TestC6` | ☑ |
-| C7 | Pilot-ranking endpoint (layered, 400/403/404) | REST controller, error handling | ★★★ | H | mock Test 7 + `Test7Alt`; T6 p.16 | `TestC7` | ☐ |
+| C7 | Pilot-ranking endpoint (layered, 400/403/404) | REST controller, error handling | ★★★ | H | mock Test 7 + `Test7Alt`; T6 p.16 | `TestC7` | ☑ |
 | C8 | Tests for `BaggageFeeCalculator` | Writing JUnit tests | ★★★ | M | mock Test 8 | `TestC8` | ☐ |
 | C9 | `Base` React component (loading and empty states) | React: fetch, conditional rendering | ★★ | H | mock Test 9; T2 p.53 | `Base.test.js` | ☐ |
 | C10 | `BaseDetail` React component (table + filter) | React: rendering from props | ★★ | H | mock Test 10; T2 p.41 | `BaseDetail.test.js` | ☐ |
