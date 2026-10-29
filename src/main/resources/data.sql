@@ -340,3 +340,29 @@ INSERT INTO review_reaction (id, kind, reacted_at, note, review_id, reactor_id) 
 INSERT INTO book_review_mentioned_members (book_review_id, mentioned_members_id) VALUES
     (1, 5), (1, 6),
     (2, 4);
+
+-- ==========================================================
+-- Block C (airline crew bases): given data.
+-- Flights 1-8 and bases 1-2. Users: 4..13 (player1..player10).
+-- ==========================================================
+INSERT INTO flight (id, code, departure, arrival, distance_km, diverted, captain_id, first_officer_id) VALUES
+    (1, 'IB1001', '2026-07-02 08:00:00', '2026-07-02 14:00:00', 5800, false, 4, 5),
+    (2, 'IB1002', '2026-07-05 06:00:00', '2026-07-05 08:00:00', 900, false, 5, 6),
+    (3, 'IB1003', '2026-07-06 10:00:00', '2026-07-06 12:30:00', 1200, false, 4, 10),
+    (4, 'IB1004', '2026-07-08 07:00:00', '2026-07-08 15:00:00', 6100, false, 13, 6),
+    (5, 'IB1005', '2026-07-09 09:00:00', '2026-07-09 10:00:00', 400, false, 10, 6),
+    (6, 'IB1006', '2026-07-10 09:00:00', '2026-07-10 13:00:00', 3500, true, 7, 4),
+    (7, 'IB1007', '2026-07-11 09:00:00', NULL, 3000, false, 13, 7),
+    (8, 'IB1008', '2026-07-12 16:00:00', '2026-07-12 18:00:00', 800, true, 8, 9);
+
+INSERT INTO crew_base (id, name, city) VALUES
+    (1, 'Madrid hub', 'Madrid'),
+    (2, 'Canary base', 'Las Palmas');
+
+INSERT INTO crew_base_pilots (crew_base_id, user_id) VALUES
+    (1, 4), (1, 5), (1, 6), (1, 7), (1, 10), (1, 13),
+    (2, 8), (2, 9);
+
+INSERT INTO crew_base_flights (crew_base_id, flight_id) VALUES
+    (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7),
+    (2, 8);
