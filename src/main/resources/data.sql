@@ -366,3 +366,14 @@ INSERT INTO crew_base_pilots (crew_base_id, user_id) VALUES
 INSERT INTO crew_base_flights (crew_base_id, flight_id) VALUES
     (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7),
     (2, 8);
+
+-- Block C - C3: reports and actions. The bidirectional relation only needs report_id.
+INSERT INTO safety_report (id, code, title, description, severity, reported_at, delay_minutes, flight_id, reporter_id) VALUES
+    (1, 'SR-0001', 'Bird strike on approach', 'Minor dent on the left wing, inspected on arrival', 'MAJOR', '2026-07-02 14:20:00', 45, 1, 4),
+    (2, 'SR-0002', 'Cabin pressure warning', NULL, 'CRITICAL', '2026-07-05 09:10:00', NULL, 2, 5),
+    (3, 'SR-0003', 'Coffee machine out of order', NULL, 'MINOR', '2026-07-06 18:00:00', 0, 3, 6);
+
+INSERT INTO report_action (id, action_taken, status, deadline, closed_at, priority, report_id, assignee_id) VALUES
+    (1, 'Full inspection of the left wing', 'CLOSED', '2026-07-10', '2026-07-09 12:00:00', 1, 1, 10),
+    (2, 'Replace the pressure sensor of the cabin', 'IN_PROGRESS', '2026-08-01', NULL, 1, 2, 13),
+    (3, 'Review the maintenance log of the aircraft', 'OPEN', '2026-08-15', NULL, 2, 2, NULL);
