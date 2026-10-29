@@ -9,7 +9,7 @@ import es.us.dp1.chess.tournament.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.Transient;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -40,10 +40,12 @@ public class ReportAction extends BaseEntity {
     @Max(3)
     Integer priority;
 
-    @Transient
+    // Owning side of the bidirectional relation (the "many" side holds the FK)
+    @NotNull
+    @ManyToOne(optional = false)
     SafetyReport report;
 
-    @Transient
+    @ManyToOne
     User assignee;
 
 }

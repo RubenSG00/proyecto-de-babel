@@ -10,7 +10,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.Transient;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -53,16 +55,22 @@ public class SafetyReport extends BaseEntity {
     @Max(1440)
     Integer delayMinutes;
 
-    @Transient
+    @NotNull
+    @ManyToOne(optional = false)
     Flight flight;
 
-    @Transient
+    @NotNull
+    @ManyToOne(optional = false)
     User reporter;
 
-    @Transient
+    @Size(max = 3)
+    @ManyToMany
     List<User> witnesses;
 
-    @Transient
+    // Inverse side of the bidirectional relation: mappedBy names the owning attribute
+    // (ReportAction.report), so the relation is stored only as the FK report_id; without
+    // mappedBy JPA would create a second, unidirectional association with a join table.
+    @OneToMany(mappedBy = "report")
     List<ReportAction> actions;
 
 }
