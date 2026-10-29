@@ -377,3 +377,8 @@ INSERT INTO report_action (id, action_taken, status, deadline, closed_at, priori
     (1, 'Full inspection of the left wing', 'CLOSED', '2026-07-10', '2026-07-09 12:00:00', 1, 1, 10),
     (2, 'Replace the pressure sensor of the cabin', 'IN_PROGRESS', '2026-08-01', NULL, 1, 2, 13),
     (3, 'Review the maintenance log of the aircraft', 'OPEN', '2026-08-15', NULL, 2, 2, NULL);
+
+-- Block C - C4: witnesses of the reports (report 3 has none: no rows)
+INSERT INTO safety_report_witnesses (safety_report_id, witnesses_id) VALUES
+    (1, 5), (1, 6),
+    (2, 4), (2, 6), (2, 10);

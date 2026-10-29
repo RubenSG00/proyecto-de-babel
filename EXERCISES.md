@@ -214,7 +214,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | C1 | `SafetyReport` and `ReportAction` entities and repositories | Entities, `@Pattern`, unique | ★★ | H | mock Test 1; T4 p.58; T5 p.78 | `TestC1` | ☑ |
 | C2 | Relations, one of them bidirectional | `@ManyToOne`, `@ManyToMany`, `mappedBy` | ★★★ | H | mock Test 2; T4 p.51–52 | `TestC2` | ☑ |
 | C3 | `data.sql`: reports and actions | Initial data | ★ | H | mock Test 3 | `TestC3` | ☑ |
-| C4 | `data.sql`: witnesses, and navigating the bidirectional relation | Initial data (join table) | ★★ | H | mock Test 4 | `TestC4` | ☐ |
+| C4 | `data.sql`: witnesses, and navigating the bidirectional relation | Initial data (join table) | ★★ | H | mock Test 4 | `TestC4` | ☑ |
 | C5 | `FlightService` (four methods, three business exceptions) | Services, transactions | ★★★ | H | mock Test 5; T5 p.38, p.43–47 | `TestC5` | ☐ |
 | C6 | `findPilotScores` query (`HAVING`, two `CASE`s, tie-break) | JPQL aggregates | ★★★ | H | mock Test 6; T5 p.20 | `TestC6` | ☐ |
 | C7 | Pilot-ranking endpoint (layered, 400/403/404) | REST controller, error handling | ★★★ | H | mock Test 7 + `Test7Alt`; T6 p.16 | `TestC7` | ☐ |
