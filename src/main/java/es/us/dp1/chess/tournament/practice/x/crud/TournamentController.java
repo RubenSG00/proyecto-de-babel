@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +44,9 @@ public class TournamentController {
         return new ResponseEntity<>(service.save(newTournament), HttpStatus.CREATED);
     }
 
-    // TODO: Test X13 (PUT {id}) and Test X14 (DELETE {id})
+    @PutMapping("{id}")
+    public ResponseEntity<Tournament> update(@PathVariable("id") Integer id, @RequestBody @Valid Tournament tournament) {
+        return new ResponseEntity<>(service.update(id, tournament), HttpStatus.OK);
+    }
 
 }

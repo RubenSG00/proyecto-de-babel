@@ -2,6 +2,7 @@ package es.us.dp1.chess.tournament.practice.x.crud;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,13 @@ public class TournamentService {
         return repo.save(tournament);
     }
 
-    // TODO: Test X13 (update) and Test X14 (delete)
+    // Test X13: the stored tournament is modified (404 if it does not exist); the id of the
+    // received object is ignored, so the id of the URL always wins
+    @Transactional
+    public Tournament update(Integer id, Tournament tournament) {
+        Tournament toUpdate = findById(id);
+        BeanUtils.copyProperties(tournament, toUpdate, "id");
+        return repo.save(toUpdate);
+    }
 
 }
