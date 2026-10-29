@@ -46,9 +46,18 @@ public class ExpenseService {
         return expense.getOwner().getId().equals(user.getId());
     }
 
+    // An authority rule (only ADMIN) and an ownership rule (not your own expense)
+    @Transactional
     public Expense approve(Integer id) {
-        // TODO: Implement to solve Test X18
-        return null;
+        Expense expense = repo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Expense", "id", id));
+        User current = userService.findCurrentUser();
+        if (!current.hasAuthority("ADMIN"))
+            throw new AccessDeniedException("Only administrators can approve expenses");
+        if (isOwner(expense, current))
+            throw new AccessDeniedException("Nobody can approve their own expenses");
+        expense.setStatus(ExpenseStatus.APPROVED);
+        expense.setApprovedBy(current);
+        return repo.save(expense);
     }
 
 }
