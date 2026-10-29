@@ -335,3 +335,8 @@ INSERT INTO review_reaction (id, kind, reacted_at, note, review_id, reactor_id) 
     (2, 'LOVE', '2026-09-11 08:30:00', 'It''s my favourite book!', 1, 6),
     (3, 'DISLIKE', '2026-09-12 22:15:00', NULL, 2, 4),
     (4, 'LIKE', '2026-09-13 10:00:00', 'Agreed', 2, 7);
+
+-- Block B - B4: members mentioned in the reviews (review 3 mentions nobody: no rows)
+INSERT INTO book_review_mentioned_members (book_review_id, mentioned_members_id) VALUES
+    (1, 5), (1, 6),
+    (2, 4);
