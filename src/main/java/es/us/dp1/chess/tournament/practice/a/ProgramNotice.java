@@ -9,9 +9,11 @@ import es.us.dp1.chess.tournament.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.Transient;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -38,10 +40,14 @@ public class ProgramNotice extends BaseEntity {
     @Min(0)
     Integer readCount;
 
-    @Transient
+    @NotNull
+    @ManyToOne(optional = false)
     TrainingProgram program;
 
-    @Transient
+    // Navigable end "1..n": many-to-many, and at least one element (@NotEmpty)
+    @NotNull
+    @NotEmpty
+    @ManyToMany
     List<User> targets;
 
 }

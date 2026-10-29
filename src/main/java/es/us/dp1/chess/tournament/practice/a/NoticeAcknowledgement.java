@@ -8,7 +8,7 @@ import es.us.dp1.chess.tournament.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.Transient;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
@@ -32,13 +32,16 @@ public class NoticeAcknowledgement extends BaseEntity {
     @Past
     LocalDateTime acknowledgedAt;
 
-    @Transient
+    @NotNull
+    @ManyToOne(optional = false)
     ProgramNotice notice;
 
-    @Transient
+    @NotNull
+    @ManyToOne(optional = false)
     User member;
 
-    @Transient
+    // Navigable end "0..1": optional (the default), so neither optional = false nor @NotNull
+    @ManyToOne
     User delegate;
 
 }
