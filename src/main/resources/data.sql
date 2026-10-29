@@ -254,3 +254,9 @@ INSERT INTO notice_acknowledgement (id, comment, status, acknowledged_at, notice
     (1, 'Thanks, noted', 'CONFIRMED', '2026-09-01 09:15:00', 1, 4, NULL),
     (2, NULL, 'SEEN', '2026-09-03 19:00:00', 2, 5, NULL),
     (3, 'I can''t make it on Thursday', 'REJECTED', '2026-09-03 20:45:00', 2, 6, 4);
+
+-- Block A - A4: targets of the notices (default join table of the @ManyToMany "targets")
+INSERT INTO program_notice_targets (program_notice_id, targets_id) VALUES
+    (1, 4), (1, 5),
+    (2, 4), (2, 5), (2, 6),
+    (3, 5), (3, 8);
