@@ -188,7 +188,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | 0.5 | `ChessMatchService` | Services, transactions, business rule | ★★ | H | mock Test 5 | `Test5` | ☑ |
 | 0.6 | `findParticipantPoints` query | JPQL aggregates | ★★★ | H | mock Test 6 | `Test6` | ☑ |
 | 0.7 | Ranking endpoint | REST controller, 404/403, layers | ★★ | H | mock Test 7 | `Test7`, `Test7Alt` | ☑ |
-| 0.8 | Tests for `ClosestRatingPairFinder` | Writing JUnit tests | ★★ | M | mock Test 8 | `Test8` | ☐ |
+| 0.8 | Tests for `ClosestRatingPairFinder` | Writing JUnit tests | ★★ | M | mock Test 8 | `Test8` | ☑ |
 | 0.9 | `Challenge` React component | React: fetch and render | ★★ | H | mock Test 9 | `Challenge.test.js` | ☐ |
 | 0.10 | `ChallengeDetail` React component | React: list from props | ★ | H | mock Test 10 | `ChallengeDetail.test.js` | ☐ |
 | A1 | `ProgramNotice` and `NoticeAcknowledgement` entities and repositories | Entities, validation, enums, repositories | ★ | H | mock Test 1; T5 p.78–81 | `TestA1` | ☐ |
