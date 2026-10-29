@@ -221,7 +221,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | C8 | Tests for `BaggageFeeCalculator` | Writing JUnit tests | ★★★ | M | mock Test 8 | `TestC8` | ☐ |
 | C9 | `Base` React component (loading and empty states) | React: fetch, conditional rendering | ★★ | H | mock Test 9; T2 p.53 | `Base.test.js` | ☐ |
 | C10 | `BaseDetail` React component (table + filter) | React: rendering from props | ★★ | H | mock Test 10; T2 p.41 | `BaseDetail.test.js` | ☐ |
-| X01 | Validation catalogue on an entity | Bean Validation | ★★ | H | T5 p.75–83 | `TestX01` | ☐ |
+| X01 | Validation catalogue on an entity | Bean Validation | ★★ | H | T5 p.75–83 | `TestX01` | ☑ |
 | X02 | `@NotNull`/`@NotEmpty`/`@NotBlank`, `@Min`/`@DecimalMin` on a DTO | Bean Validation | ★ | H | T5 p.79–81; T6 p.30 | `TestX02` | ☐ |
 | X03 | Derived queries with given names | Derived queries | ★ | H | T5 p.23–25 | `TestX03` | ☐ |
 | X04 | Derived queries you name yourself | Derived queries | ★★ | H | T5 p.17, p.23–25 | `TestX04` | ☐ |
