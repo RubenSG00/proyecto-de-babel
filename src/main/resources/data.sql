@@ -214,3 +214,32 @@ INSERT INTO challenge_announcement_recipients (challenge_announcement_id, recipi
     (3, 5),
     (3, 6),
     (3, 7);
+
+-- ==========================================================
+-- Block A (gym peer-training programs): given data.
+-- Sessions 1-8 and programs 1-3. Users: 4..11 (player1..player8).
+-- ==========================================================
+INSERT INTO training_session (id, start, finish, duration_minutes, goal_achieved, coach_id, trainee_id) VALUES
+    (1, '2026-09-01 08:00:00', '2026-09-01 09:00:00', 60, true, 6, 4),
+    (2, '2026-09-02 08:00:00', '2026-09-02 08:45:00', 45, true, 4, 5),
+    (3, '2026-09-03 08:00:00', '2026-09-03 09:00:00', 60, false, 5, 6),
+    (4, '2026-09-04 08:00:00', NULL, 60, true, 7, 4),
+    (5, '2026-09-05 10:00:00', NULL, 30, NULL, 5, 8),
+    (6, '2026-10-01 18:00:00', '2026-10-01 19:00:00', 60, true, 10, 11),
+    (7, '2026-10-02 18:00:00', '2026-10-02 18:50:00', 50, false, 11, 9),
+    (8, '2026-10-03 18:00:00', NULL, 60, true, 9, 4);
+
+INSERT INTO training_program (id, name, start_date, end_date, planned_sessions) VALUES
+    (1, 'Strength basics', '2026-09-01', '2026-09-30', 4),
+    (2, 'Mobility', '2026-09-05', '2026-10-05', 3),
+    (3, 'Endurance', '2026-10-01', '2026-10-31', 3);
+
+INSERT INTO training_program_sessions (training_program_id, training_session_id) VALUES
+    (1, 1), (1, 2), (1, 3), (1, 4),
+    (2, 5),
+    (3, 6), (3, 7), (3, 8);
+
+INSERT INTO training_program_members (training_program_id, user_id) VALUES
+    (1, 4), (1, 5), (1, 6), (1, 7),
+    (2, 5), (2, 8),
+    (3, 4), (3, 9), (3, 10), (3, 11);
