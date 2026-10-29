@@ -1,5 +1,6 @@
 package es.us.dp1.chess.tournament.practice.x.web;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,10 +25,15 @@ public class RecipeService {
         return repo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Recipe", "id", id));
     }
 
+    // Mass assignment: never save the received object. Only name and minutes come from the
+    // client; a new object (no id: always an INSERT) gets the owner and featured from the server.
     @Transactional
     public Recipe create(Recipe recipe) {
-        // TODO: Implement to solve Test X12
-        return null;
+        Recipe newRecipe = new Recipe();
+        BeanUtils.copyProperties(recipe, newRecipe, "id", "owner", "featured");
+        newRecipe.setOwner(userService.findCurrentUser());
+        newRecipe.setFeatured(false);
+        return repo.save(newRecipe);
     }
 
 }

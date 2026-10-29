@@ -232,7 +232,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X09 | Container, table and row components | React (2026-27 template) | ★ | H | Lab 2 p.4–5, p.9–11 | `Sponsors.test.js` | ☑ |
 | X10 | Loading the data with a service and `useFetchState` | React (2026-27 template) | ★★ | H | Lab 2 p.8–9, p.15–16 | `Partners.test.js` | ☑ |
 | X11 | POST endpoint with `@Valid` (201/400) | REST, validation | ★★ | M | T5 p.77; T6 p.11, p.16 | `TestX11` | ☑ |
-| X12 | Protecting a POST against mass assignment | REST, data binding | ★★ | M | T6 p.33–37, p.84 | `TestX12` | ☐ |
+| X12 | Protecting a POST against mass assignment | REST, data binding | ★★ | M | T6 p.33–37, p.84 | `TestX12` | ☑ |
 | X13 | Updating a resource with PUT | REST | ★★ | M | Lab 2 p.15, p.21–23; T6 p.37 | `TestX13` | ☐ |
 | X14 | Deleting a resource with DELETE (204) | REST | ★ | M | Lab 2 p.15, p.26–27 | `TestX14` | ☐ |
 | X15 | Mapping a custom exception to 400 | Error handling | ★ | M | T6 p.12–17 | `TestX15` | ☐ |
