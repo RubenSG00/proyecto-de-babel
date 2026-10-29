@@ -229,7 +229,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X06 | JPQL over collections: `IS EMPTY`, `DISTINCT`, `IN`, self-join, `COUNT` | JPQL | ★★ | H | T5 p.21–22 | `TestX06` | ☑ |
 | X07 | Class-level `@Transactional`, `readOnly`, `rollbackFor` | Transactions | ★★ | H | T5 p.33, p.37–40 | `TestX07` | ☑ |
 | X08 | Making a multi-entity operation atomic | Transactions | ★★ | H | T5 p.41–47 | `TestX08` | ☑ |
-| X09 | Container, table and row components | React (2026-27 template) | ★ | H | Lab 2 p.4–5, p.9–11 | `Sponsors.test.js` | ☐ |
+| X09 | Container, table and row components | React (2026-27 template) | ★ | H | Lab 2 p.4–5, p.9–11 | `Sponsors.test.js` | ☑ |
 | X10 | Loading the data with a service and `useFetchState` | React (2026-27 template) | ★★ | H | Lab 2 p.8–9, p.15–16 | `Partners.test.js` | ☐ |
 | X11 | POST endpoint with `@Valid` (201/400) | REST, validation | ★★ | M | T5 p.77; T6 p.11, p.16 | `TestX11` | ☐ |
 | X12 | Protecting a POST against mass assignment | REST, data binding | ★★ | M | T6 p.33–37, p.84 | `TestX12` | ☐ |
