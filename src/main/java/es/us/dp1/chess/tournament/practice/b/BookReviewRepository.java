@@ -2,6 +2,8 @@ package es.us.dp1.chess.tournament.practice.b;
 
 import java.util.Optional;
 
-public interface BookReviewRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface BookReviewRepository extends CrudRepository<BookReview, Integer> {
     Optional<BookReview> findById(Integer id);
 }
