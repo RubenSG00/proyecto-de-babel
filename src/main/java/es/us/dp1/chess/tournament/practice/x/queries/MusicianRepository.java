@@ -26,21 +26,23 @@ public interface MusicianRepository extends CrudRepository<Musician, Integer> {
     @Query("SELECT m FROM Musician m WHERE m.agent IS NULL ORDER BY m.name")
     List<Musician> musiciansWithoutAgent();
 
-    // TODO: Replace the placeholder queries to solve Test X06
+    // Test X06
 
-    @Query("SELECT m FROM Musician m WHERE m.id < 0")
+    @Query("SELECT m FROM Musician m WHERE m.bands IS EMPTY")
     List<Musician> musiciansWithoutBand();
 
-    @Query("SELECT m FROM Musician m WHERE m.id < 0")
+    @Query("SELECT m FROM Musician m WHERE m.bands IS NOT EMPTY")
     List<Musician> musiciansWithBand();
 
-    @Query("SELECT m FROM Musician m WHERE m.id < 0")
-    List<Musician> musiciansPlayingInCity(String city);
+    // DISTINCT: a musician in two bands of the city would otherwise appear twice
+    @Query("SELECT DISTINCT m FROM Musician m, IN (m.bands) b WHERE b.city = :city")
+    List<Musician> musiciansPlayingInCity(@Param("city") String city);
 
-    @Query("SELECT m FROM Musician m WHERE m.id < 0")
-    List<Musician> musiciansEarningMoreThan(String name);
+    // Self-join: m2 is the musician used as reference
+    @Query("SELECT DISTINCT m1 FROM Musician m1, Musician m2 WHERE m1.salary > m2.salary AND m2.name = :name")
+    List<Musician> musiciansEarningMoreThan(@Param("name") String name);
 
-    @Query("SELECT COUNT(m) FROM Musician m WHERE m.id < 0")
-    Long countMusiciansOfBand(Integer bandId);
+    @Query("SELECT COUNT(m) FROM Musician m JOIN m.bands b WHERE b.id = :bandId")
+    Long countMusiciansOfBand(@Param("bandId") Integer bandId);
 
 }
