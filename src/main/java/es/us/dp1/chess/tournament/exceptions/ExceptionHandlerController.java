@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 import es.us.dp1.chess.tournament.practice.c.InvalidScoreThresholdException;
+import es.us.dp1.chess.tournament.practice.x.errors.VenueCapacityExceededException;
 
 @RestControllerAdvice
 public class ExceptionHandlerController {
@@ -73,6 +74,17 @@ public class ExceptionHandlerController {
 	@ExceptionHandler(InvalidScoreThresholdException.class)
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 	public ResponseEntity<ErrorMessage> invalidScoreThresholdException(InvalidScoreThresholdException ex,
+			WebRequest request) {
+		ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST.value(), new Date(), ex.getMessage(),
+				request.getDescription(false));
+
+		return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+	}
+
+	// Block X - X15: a custom exception translated into a 400 with an ErrorMessage body
+	@ExceptionHandler(value = VenueCapacityExceededException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ResponseEntity<ErrorMessage> venueCapacityExceededException(VenueCapacityExceededException ex,
 			WebRequest request) {
 		ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST.value(), new Date(), ex.getMessage(),
 				request.getDescription(false));
