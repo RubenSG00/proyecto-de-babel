@@ -206,7 +206,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | B3 | `data.sql`: reviews and reactions | Initial data | ★ | H | mock Test 3 | `TestB3` | ☑ |
 | B4 | `data.sql`: members mentioned in the reviews | Initial data (join table) | ★ | H | mock Test 4 | `TestB4` | ☑ |
 | B5 | `BookLoanService` with class-level transactions | Services, transactions | ★★ | H | mock Test 5; T5 p.37–39 | `TestB5` | ☑ |
-| B6 | `findOverdueCounts` query (two parameters, tie-break) | JPQL aggregates | ★★★ | H | mock Test 6; T5 p.20 | `TestB6` | ☐ |
+| B6 | `findOverdueCounts` query (two parameters, tie-break) | JPQL aggregates | ★★★ | H | mock Test 6; T5 p.20 | `TestB6` | ☑ |
 | B7 | Overdue-report endpoint (members or ADMIN) | REST controller, 404/403, authorities | ★★ | H | mock Test 7; T5 p.86 | `TestB7` | ☐ |
 | B8 | Tests for `LateFeeCalculator` | Writing JUnit tests | ★★ | M | mock Test 8 | `TestB8` | ☐ |
 | B9 | `Club` React component | React: fetch and render | ★★ | H | mock Test 9 | `Club.test.js` | ☐ |
@@ -1073,7 +1073,7 @@ To implement this exercise you must modify the query associated with `findOverdu
 
 - `SELECT u, SUM(CASE WHEN l.returnDate IS NOT NULL AND l.returnDate > l.dueDate THEN 1 WHEN l.returnDate IS NULL AND l.dueDate < :referenceDate THEN 1 ELSE 0 END) FROM ReadingClub c JOIN c.members u JOIN c.loans l WHERE c.id = :clubId AND l.borrower = u GROUP BY u ORDER BY 2 DESC, u.username ASC`.
 - Two parameters: bind by name (`:clubId`, `:referenceDate`), with or without `@Param` (T5 p.20). Dates are compared directly with `<`/`>`.
-- Expected with the given data at 2026-10-01: user 4 (`player1`): 1, user 5 (`player2`): 1, user 6: 0 (returned exactly on the due date, which is not late). At 2026-10-10: 4 → 2. Club 2 has no loans → empty. User 9 borrowed a club loan but is not a member → ignored.
+- Expected with the given data at 2026-10-01: `player1` (user 4): 1, `player10` (user 13): 1, `player2` (user 5): 1, `player3` (user 6): 0 (returned exactly on the due date, which is not late), in that order: usernames are strings, so `player10` goes before `player2`. At 2026-10-10: `player1` → 2. User 7 is a member without loans and user 9 borrowed a club loan but is not a member: neither appears. Club 2 has no loans → empty.
 - Solution: [ReadingClubRepository.java](src/main/java/es/us/dp1/chess/tournament/practice/b/ReadingClubRepository.java) · grader [TestB6.java](src/test/java/es/us/dp1/chess/tournament/practice/b/TestB6.java) · `git show ":/practice: B6 "`
 </details>
 
