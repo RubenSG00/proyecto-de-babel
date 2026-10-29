@@ -211,7 +211,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | B8 | Tests for `LateFeeCalculator` | Writing JUnit tests | ★★ | M | mock Test 8 | `TestB8` | ☑ |
 | B9 | `Club` React component | React: fetch and render | ★★ | H | mock Test 9 | `Club.test.js` | ☑ |
 | B10 | `ClubDetail` React component (with empty state) | React: list, conditional rendering | ★ | H | mock Test 10; T2 p.53 | `ClubDetail.test.js` | ☑ |
-| C1 | `SafetyReport` and `ReportAction` entities and repositories | Entities, `@Pattern`, unique | ★★ | H | mock Test 1; T4 p.58; T5 p.78 | `TestC1` | ☐ |
+| C1 | `SafetyReport` and `ReportAction` entities and repositories | Entities, `@Pattern`, unique | ★★ | H | mock Test 1; T4 p.58; T5 p.78 | `TestC1` | ☑ |
 | C2 | Relations, one of them bidirectional | `@ManyToOne`, `@ManyToMany`, `mappedBy` | ★★★ | H | mock Test 2; T4 p.51–52 | `TestC2` | ☐ |
 | C3 | `data.sql`: reports and actions | Initial data | ★ | H | mock Test 3 | `TestC3` | ☐ |
 | C4 | `data.sql`: witnesses, and navigating the bidirectional relation | Initial data (join table) | ★★ | H | mock Test 4 | `TestC4` | ☐ |

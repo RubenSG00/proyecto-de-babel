@@ -2,6 +2,8 @@ package es.us.dp1.chess.tournament.practice.c;
 
 import java.util.Optional;
 
-public interface ReportActionRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface ReportActionRepository extends CrudRepository<ReportAction, Integer> {
     Optional<ReportAction> findById(Integer id);
 }
