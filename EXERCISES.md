@@ -205,7 +205,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | B2 | Relations between the entities (0..3 and 0..n ends) | `@ManyToOne`, `@ManyToMany`, `@Size(max)` | ★★ | H | mock Test 2; T5 p.59 | `TestB2` | ☑ |
 | B3 | `data.sql`: reviews and reactions | Initial data | ★ | H | mock Test 3 | `TestB3` | ☑ |
 | B4 | `data.sql`: members mentioned in the reviews | Initial data (join table) | ★ | H | mock Test 4 | `TestB4` | ☑ |
-| B5 | `BookLoanService` with class-level transactions | Services, transactions | ★★ | H | mock Test 5; T5 p.37–39 | `TestB5` | ☐ |
+| B5 | `BookLoanService` with class-level transactions | Services, transactions | ★★ | H | mock Test 5; T5 p.37–39 | `TestB5` | ☑ |
 | B6 | `findOverdueCounts` query (two parameters, tie-break) | JPQL aggregates | ★★★ | H | mock Test 6; T5 p.20 | `TestB6` | ☐ |
 | B7 | Overdue-report endpoint (members or ADMIN) | REST controller, 404/403, authorities | ★★ | H | mock Test 7; T5 p.86 | `TestB7` | ☐ |
 | B8 | Tests for `LateFeeCalculator` | Writing JUnit tests | ★★ | M | mock Test 8 | `TestB8` | ☐ |
