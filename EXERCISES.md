@@ -239,7 +239,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X16 | Checked business exception through the controller | Error handling, transactions | ★★ | M | T5 p.84–87; T6 p.16 | `TestX16` | ☑ |
 | X17 | Visibility by authority in the service layer | Authorization | ★★ | M | T4 p.17; T5 p.86; T6 p.34–37 | `TestX17` | ☑ |
 | X18 | Authority and ownership rules for an action | Authorization | ★★ | M | T4 p.17; T5 p.86; T6 p.37 | `TestX18` | ☑ |
-| X19 | Composition: `cascade = ALL` + `orphanRemoval` | Relationships | ★★ | M | T4 p.90; T5 p.60, p.65–67 | `TestX19` | ☐ |
+| X19 | Composition: `cascade = ALL` + `orphanRemoval` | Relationships | ★★ | M | T4 p.90; T5 p.60, p.65–67 | `TestX19` | ☑ |
 | X20 | Bidirectional one-to-many with `mappedBy` | Relationships | ★★ | M | T4 p.51–53; T5 p.61–64 | `TestX20` | ☐ |
 | X21 | Aggregation cascades and a mandatory one-to-one | Relationships | ★★ | M | T4 p.88, p.91; T5 p.66 | `TestX21` | ☐ |
 | X22 | `@Table`, `@Column` and `@Temporal` | Other mappings | ★ | M | T4 p.55–57; T5 p.19 | `TestX22` | ☐ |
