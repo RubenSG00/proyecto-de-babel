@@ -9,7 +9,8 @@ import es.us.dp1.chess.tournament.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.Transient;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -41,13 +42,17 @@ public class BookReview extends BaseEntity {
     @Past
     LocalDate publishedOn;
 
-    @Transient
+    @NotNull
+    @ManyToOne(optional = false)
     ReadingClub club;
 
-    @Transient
+    @NotNull
+    @ManyToOne(optional = false)
     User author;
 
-    @Transient
+    // Navigable end "0..3": no @NotNull/@NotEmpty (it may be empty), only the maximum
+    @Size(max = 3)
+    @ManyToMany
     List<User> mentionedMembers;
 
 }

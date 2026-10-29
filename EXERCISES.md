@@ -202,7 +202,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | A9 | `Program` React component | React: fetch and render | ★★ | H | mock Test 9; T6 p.55 | `Program.test.js` | ☑ |
 | A10 | `ProgramDetail` React component | React: list from props | ★ | H | mock Test 10 | `ProgramDetail.test.js` | ☑ |
 | B1 | `BookReview` and `ReviewReaction` entities and repositories | Entities, validation (`@Min/@Max`, `@Past`) | ★ | H | mock Test 1; T5 p.78–81 | `TestB1` | ☑ |
-| B2 | Relations between the entities (0..3 and 0..n ends) | `@ManyToOne`, `@ManyToMany`, `@Size(max)` | ★★ | H | mock Test 2; T5 p.59 | `TestB2` | ☐ |
+| B2 | Relations between the entities (0..3 and 0..n ends) | `@ManyToOne`, `@ManyToMany`, `@Size(max)` | ★★ | H | mock Test 2; T5 p.59 | `TestB2` | ☑ |
 | B3 | `data.sql`: reviews and reactions | Initial data | ★ | H | mock Test 3 | `TestB3` | ☐ |
 | B4 | `data.sql`: members mentioned in the reviews | Initial data (join table) | ★ | H | mock Test 4 | `TestB4` | ☐ |
 | B5 | `BookLoanService` with class-level transactions | Services, transactions | ★★ | H | mock Test 5; T5 p.37–39 | `TestB5` | ☐ |
