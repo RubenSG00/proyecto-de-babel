@@ -31,6 +31,11 @@ public class ReadingClubController {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
-    // TODO: Implement to solve Test B7 (GET {id}/overdue-report)
+    // The service throws ResourceNotFoundException (404) or AccessDeniedException (403);
+    // ExceptionHandlerController turns them into the responses
+    @GetMapping("{id}/overdue-report")
+    public ResponseEntity<List<OverdueEntry>> getOverdueReport(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(service.getOverdueReport(id), HttpStatus.OK);
+    }
 
 }
