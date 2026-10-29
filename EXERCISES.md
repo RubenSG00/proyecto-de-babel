@@ -185,7 +185,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | 0.2 | Relations between the entities | `@ManyToOne`, `@ManyToMany`, cardinality | ★★ | H | mock Test 2 | `Test2` | ☑ |
 | 0.3 | `data.sql`: announcements and responses | Initial data | ★ | H | mock Test 3 | `Test3` | ☑ |
 | 0.4 | `data.sql`: recipients of the announcements | Initial data (join table) | ★ | H | mock Test 4 | `Test4` | ☑ |
-| 0.5 | `ChessMatchService` | Services, transactions, business rule | ★★ | H | mock Test 5 | `Test5` | ☐ |
+| 0.5 | `ChessMatchService` | Services, transactions, business rule | ★★ | H | mock Test 5 | `Test5` | ☑ |
 | 0.6 | `findParticipantPoints` query | JPQL aggregates | ★★★ | H | mock Test 6 | `Test6` | ☐ |
 | 0.7 | Ranking endpoint | REST controller, 404/403, layers | ★★ | H | mock Test 7 | `Test7`, `Test7Alt` | ☐ |
 | 0.8 | Tests for `ClosestRatingPairFinder` | Writing JUnit tests | ★★ | M | mock Test 8 | `Test8` | ☐ |
