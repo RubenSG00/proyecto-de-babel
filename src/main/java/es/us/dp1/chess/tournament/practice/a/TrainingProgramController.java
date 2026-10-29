@@ -31,6 +31,10 @@ public class TrainingProgramController {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
-    // TODO: Implement to solve Test A7 (GET {id}/leaderboard)
+    // No try/catch: ExceptionHandlerController turns the service exceptions into 404/403
+    @GetMapping("{id}/leaderboard")
+    public ResponseEntity<List<LeaderboardEntry>> getLeaderboard(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(service.getLeaderboard(id), HttpStatus.OK);
+    }
 
 }
