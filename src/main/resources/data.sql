@@ -382,3 +382,35 @@ INSERT INTO report_action (id, action_taken, status, deadline, closed_at, priori
 INSERT INTO safety_report_witnesses (safety_report_id, witnesses_id) VALUES
     (1, 5), (1, 6),
     (2, 4), (2, 6), (2, 10);
+
+-- ==========================================================
+-- Block X - given data of the starting state (X11-X53).
+-- ==========================================================
+INSERT INTO recipe (id, name, minutes, featured, owner_id) VALUES
+    (1, 'Salmorejo', 20, false, 4),
+    (2, 'Gazpacho', 15, true, 5);
+
+INSERT INTO tournament (id, name, description, logo_url, prize_pool, format) VALUES
+    (1, 'Seville Open', 'Classical tournament in nine rounds', 'https://example.com/seville.png', 5000.00, 'SWISS'),
+    (2, 'Blitz Masters', 'Invitational blitz tournament', NULL, 1200.50, 'ROUND_ROBIN'),
+    (3, 'Junior Cup', 'Knockout tournament for juniors', 'https://example.com/junior.png', 0.00, 'KNOCKOUT');
+
+INSERT INTO venue (id, name, capacity) VALUES
+    (1, 'Teatro Central', 50),
+    (2, 'Sala X', 120);
+
+INSERT INTO expense (id, description, amount, status, owner_id, approved_by_id) VALUES
+    (1, 'Train ticket to Madrid', 60, 'PENDING', 4, NULL),
+    (2, 'Hotel for the Seville Open', 240, 'APPROVED', 4, 1),
+    (3, 'Chess clocks', 90, 'PENDING', 5, NULL),
+    (4, 'Lunch with sponsors', 75, 'REJECTED', 6, 1),
+    (5, 'New chess sets', 300, 'PENDING', 1, NULL);
+
+INSERT INTO writer (id, name) VALUES
+    (1, 'Benito Perez Galdos'),
+    (2, 'Emilia Pardo Bazan');
+
+INSERT INTO novel (id, title, writer_id) VALUES
+    (1, 'Fortunata y Jacinta', 1),
+    (2, 'Misericordia', 1),
+    (3, 'Los pazos de Ulloa', 2);
