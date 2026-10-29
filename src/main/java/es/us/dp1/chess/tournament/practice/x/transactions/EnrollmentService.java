@@ -1,0 +1,55 @@
+package es.us.dp1.chess.tournament.practice.x.transactions;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import es.us.dp1.chess.tournament.exceptions.ResourceNotFoundException;
+
+@Service
+public class EnrollmentService {
+
+    private final WorkshopRepository workshopRepository;
+    private final ReceiptRepository receiptRepository;
+    private final EnrollmentRepository enrollmentRepository;
+
+    @Autowired
+    public EnrollmentService(WorkshopRepository workshopRepository, ReceiptRepository receiptRepository,
+            EnrollmentRepository enrollmentRepository) {
+        this.workshopRepository = workshopRepository;
+        this.receiptRepository = receiptRepository;
+        this.enrollmentRepository = enrollmentRepository;
+    }
+
+    // TODO: Fix to solve Test X08 (the receipt must not remain when the workshop is full)
+    @Transactional
+    public Enrollment enroll(Integer workshopId, String attendee, int price) throws WorkshopFullException {
+        Workshop workshop = workshopRepository.findById(workshopId)
+            .orElseThrow(() -> new ResourceNotFoundException("Workshop", "id", workshopId));
+        // 1. The attendee pays
+        Receipt receipt = new Receipt();
+        receipt.setConcept("Enrollment of " + attendee + " in " + workshop.getName());
+        receipt.setAmount(price);
+        receipt = receiptRepository.save(receipt);
+        // 2. Business rule
+        if (workshop.getEnrolled() >= workshop.getCapacity())
+            throw new WorkshopFullException();
+        // 3. The attendee is enrolled
+        workshop.setEnrolled(workshop.getEnrolled() + 1);
+        workshopRepository.save(workshop);
+        Enrollment enrollment = new Enrollment();
+        enrollment.setAttendee(attendee);
+        enrollment.setWorkshop(workshop);
+        enrollment.setReceipt(receipt);
+        return enrollmentRepository.save(enrollment);
+    }
+
+    public List<Enrollment> enrollAll(Integer workshopId, List<String> attendees, int price)
+            throws WorkshopFullException {
+        // TODO: Implement to solve Test X08
+        return null;
+    }
+
+}

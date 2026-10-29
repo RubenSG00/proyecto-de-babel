@@ -61,7 +61,7 @@ The branch `exam-practice` contains the reference solutions. For every block the
 |---|---|---|
 | 0 (mock) | `main` (the original repository) | commit `practice: 0.N ...` |
 | A, B, C | commit `practice: A-start ...`, `practice: B-start ...`, `practice: C-start ...` | commit `practice: A3 ...` etc. |
-| X | commit `practice: X-start ...` | commit `practice: X05 ...` etc. |
+| X | X01–X10: commit `practice: X-start-1 ...`; X11–X53: commit `practice: X-start-2 ...` | commit `practice: X05 ...` etc. |
 
 Git can find a commit by the text of its message with the `:/text` syntax, so you do not need hashes. The commands are identical in bash and PowerShell.
 
@@ -103,7 +103,7 @@ git switch exam-practice
 git branch -D try-A                  # only if you do not want to keep the branch
 ```
 
-**Block 0 (the mock)**: `git switch -c try-0 main`. Its graders (`Test1`…`Test8`, `Test7Alt`, the two React tests) are already in `main`; nothing has to be restored. For **Block X**, branch from `":/practice: X-start"` and restore only the grader of the exercise, e.g. `git restore --source=exam-practice -- src/test/java/es/us/dp1/chess/tournament/practice/x/queries/TestX05.java`, or for a React exercise `git restore --source=exam-practice -- frontend/src/practice/x/lab2/partners/Partners.test.js` and then, inside `frontend`, `npx react-scripts test --watchAll=false src/practice/x/lab2/partners`.
+**Block 0 (the mock)**: `git switch -c try-0 main`. Its graders (`Test1`…`Test8`, `Test7Alt`, the two React tests) are already in `main`; nothing has to be restored. For **Block X**, branch from `":/practice: X-start-1"` (X01–X10) or `":/practice: X-start-2"` (X11–X53) and restore only the grader of the exercise, e.g. `git restore --source=exam-practice -- src/test/java/es/us/dp1/chess/tournament/practice/x/queries/TestX05.java`, or for a React exercise `git restore --source=exam-practice -- frontend/src/practice/x/lab2/partners/Partners.test.js` and then, inside `frontend`, `npx react-scripts test --watchAll=false src/practice/x/lab2/partners`.
 
 In exercise 8 of every block *you* write the tests: its grader is a dispatcher (`TestA8`, `TestB8`, `TestC8`) that runs your test class against four implementations, and restoring it does **not** bring the solution, which lives in a different file. In X46–X47 there is nothing to restore: the broken components you test against are already in the starting state.
 
@@ -1541,7 +1541,7 @@ Complete the `BaseDetail` component (`frontend/src/practice/c/baseDetail.js`), w
 
 ## Block X – Extra exercises by topic
 
-*Shorter exercises, at least two for every examinable topic that the mock does not cover, ordered from most to least likely. Each one has its own package `es.us.dp1.chess.tournament.practice.x.<topic>` (React: `frontend/src/practice/x/<topic>`), already present in the starting state `":/practice: X-start"` with the classes you have to modify. They are independent of each other. They are graded like the exam (percentage of passing tests), without points.*
+*Shorter exercises, at least two for every examinable topic that the mock does not cover, ordered from most to least likely. Each one has its own package `es.us.dp1.chess.tournament.practice.x.<topic>` (React: `frontend/src/practice/x/<topic>`), already present in the starting state with the classes you have to modify: `":/practice: X-start-1"` for X01–X10 and `":/practice: X-start-2"` for X11–X53 (the high-likelihood exercises were solved first, so they have their own starting commit). They are independent of each other. They are graded like the exam (percentage of passing tests), without points.*
 
 ### X.1 Bean Validation (likelihood: high)
 

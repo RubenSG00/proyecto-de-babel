@@ -260,3 +260,43 @@ INSERT INTO program_notice_targets (program_notice_id, targets_id) VALUES
     (1, 4), (1, 5),
     (2, 4), (2, 5), (2, 6),
     (3, 5), (3, 8);
+
+-- ==========================================================
+-- Block X - given data of the starting state (X03-X08).
+-- ==========================================================
+INSERT INTO concert (id, title, city, date, price, sold_out, genre) VALUES
+    (1, 'Rock Night', 'Seville', '2026-11-05', 30, false, 'ROCK'),
+    (2, 'Jazz at Dawn', 'Madrid', '2026-11-10', 45, true, 'JAZZ'),
+    (3, 'Pop Parade', 'Seville', '2026-12-01', 25, false, 'POP'),
+    (4, 'Classical Evenings', 'Valencia', '2026-12-15', 60, false, 'CLASSICAL'),
+    (5, 'Rock Legends', 'Madrid', '2027-01-20', 80, true, 'ROCK'),
+    (6, 'Smooth Jazz', 'Seville', '2027-02-14', 40, false, 'JAZZ'),
+    (7, 'Pop Hits Live', 'Bilbao', '2026-10-30', 20, false, 'POP'),
+    (8, 'The Rock Opera', 'Seville', '2026-11-05', 50, true, 'CLASSICAL');
+
+INSERT INTO band (id, name, city, founded_year) VALUES
+    (1, 'The Riffs', 'Seville', 1998),
+    (2, 'Blue Notes', 'Seville', 2005),
+    (3, 'Night Owls', 'Madrid', 2010),
+    (4, 'Paper Planes', 'Valencia', 2018);
+
+INSERT INTO musician (id, name, instrument, salary, agent) VALUES
+    (1, 'Ana Torres', 'guitar', 2000, 'Agency One'),
+    (2, 'Bruno Diaz', 'drums', 1500, NULL),
+    (3, 'Carla Ruiz', 'guitar', 3000, 'Star Agents'),
+    (4, 'Diego Lopez', 'bass', 1500, NULL),
+    (5, 'Elena Gil', 'piano', 4000, 'Agency One'),
+    (6, 'Ana Belen', 'voice', 2500, NULL),
+    (7, 'Fabio Moreno', 'guitar', 1000, NULL);
+
+INSERT INTO musician_bands (musician_id, bands_id) VALUES
+    (1, 1),
+    (2, 1), (2, 3),
+    (3, 1), (3, 2),
+    (4, 3),
+    (5, 2);
+
+INSERT INTO workshop (id, name, capacity, enrolled) VALUES
+    (1, 'Opening theory', 2, 1),
+    (2, 'Endgame clinic', 1, 1),
+    (3, 'Blitz tactics', 3, 0);
