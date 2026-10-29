@@ -9,7 +9,8 @@ import es.us.dp1.chess.tournament.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.Transient;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -31,10 +32,16 @@ public class ChallengeAnnouncement extends BaseEntity {
 
     LocalDateTime sentAt;
 
-    @Transient
+    // Navigable end "1": mandatory for JPA (optional = false) and for validation (@NotNull)
+    @NotNull
+    @ManyToOne(optional = false)
     FriendlyChallenge challenge;
 
-    @Transient
+    // Navigable end "2..n": an announcement has many recipients and a user receives many
+    // announcements, so it is many-to-many; the minimum of 2 is a validation constraint
+    @NotNull
+    @Size(min = 2)
+    @ManyToMany
     List<User> recipients;
 
 }

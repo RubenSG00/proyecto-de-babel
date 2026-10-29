@@ -182,7 +182,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | ID | Title | Topic | Difficulty | Likelihood | Source | Test class | Status |
 |---|---|---|---|---|---|---|---|
 | 0.1 | `ChallengeAnnouncement` and `AnnouncementResponse` entities and repositories | Entities, validation, enums, repositories | ★ | H | mock Test 1 | `Test1` | ☑ |
-| 0.2 | Relations between the entities | `@ManyToOne`, `@ManyToMany`, cardinality | ★★ | H | mock Test 2 | `Test2` | ☐ |
+| 0.2 | Relations between the entities | `@ManyToOne`, `@ManyToMany`, cardinality | ★★ | H | mock Test 2 | `Test2` | ☑ |
 | 0.3 | `data.sql`: announcements and responses | Initial data | ★ | H | mock Test 3 | `Test3` | ☐ |
 | 0.4 | `data.sql`: recipients of the announcements | Initial data (join table) | ★ | H | mock Test 4 | `Test4` | ☐ |
 | 0.5 | `ChessMatchService` | Services, transactions, business rule | ★★ | H | mock Test 5 | `Test5` | ☐ |
