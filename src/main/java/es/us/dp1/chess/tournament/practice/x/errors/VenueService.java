@@ -1,5 +1,7 @@
 package es.us.dp1.chess.tournament.practice.x.errors;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,9 +31,14 @@ public class VenueService {
         return venue;
     }
 
+    // The exception is checked: without rollbackFor the transaction would commit
+    @Transactional(rollbackFor = DuplicatedVenueNameException.class)
     public Venue saveVenue(Venue venue) throws DuplicatedVenueNameException {
-        // TODO: Implement to solve Test X16
-        return null;
+        Optional<Venue> sameName = repo.findByNameIgnoreCase(venue.getName());
+        // Another venue (different id) with the same name; the venue itself may keep its name
+        if (sameName.isPresent() && !sameName.get().getId().equals(venue.getId()))
+            throw new DuplicatedVenueNameException(venue.getName());
+        return repo.save(venue);
     }
 
 }

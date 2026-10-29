@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 import es.us.dp1.chess.tournament.practice.c.InvalidScoreThresholdException;
+import es.us.dp1.chess.tournament.practice.x.errors.DuplicatedVenueNameException;
 import es.us.dp1.chess.tournament.practice.x.errors.VenueCapacityExceededException;
 
 @RestControllerAdvice
@@ -85,6 +86,17 @@ public class ExceptionHandlerController {
 	@ExceptionHandler(value = VenueCapacityExceededException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ResponseEntity<ErrorMessage> venueCapacityExceededException(VenueCapacityExceededException ex,
+			WebRequest request) {
+		ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST.value(), new Date(), ex.getMessage(),
+				request.getDescription(false));
+
+		return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+	}
+
+	// Block X - X16: a checked business exception that travels through the controller
+	@ExceptionHandler(value = DuplicatedVenueNameException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ResponseEntity<ErrorMessage> duplicatedVenueNameException(DuplicatedVenueNameException ex,
 			WebRequest request) {
 		ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST.value(), new Date(), ex.getMessage(),
 				request.getDescription(false));
