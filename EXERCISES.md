@@ -193,7 +193,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | 0.10 | `ChallengeDetail` React component | React: list from props | ★ | H | mock Test 10 | `ChallengeDetail.test.js` | ☑ |
 | A1 | `ProgramNotice` and `NoticeAcknowledgement` entities and repositories | Entities, validation, enums, repositories | ★ | H | mock Test 1; T5 p.78–81 | `TestA1` | ☑ |
 | A2 | Relations between the entities (incl. an optional end) | `@ManyToOne`, `@ManyToMany`, cardinality | ★★ | H | mock Test 2; T4 p.87 | `TestA2` | ☑ |
-| A3 | `data.sql`: notices and acknowledgements | Initial data | ★ | H | mock Test 3 | `TestA3` | ☐ |
+| A3 | `data.sql`: notices and acknowledgements | Initial data | ★ | H | mock Test 3 | `TestA3` | ☑ |
 | A4 | `data.sql`: targets of the notices | Initial data (join table) | ★ | H | mock Test 4 | `TestA4` | ☐ |
 | A5 | `TrainingSessionService` | Services, transactions (`readOnly`, `rollbackFor`) | ★★ | H | mock Test 5; T5 p.39 | `TestA5` | ☐ |
 | A6 | `findMemberPoints` query | JPQL aggregates | ★★★ | H | mock Test 6 | `TestA6` | ☐ |

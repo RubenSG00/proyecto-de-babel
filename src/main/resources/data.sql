@@ -243,3 +243,14 @@ INSERT INTO training_program_members (training_program_id, user_id) VALUES
     (1, 4), (1, 5), (1, 6), (1, 7),
     (2, 5), (2, 8),
     (3, 4), (3, 9), (3, 10), (3, 11);
+
+-- Block A - A3: notices and acknowledgements (after the programs and users they reference)
+INSERT INTO program_notice (id, text, priority, published_at, read_count, program_id) VALUES
+    (1, 'Bring your own towel from Monday', 'NORMAL', '2026-09-01 08:00:00', 12, 1),
+    (2, 'Leg day moved to Thursday', 'URGENT', '2026-09-03 18:30:00', 30, 1),
+    (3, 'Draft: new stretching routine', 'LOW', NULL, 0, 2);
+
+INSERT INTO notice_acknowledgement (id, comment, status, acknowledged_at, notice_id, member_id, delegate_id) VALUES
+    (1, 'Thanks, noted', 'CONFIRMED', '2026-09-01 09:15:00', 1, 4, NULL),
+    (2, NULL, 'SEEN', '2026-09-03 19:00:00', 2, 5, NULL),
+    (3, 'I can''t make it on Thursday', 'REJECTED', '2026-09-03 20:45:00', 2, 6, 4);
