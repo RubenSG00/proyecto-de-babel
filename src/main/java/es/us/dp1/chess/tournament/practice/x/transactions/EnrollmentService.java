@@ -1,5 +1,6 @@
 package es.us.dp1.chess.tournament.practice.x.transactions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,9 @@ public class EnrollmentService {
         this.enrollmentRepository = enrollmentRepository;
     }
 
-    // TODO: Fix to solve Test X08 (the receipt must not remain when the workshop is full)
-    @Transactional
+    // WorkshopFullException is checked: with a plain @Transactional the transaction would COMMIT
+    // when it is thrown, and the receipt saved in step 1 would stay in the database
+    @Transactional(rollbackFor = WorkshopFullException.class)
     public Enrollment enroll(Integer workshopId, String attendee, int price) throws WorkshopFullException {
         Workshop workshop = workshopRepository.findById(workshopId)
             .orElseThrow(() -> new ResourceNotFoundException("Workshop", "id", workshopId));
@@ -46,10 +48,15 @@ public class EnrollmentService {
         return enrollmentRepository.save(enrollment);
     }
 
+    // One transaction for the whole loop. The calls to enroll go through "this", not through the
+    // Spring proxy, so the annotation of enroll does not apply to them: atomicity comes from here.
+    @Transactional(rollbackFor = WorkshopFullException.class)
     public List<Enrollment> enrollAll(Integer workshopId, List<String> attendees, int price)
             throws WorkshopFullException {
-        // TODO: Implement to solve Test X08
-        return null;
+        List<Enrollment> result = new ArrayList<>();
+        for (String attendee : attendees)
+            result.add(enroll(workshopId, attendee, price));
+        return result;
     }
 
 }
