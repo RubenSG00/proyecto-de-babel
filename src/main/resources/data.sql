@@ -189,3 +189,17 @@ INSERT INTO friendly_challenge_participants (friendly_challenge_id, user_id) VAL
 -- del script de inicialización que corresponde completar en los Tests 3 y 4.
 
 
+
+-- ==========================================================
+-- Block 0 (mock exam), Test 3: announcements and responses.
+-- Inserted after the challenges and users they reference.
+-- ==========================================================
+INSERT INTO challenge_announcement (id, message, status, sent_at, challenge_id) VALUES
+    (1, 'Remember to submit your match results by Friday', 'SENT', '2026-07-01 10:00:00', 1),
+    (2, 'New format proposal for next season', 'DRAFT', NULL, 1),
+    (3, 'Please confirm your availability for August', 'SENT', '2026-08-02 09:30:00', 2);
+
+INSERT INTO announcement_response (id, message, status, responded_at, announcement_id, recipient_id) VALUES
+    (1, 'Got it, will submit by Friday', 'ACCEPTED', '2026-07-01 11:00:00', 1, 4),
+    (2, 'Sounds good to me', 'ACCEPTED', '2026-08-02 10:00:00', 3, 5),
+    (3, 'I can''t make it in August', 'DECLINED', '2026-08-02 12:00:00', 3, 6);
