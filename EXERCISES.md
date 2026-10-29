@@ -227,7 +227,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X04 | Derived queries you name yourself | Derived queries | ★★ | H | T5 p.17, p.23–25 | `TestX04` | ☑ |
 | X05 | JPQL: positional and named parameters, `LIKE`, `BETWEEN`, `IS NULL` | JPQL | ★★ | H | T5 p.16–22 | `TestX05` | ☑ |
 | X06 | JPQL over collections: `IS EMPTY`, `DISTINCT`, `IN`, self-join, `COUNT` | JPQL | ★★ | H | T5 p.21–22 | `TestX06` | ☑ |
-| X07 | Class-level `@Transactional`, `readOnly`, `rollbackFor` | Transactions | ★★ | H | T5 p.33, p.37–40 | `TestX07` | ☐ |
+| X07 | Class-level `@Transactional`, `readOnly`, `rollbackFor` | Transactions | ★★ | H | T5 p.33, p.37–40 | `TestX07` | ☑ |
 | X08 | Making a multi-entity operation atomic | Transactions | ★★ | H | T5 p.41–47 | `TestX08` | ☐ |
 | X09 | Container, table and row components | React (2026-27 template) | ★ | H | Lab 2 p.4–5, p.9–11 | `Sponsors.test.js` | ☐ |
 | X10 | Loading the data with a service and `useFetchState` | React (2026-27 template) | ★★ | H | Lab 2 p.8–9, p.15–16 | `Partners.test.js` | ☐ |
@@ -1690,7 +1690,7 @@ And **add** to `MusicianRepository` a new method `List<String> instrumentsPlayed
 - `WHERE m.bands IS EMPTY` / `IS NOT EMPTY` · `SELECT DISTINCT m FROM Musician m, IN (m.bands) b WHERE b.city = :city` (the course syntax; `JOIN m.bands b` is equivalent) · `SELECT DISTINCT m1 FROM Musician m1, Musician m2 WHERE m1.salary > m2.salary AND m2.name = :name` · `SELECT COUNT(m) FROM Musician m JOIN m.bands b WHERE b.id = :bandId`.
 - `SELECT DISTINCT m.instrument FROM Musician m JOIN m.bands b WHERE b.city = :city ORDER BY m.instrument`: without `DISTINCT`, Seville gives `drums, guitar, guitar, guitar, piano` (Carla Ruiz plays the guitar in two bands of Seville, and Ana Torres plays it too).
 - Hibernate 6 (this project's version) removes duplicate **entities** from the result by itself, so `musiciansPlayingInCity` returns Carla Ruiz once even without `DISTINCT`; duplicate **scalar** values (such as the instruments) are not removed. Write `DISTINCT` in both: it is what the query means, and it is what the course writes (T5 p.21).
-- Solution: [MusicianRepository.java](src/main/java/es/us/dp1/chess/tournament/practice/x/queries/MusicianRepository.java) · grader [TestX06.java](src/test/java/es/us/dp1/chess/tournament/practice/x/queries/TestX06.java) · `git show ":/practice: X06 "`
+- Solution: [MusicianRepository.java](src/main/java/es/us/dp1/chess/tournament/practice/x/queries/MusicianRepository.java) · grader [TestX06.java](src/test/java/es/us/dp1/chess/tournament/practice/x/queries/TestX06.java) · `git log -p --grep="practice: X06 "` (two commits)
 </details>
 
 ### X.4 Transactions (likelihood: high)
