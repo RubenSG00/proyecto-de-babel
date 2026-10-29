@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +48,13 @@ public class TournamentController {
     @PutMapping("{id}")
     public ResponseEntity<Tournament> update(@PathVariable("id") Integer id, @RequestBody @Valid Tournament tournament) {
         return new ResponseEntity<>(service.update(id, tournament), HttpStatus.OK);
+    }
+
+    // 204 No Content: the deletion succeeded and there is no body to return
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

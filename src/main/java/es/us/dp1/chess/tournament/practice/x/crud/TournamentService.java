@@ -43,4 +43,12 @@ public class TournamentService {
         return repo.save(toUpdate);
     }
 
+    // Test X14: look the tournament up first, so that an unknown id is a 404
+    // (deleteById of a missing id does nothing in Spring Data 3)
+    @Transactional
+    public void delete(Integer id) {
+        Tournament toDelete = findById(id);
+        repo.delete(toDelete);
+    }
+
 }
