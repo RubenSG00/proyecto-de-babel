@@ -198,7 +198,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | A5 | `TrainingSessionService` | Services, transactions (`readOnly`, `rollbackFor`) | ★★ | H | mock Test 5; T5 p.39 | `TestA5` | ☑ |
 | A6 | `findMemberPoints` query | JPQL aggregates | ★★★ | H | mock Test 6 | `TestA6` | ☑ |
 | A7 | Leaderboard endpoint | REST controller, 404/403 | ★★ | H | mock Test 7 | `TestA7` | ☑ |
-| A8 | Tests for `TrainingStreakFinder` | Writing JUnit tests | ★★ | M | mock Test 8 | `TestA8` | ☐ |
+| A8 | Tests for `TrainingStreakFinder` | Writing JUnit tests | ★★ | M | mock Test 8 | `TestA8` | ☑ |
 | A9 | `Program` React component | React: fetch and render | ★★ | H | mock Test 9; T6 p.55 | `Program.test.js` | ☐ |
 | A10 | `ProgramDetail` React component | React: list from props | ★ | H | mock Test 10 | `ProgramDetail.test.js` | ☐ |
 | B1 | `BookReview` and `ReviewReaction` entities and repositories | Entities, validation (`@Min/@Max`, `@Past`) | ★ | H | mock Test 1; T5 p.78–81 | `TestB1` | ☐ |
