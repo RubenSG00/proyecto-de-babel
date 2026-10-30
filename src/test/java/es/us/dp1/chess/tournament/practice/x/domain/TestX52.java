@@ -44,6 +44,9 @@ public class TestX52 {
         assertEquals(0, new BigDecimal("60").compareTo(m.calculateEarlyTerminationFee(LocalDate.of(2026, 10, 1))));
         assertEquals(0, BigDecimal.ZERO.compareTo(m.calculateEarlyTerminationFee(LocalDate.of(2027, 1, 1))));
         assertEquals(0, BigDecimal.ZERO.compareTo(m.calculateEarlyTerminationFee(LocalDate.of(2027, 2, 1))));
+        // Only FULL months count: from 2026-10-02 to 2027-01-01 there are 2 full months, not 3
+        GymMembership almost = membership(LocalDate.of(2027, 1, 1), "40");
+        assertEquals(0, new BigDecimal("40").compareTo(almost.calculateEarlyTerminationFee(LocalDate.of(2026, 10, 2))));
         GymMembership odd = membership(LocalDate.of(2026, 12, 1), "25");
         assertEquals(0, new BigDecimal("12.5").compareTo(odd.calculateEarlyTerminationFee(LocalDate.of(2026, 11, 1))));
     }
