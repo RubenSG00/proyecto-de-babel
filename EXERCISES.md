@@ -267,7 +267,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X44 | Routes, links and URL parameters | React router | ★★ | L | T2 p.49–50 | `TravelApp.test.js` | ☑ |
 | X45 | Sharing data with a Context | React Context | ★ | L | T6 p.80–82; T2 p.47 | `Dashboard.test.js` | ☑ |
 | X46 | Writing component tests: render, query, assert | Frontend testing | ★★ | L | T2 p.57–59 | your `ScoreBoard.test.js` + broken versions | ☑ |
-| X47 | Writing component tests: interaction and fetched data | Frontend testing | ★★★ | L | T2 p.57–59 | your `LikeButton.test.js`, `QuoteOfTheDay.test.js` + broken versions | ☐ |
+| X47 | Writing component tests: interaction and fetched data | Frontend testing | ★★★ | L | T2 p.57–59 | your `LikeButton.test.js`, `QuoteOfTheDay.test.js` + broken versions | ☑ |
 | X48 | Logging with `@Slf4j` instead of `System.out` | Logging | ★ | L | T6 p.40–46 | `TestX48` | ☐ |
 | X49 | Configuring log levels | Logging | ★ | L | T6 p.41–45 | `TestX49` | ☐ |
 | X50 | EntityManager: persist, find, dirty checking, remove | Persistence context | ★★ | L | T4 p.61–73 | `TestX50` | ☐ |
