@@ -253,7 +253,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X30 | Reusable form fields and a presentational form | React forms | ★★ | M | Lab 2 p.18–21 | `TournamentForm.test.js` | ☑ |
 | X31 | One container to create and edit (`useParams`, `useNavigate`, POST/PUT) | React forms, router | ★★★ | M | Lab 2 p.21–24 | `RefereeEdit.test.js` | ☑ |
 | X32 | Edit and Delete actions in a presentational row | React list actions | ★ | M | Lab 2 p.25–26 | `TournamentTable.test.js` | ☑ |
-| X33 | Deleting from the container with `deleteFromList` | React list actions | ★★ | M | Lab 2 p.26–28 | `ChessClubList.test.js` | ☐ |
+| X33 | Deleting from the container with `deleteFromList` | React list actions | ★★ | M | Lab 2 p.26–28 | `ChessClubList.test.js` | ☑ |
 | X34 | Routes by role, protected with `PrivateRoute` | Frontend security | ★★ | M | Lab 2 p.6–7, p.14, p.23–24; T2 p.61 | `PracticeRoutes.test.js` | ☐ |
 | X35 | A menu that depends on the role | Frontend security | ★ | M | Lab 2 p.6–7, p.17 | `PracticeNavbar.test.js` | ☐ |
 | X36 | A value object with `@Embeddable` | Value objects | ★ | L | T4 p.42–43, p.48; T5 p.78 | `TestX36` | ☐ |
