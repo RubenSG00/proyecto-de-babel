@@ -249,7 +249,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X26 | Lifting state up | React state | ★★ | M | T2 p.38, p.43–46 | `VoteBoard.test.js` | ☑ |
 | X27 | Immutable updates of a list in state | React state | ★★ | M | T2 p.41 | `TaskList.test.js` | ☑ |
 | X28 | Custom hook + presentation component | React patterns | ★★ | M | T6 p.62–73 | `Members.test.js` | ☑ |
-| X29 | Extracting a network client | React patterns | ★★ | M | T6 p.74–77; T2 p.52 | `RankingSummary.test.js` | ☐ |
+| X29 | Extracting a network client | React patterns | ★★ | M | T6 p.74–77; T2 p.52 | `RankingSummary.test.js`, `RankingClient.test.js` | ☑ |
 | X30 | Reusable form fields and a presentational form | React forms | ★★ | M | Lab 2 p.18–21 | `TournamentForm.test.js` | ☐ |
 | X31 | One container to create and edit (`useParams`, `useNavigate`, POST/PUT) | React forms, router | ★★★ | M | Lab 2 p.21–24 | `RefereeEdit.test.js` | ☐ |
 | X32 | Edit and Delete actions in a presentational row | React list actions | ★ | M | Lab 2 p.25–26 | `TournamentTable.test.js` | ☐ |
@@ -2199,7 +2199,7 @@ The members of a gym program are obtained with `GET /api/v1/gym/programs/X/membe
 
 #### Test X29 – Extracting a network client
 
-**~15 min · Source: T6 p.74–77; T2 p.52 · Grader: `frontend/src/practice/x/hooks/RankingSummary.test.js`**
+**~15 min · Source: T6 p.74–77; T2 p.52 · Graders: `frontend/src/practice/x/hooks/RankingSummary.test.js`, `RankingClient.test.js`**
 
 - `rankingClient.js`: export an async function `fetchRanking(challengeId)` that requests `GET /api/v1/challenges/X/ranking` and returns the parsed JSON (same format as mock Test 9). It is the only place that may call `fetch`.
 - `useRanking.js`: the hook `useRanking(challengeId)` (default export) obtains the ranking **through `fetchRanking`**, converts every entry to the local format `{ username, points }` and returns `{ ranking }`.
@@ -2211,7 +2211,7 @@ The members of a gym program are obtained with `GET /api/v1/gym/programs/X/membe
 <summary>Hints, key points, typical mistakes, solution</summary>
 
 - Network code (client) / state and domain mapping (hook) / rendering (component): T6 p.77. The grader replaces `rankingClient.js` with a fake (`jest.mock`) to check that the hook really uses it.
-- Solution: [rankingClient.js](frontend/src/practice/x/hooks/rankingClient.js), [useRanking.js](frontend/src/practice/x/hooks/useRanking.js), [rankingSummary.js](frontend/src/practice/x/hooks/rankingSummary.js) · grader [RankingSummary.test.js](frontend/src/practice/x/hooks/RankingSummary.test.js) · `git show ":/practice: X29 "`
+- Solution: [rankingClient.js](frontend/src/practice/x/hooks/rankingClient.js), [useRanking.js](frontend/src/practice/x/hooks/useRanking.js), [rankingSummary.js](frontend/src/practice/x/hooks/rankingSummary.js) · graders [RankingSummary.test.js](frontend/src/practice/x/hooks/RankingSummary.test.js), [RankingClient.test.js](frontend/src/practice/x/hooks/RankingClient.test.js) · `git show ":/practice: X29 "`
 </details>
 
 ### X.15 React forms to create and edit, 2026-27 template (likelihood: medium)
