@@ -1,8 +1,19 @@
-// TODO: Implement to solve Test X45
+import UserContext from "./userContext";
+import Greeting from "./greeting";
+
+// Sidebar does not receive the username: no prop drilling through the intermediate component
 export function Sidebar() {
-    return <div></div>;
+    return (
+        <aside>
+            <Greeting />
+        </aside>
+    );
 }
 
 export default function Dashboard({ username }) {
-    return <div></div>;
+    return (
+        <UserContext.Provider value={{ username }}>
+            <Sidebar />
+        </UserContext.Provider>
+    );
 }
