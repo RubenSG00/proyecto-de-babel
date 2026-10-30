@@ -246,7 +246,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X23 | Unique attributes and unique pairs | Other mappings | ★ | M | T4 p.58–59 | `TestX23` | ☑ |
 | X24 | Breaking a JSON loop with `@JsonIgnore` | JSON data binding | ★★ | M | T6 p.19–27 | `TestX24` | ☑ |
 | X25 | Returning a DTO instead of the entity | JSON data binding, DTOs | ★★ | M | T6 p.24, p.29–32; T5 p.17 | `TestX25` | ☑ |
-| X26 | Lifting state up | React state | ★★ | M | T2 p.38, p.43–46 | `VoteBoard.test.js` | ☐ |
+| X26 | Lifting state up | React state | ★★ | M | T2 p.38, p.43–46 | `VoteBoard.test.js` | ☑ |
 | X27 | Immutable updates of a list in state | React state | ★★ | M | T2 p.41 | `TaskList.test.js` | ☐ |
 | X28 | Custom hook + presentation component | React patterns | ★★ | M | T6 p.62–73 | `Members.test.js` | ☐ |
 | X29 | Extracting a network client | React patterns | ★★ | M | T6 p.74–77; T2 p.52 | `RankingSummary.test.js` | ☐ |
