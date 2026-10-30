@@ -256,7 +256,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X33 | Deleting from the container with `deleteFromList` | React list actions | ★★ | M | Lab 2 p.26–28 | `ChessClubList.test.js` | ☑ |
 | X34 | Routes by role, protected with `PrivateRoute` | Frontend security | ★★ | M | Lab 2 p.6–7, p.14, p.23–24; T2 p.61 | `PracticeRoutes.test.js` | ☑ |
 | X35 | A menu that depends on the role | Frontend security | ★ | M | Lab 2 p.6–7, p.17 | `PracticeNavbar.test.js` | ☑ |
-| X36 | A value object with `@Embeddable` | Value objects | ★ | L | T4 p.42–43, p.48; T5 p.78 | `TestX36` | ☐ |
+| X36 | A value object with `@Embeddable` | Value objects | ★ | L | T4 p.42–43, p.48; T5 p.78 | `TestX36` | ☑ |
 | X37 | The same value object twice: `@AttributeOverrides` | Value objects | ★★ | L | T4 p.85–86 | `TestX37` | ☐ |
 | X38 | Reusing `Person` and `NamedEntity` | Inheritance | ★ | L | T4 p.54; T5 p.72, p.77 | `TestX38` | ☐ |
 | X39 | A generalization as a new `@MappedSuperclass` | Inheritance | ★★ | L | T5 p.50–56; T4 p.54 | `TestX39` | ☐ |
