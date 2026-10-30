@@ -259,7 +259,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X36 | A value object with `@Embeddable` | Value objects | ★ | L | T4 p.42–43, p.48; T5 p.78 | `TestX36` | ☑ |
 | X37 | The same value object twice: `@AttributeOverrides` | Value objects | ★★ | L | T4 p.85–86 | `TestX37` | ☑ |
 | X38 | Reusing `Person` and `NamedEntity` | Inheritance | ★ | L | T4 p.54; T5 p.72, p.77 | `TestX38` | ☑ |
-| X39 | A generalization as a new `@MappedSuperclass` | Inheritance | ★★ | L | T5 p.50–56; T4 p.54 | `TestX39` | ☐ |
+| X39 | A generalization as a new `@MappedSuperclass` | Inheritance | ★★ | L | T5 p.50–56; T4 p.54 | `TestX39` | ☑ |
 | X40 | A custom constraint annotation | Custom validation | ★★★ | L | T5 p.76, p.83 | `TestX40` | ☐ |
 | X41 | A Spring `Validator` class | Custom validation | ★★ | L | T5 p.76 | `TestX41` | ☐ |
 | X42 | Restricting an API path to an authority | API security | ★ | L | Lab 2 p.16 | `TestX42` | ☐ |
