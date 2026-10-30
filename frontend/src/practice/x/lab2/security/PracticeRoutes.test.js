@@ -1,5 +1,5 @@
 import { MemoryRouter } from "react-router-dom";
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { rest } from "msw";
 import { server } from "../../../../mocks/server";
 import { loginWith } from "./fakeJwt";
@@ -22,6 +22,14 @@ beforeEach(() => {
 
 afterEach(() => localStorage.clear());
 
+// The project's PrivateRoute starts a request every time it renders. The tests that render it
+// unmount it and let the requests in flight finish before ending, while the fake API is still
+// registered (setupTests.js resets the handlers after each test).
+async function unmountAndSettle() {
+    cleanup();
+    await new Promise((resolve) => setTimeout(resolve, 100));
+}
+
 describe("PracticeRoutes", () => {
     test("the public page is available for everybody", () => {
         renderAt("/lab/public");
@@ -43,6 +51,7 @@ describe("PracticeRoutes", () => {
         loginWith("ADMIN");
         renderAt("/lab/sponsors");
         expect(await screen.findByRole("heading", { name: "Sponsors administration" })).toBeInTheDocument();
+        await unmountAndSettle();
     });
 
     test("an ADMIN cannot reach the page of the players", () => {
@@ -55,6 +64,7 @@ describe("PracticeRoutes", () => {
         loginWith("PLAYER");
         renderAt("/lab/tournaments");
         expect(await screen.findByRole("heading", { name: "My tournaments" })).toBeInTheDocument();
+        await unmountAndSettle();
     });
 
     test("a PLAYER cannot reach the sponsors page", () => {
@@ -67,9 +77,10 @@ describe("PracticeRoutes", () => {
         tokenIsValid = false;
         loginWith("ADMIN");
         renderAt("/lab/sponsors");
-        expect(await screen.findByText("Loading...")).toBeInTheDocument();
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        // PrivateRoute asks the backend and, as the token is not valid, shows the login page instead
+        expect(await screen.findByRole("heading", { name: "Login" })).toBeInTheDocument();
         expect(screen.queryByRole("heading", { name: "Sponsors administration" })).not.toBeInTheDocument();
+        await unmountAndSettle();
     });
 
     test("unknown paths are not available", () => {
