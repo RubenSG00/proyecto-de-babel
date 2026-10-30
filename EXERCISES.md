@@ -261,7 +261,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X38 | Reusing `Person` and `NamedEntity` | Inheritance | ★ | L | T4 p.54; T5 p.72, p.77 | `TestX38` | ☑ |
 | X39 | A generalization as a new `@MappedSuperclass` | Inheritance | ★★ | L | T5 p.50–56; T4 p.54 | `TestX39` | ☑ |
 | X40 | A custom constraint annotation | Custom validation | ★★★ | L | T5 p.76, p.83 | `TestX40` | ☑ |
-| X41 | A Spring `Validator` class | Custom validation | ★★ | L | T5 p.76 | `TestX41` | ☐ |
+| X41 | A Spring `Validator` class | Custom validation | ★★ | L | T5 p.76 | `TestX41` | ☑ |
 | X42 | Restricting an API path to an authority | API security | ★ | L | Lab 2 p.16 | `TestX42` | ☐ |
 | X43 | A public endpoint: the developers of `pom.xml` | API security | ★ | L | Lab 2 p.4, p.7–8, p.16 | `TestX43` | ☐ |
 | X44 | Routes, links and URL parameters | React router | ★★ | L | T2 p.49–50 | `TravelApp.test.js` | ☐ |
