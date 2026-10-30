@@ -3,7 +3,10 @@ package es.us.dp1.chess.tournament.practice.x.logging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-// TODO: Replace System.out with an SLF4J logger to solve Test X48
+import lombok.extern.slf4j.Slf4j;
+
+// @Slf4j: Lombok creates "private static final Logger log" for this class
+@Slf4j
 @Service
 public class RegistrationAuditService {
 
@@ -16,17 +19,17 @@ public class RegistrationAuditService {
 
     public void register(String username) {
         if (username == null || username.isBlank()) {
-            System.out.println("Rejected registration: invalid username '" + username + "'");
+            log.warn("Rejected registration: invalid username '{}'", username);
             throw new IllegalArgumentException("Invalid username");
         }
         try {
             store.save(username);
         } catch (RuntimeException e) {
-            System.out.println("Registration failed for " + username);
-            e.printStackTrace();
+            // The exception as last argument: the stack trace is written with the message
+            log.error("Registration failed for {}", username, e);
             throw e;
         }
-        System.out.println("User " + username + " registered");
+        log.info("User {} registered", username);
     }
 
 }
