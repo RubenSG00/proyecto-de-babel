@@ -8,13 +8,24 @@ import org.apache.maven.model.Developer;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import es.us.dp1.chess.tournament.model.Person;
 
-
+// Block X - X43. "/api/v1/developers" is in the permitAll() of SecurityConfiguration: no token needed
+@RestController
+@RequestMapping("/api/v1/developers")
 public class DevelopersController {
     List<Developer> developers;
 
+    @GetMapping
+    public ResponseEntity<List<Developer>> findAll() {
+        return new ResponseEntity<>(getDevelopers(), HttpStatus.OK);
+    }
 
     public List<Developer> getDevelopers(){
         if(developers==null)
