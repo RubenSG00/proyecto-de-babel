@@ -1,25 +1,19 @@
 package es.us.dp1.chess.tournament.practice.x.inheritance;
 
+import es.us.dp1.chess.tournament.model.Person;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+// id, first_name and last_name (and their constraints) come from the mapped superclass Person
 @Entity
 @Getter
 @Setter
-public class Instructor {
+public class Instructor extends Person {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-
-    String firstName;
-
-    String lastName;
-
+    @NotBlank
     String specialty;
 
 }
