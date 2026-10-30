@@ -243,7 +243,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X20 | Bidirectional one-to-many with `mappedBy` | Relationships | ★★ | M | T4 p.51–53; T5 p.61–64 | `TestX20` | ☑ |
 | X21 | Aggregation cascades and a mandatory one-to-one | Relationships | ★★ | M | T4 p.88, p.91; T5 p.66 | `TestX21` | ☑ |
 | X22 | `@Table`, `@Column` and `@Temporal` | Other mappings | ★ | M | T4 p.55–57; T5 p.19 | `TestX22` | ☑ |
-| X23 | Unique attributes and unique pairs | Other mappings | ★ | M | T4 p.58–59 | `TestX23` | ☐ |
+| X23 | Unique attributes and unique pairs | Other mappings | ★ | M | T4 p.58–59 | `TestX23` | ☑ |
 | X24 | Breaking a JSON loop with `@JsonIgnore` | JSON data binding | ★★ | M | T6 p.19–27 | `TestX24` | ☐ |
 | X25 | Returning a DTO instead of the entity | JSON data binding, DTOs | ★★ | M | T6 p.24, p.29–32; T5 p.17 | `TestX25` | ☐ |
 | X26 | Lifting state up | React state | ★★ | M | T2 p.38, p.43–46 | `VoteBoard.test.js` | ☐ |
