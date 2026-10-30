@@ -47,17 +47,29 @@ public class EmployeeDao {
             em.remove(e);
     }
 
-    // TODO: Test X51
+    // Test X51
 
+    // managed -> detached: later changes are not tracked
+    @Transactional
     public Employee detachAndChangeSalary(Integer id, long newSalary) {
-        return null;
+        Employee e = em.find(Employee.class, id);
+        em.detach(e);
+        e.setSalary(newSalary);
+        return e;
     }
 
+    // detached -> managed: merge returns a different, managed object
+    @Transactional
     public Employee mergeChanges(Employee detached) {
-        return null;
+        return em.merge(detached);
     }
 
+    // removed -> managed: a remove can be undone with a persist
+    @Transactional
     public void removeAndRestore(Integer id) {
+        Employee e = em.find(Employee.class, id);
+        em.remove(e);
+        em.persist(e);
     }
 
 }
