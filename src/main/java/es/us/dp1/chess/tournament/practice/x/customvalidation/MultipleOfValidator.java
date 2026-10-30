@@ -5,10 +5,17 @@ import jakarta.validation.ConstraintValidatorContext;
 
 public class MultipleOfValidator implements ConstraintValidator<MultipleOf, Integer> {
 
+    private int divisor;
+
+    @Override
+    public void initialize(MultipleOf annotation) {
+        divisor = annotation.value();
+    }
+
+    // null is valid: deciding about nulls is the job of @NotNull
     @Override
     public boolean isValid(Integer value, ConstraintValidatorContext context) {
-        // TODO: Implement to solve Test X40
-        return true;
+        return value == null || value % divisor == 0;
     }
 
 }
