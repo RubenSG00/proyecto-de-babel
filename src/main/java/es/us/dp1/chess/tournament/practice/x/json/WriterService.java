@@ -30,10 +30,10 @@ public class WriterService {
         return novels.findById(id).orElseThrow(() -> new ResourceNotFoundException("Novel", "id", id));
     }
 
+    // Navigating the lazy collection inside the transaction (404 if the writer does not exist)
     @Transactional(readOnly = true)
     public List<Novel> findNovelsOfWriter(Integer writerId) {
-        // TODO: Implement to solve Test X24
-        return null;
+        return List.copyOf(findWriter(writerId).getNovels());
     }
 
 }

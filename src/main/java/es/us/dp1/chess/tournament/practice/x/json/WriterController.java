@@ -1,5 +1,7 @@
 package es.us.dp1.chess.tournament.practice.x.json;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,9 @@ public class WriterController {
         return new ResponseEntity<>(service.findWriter(id), HttpStatus.OK);
     }
 
-    // TODO: Implement to solve Test X24 (GET {id}/novels)
+    @GetMapping("{id}/novels")
+    public ResponseEntity<List<Novel>> findNovelsOfWriter(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(service.findNovelsOfWriter(id), HttpStatus.OK);
+    }
 
 }
