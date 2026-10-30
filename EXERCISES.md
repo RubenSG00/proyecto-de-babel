@@ -270,7 +270,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X47 | Writing component tests: interaction and fetched data | Frontend testing | ★★★ | L | T2 p.57–59 | your `LikeButton.test.js`, `QuoteOfTheDay.test.js` + broken versions | ☑ |
 | X48 | Logging with `@Slf4j` instead of `System.out` | Logging | ★ | L | T6 p.40–46 | `TestX48` | ☑ |
 | X49 | Configuring log levels | Logging | ★ | L | T6 p.41–45 | `TestX49` | ☑ |
-| X50 | EntityManager: persist, find, dirty checking, remove | Persistence context | ★★ | L | T4 p.61–73 | `TestX50` | ☐ |
+| X50 | EntityManager: persist, find, dirty checking, remove | Persistence context | ★★ | L | T4 p.61–73 | `TestX50` | ☑ |
 | X51 | EntityManager: detach, merge, undoing a remove | Persistence context | ★★ | L | T4 p.63–75 | `TestX51` | ☐ |
 | X52 | Domain logic in the entity, application logic in the service | Business logic layer | ★★ | L | T4 p.17–19 | `TestX52` | ☐ |
 | X53 | `equals`/`hashCode` based on the id | Entities | ★ | L | T4 p.45–47 | `TestX53` | ☐ |
