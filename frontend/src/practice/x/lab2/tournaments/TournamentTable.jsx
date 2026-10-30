@@ -1,7 +1,7 @@
 import { Table } from "reactstrap";
 import TournamentRow from "./TournamentRow";
 
-export default function TournamentTable({ tournaments }) {
+export default function TournamentTable({ tournaments, onDelete }) {
     return (
         <Table aria-label="tournaments" className="mt-4">
             <thead>
@@ -14,7 +14,7 @@ export default function TournamentTable({ tournaments }) {
             </thead>
             <tbody>
                 {tournaments.map((t) => (
-                    <TournamentRow key={t.id} tournament={t} />
+                    <TournamentRow key={t.id} tournament={t} onDelete={onDelete} />
                 ))}
             </tbody>
         </Table>
