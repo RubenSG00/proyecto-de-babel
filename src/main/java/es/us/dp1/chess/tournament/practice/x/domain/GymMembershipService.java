@@ -5,6 +5,9 @@ import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import es.us.dp1.chess.tournament.exceptions.ResourceNotFoundException;
 
 @Service
 public class GymMembershipService {
@@ -16,14 +19,26 @@ public class GymMembershipService {
         this.repo = repo;
     }
 
-    // TODO: Implement the application logic to solve Test X52
+    // Application logic: transactions, finding and saving, coordinating the domain operations
 
+    @Transactional
     public GymMembership renew(Integer id, int months) {
-        return null;
+        GymMembership membership = findById(id);
+        membership.renew(months);
+        return repo.save(membership);
     }
 
+    @Transactional
     public BigDecimal cancel(Integer id, LocalDate today) {
-        return null;
+        GymMembership membership = findById(id);
+        BigDecimal fee = membership.calculateEarlyTerminationFee(today);
+        membership.cancel();
+        repo.save(membership);
+        return fee;
+    }
+
+    private GymMembership findById(Integer id) {
+        return repo.findById(id).orElseThrow(() -> new ResourceNotFoundException("GymMembership", "id", id));
     }
 
 }

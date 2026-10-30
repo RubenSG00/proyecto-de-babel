@@ -272,7 +272,7 @@ Difficulty: ★ easy · ★★ medium (mock level) · ★★★ hard. Likelihood
 | X49 | Configuring log levels | Logging | ★ | L | T6 p.41–45 | `TestX49` | ☑ |
 | X50 | EntityManager: persist, find, dirty checking, remove | Persistence context | ★★ | L | T4 p.61–73 | `TestX50` | ☑ |
 | X51 | EntityManager: detach, merge, undoing a remove | Persistence context | ★★ | L | T4 p.63–75 | `TestX51` | ☑ |
-| X52 | Domain logic in the entity, application logic in the service | Business logic layer | ★★ | L | T4 p.17–19 | `TestX52` | ☐ |
+| X52 | Domain logic in the entity, application logic in the service | Business logic layer | ★★ | L | T4 p.17–19 | `TestX52` | ☑ |
 | X53 | `equals`/`hashCode` based on the id | Entities | ★ | L | T4 p.45–47 | `TestX53` | ☐ |
 
 **Totals:** Block 0: 10 · Block A: 10 · Block B: 10 · Block C: 10 · Block X: 53 → **93 exercises**.
